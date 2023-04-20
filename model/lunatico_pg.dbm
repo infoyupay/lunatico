@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" author="Infoyupay SACS" last-position="0,580" last-zoom="1" max-obj-count="14"
+	 default-schema="public"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="lunatico_db" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<extension name="pgcrypto">
+	<schema name="public"/>
+</extension>
+
+<table name="mmq_user" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<position x="720" y="520"/>
+	<column name="id" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="real_name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="role_viewer" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="role_admin" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="role_admin_sys" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="role_reporter" not-null="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="FALSE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="mmq_user_pk" type="pk-constr" table="public.mmq_user">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sq_unit_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="unit" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<position x="20" y="20"/>
+	<column name="id" not-null="true" sequence="public.sq_unit_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="tag" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="symbol" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="FALSE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="uq_units" type="uq-constr" table="public.unit">
+		<columns names="tag" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unit_pk" type="pk-constr" table="public.unit">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="type_doi" configuration="enumeration">
+	<schema name="public"/>
+	<enumeration label="OTHERS"/>
+	<enumeration label="ID_CARD"/>
+	<enumeration label="TAX_ID"/>
+</usertype>
+
+<sequence name="sq_person_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="person" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<position x="1340" y="240"/>
+	<column name="id" not-null="true" sequence="public.sq_person_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="doi_type">
+		<type name="public.type_doi" length="0"/>
+	</column>
+	<column name="doi_num">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="person_pk" type="pk-constr" table="public.person">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_person" type="uq-constr" table="public.person">
+		<columns names="doi_type,doi_num" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sq_employee_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="sq_type_folio_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="type_folio" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<position x="1400" y="620"/>
+	<column name="id" not-null="true" sequence="public.sq_type_folio_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="uq_typefolio" type="uq-constr" table="public.type_folio">
+		<columns names="name" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="type_folio_pk" type="pk-constr" table="public.type_folio">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="sq_warehouse_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<usertype name="type_virtual_warehouse" configuration="enumeration">
+	<schema name="public"/>
+	<enumeration label="TRANSIT"/>
+</usertype>
+
+<sequence name="sq_item_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<usertype name="type_item" configuration="enumeration">
+	<schema name="public"/>
+	<enumeration label="INGREDIENT"/>
+	<enumeration label="SUPPLY"/>
+	<enumeration label="BYPRODUCT"/>
+	<enumeration label="PRODUCT"/>
+</usertype>
+
+<table name="item" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+	<schema name="public"/>
+	<position x="20" y="300"/>
+	<column name="id" not-null="true" sequence="public.sq_item_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="public.type_item" length="0"/>
+	</column>
+	<column name="balance_onsale" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_stored" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_units" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_unit_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="notes">
+		<type name="text" length="0"/>
+	</column>
+	<column name="created" not-null="true">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<column name="active" not-null="true" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="item_pk" type="pk-constr" table="public.item">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="owner" index="10"/>
+		<object name="unit" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="mmq_user_fk" index="2"/>
+		<object name="unit_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="item_has_unit" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#7289ef"
+	 src-table="public.unit"
+	 dst-table="public.item"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<usertype name="type_balance" configuration="enumeration">
+	<schema name="public"/>
+	<enumeration label="OPENING"/>
+	<enumeration label="CLOSURE"/>
+	<enumeration label="HELPER"/>
+</usertype>
+
+<sequence name="sq_balance_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="balance" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="public"/>
+	<position x="440" y="20"/>
+	<column name="id" not-null="true" sequence="public.sq_balance_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="public.type_balance" length="0"/>
+	</column>
+	<column name="balance_units" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_unit_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_onsale" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_stored" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<constraint name="balance_pk" type="pk-constr" table="public.balance">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="item" index="7"/>
+		<object name="owner" index="10"/>
+		<object name="warehouse" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="item_fk" index="1"/>
+		<object name="mmq_user_fk" index="3"/>
+		<object name="warehouse_fk" index="0"/>
+	</customidxs>
+</table>
+
+<table name="warehouse" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<position x="940" y="320"/>
+	<column name="id" not-null="true" sequence="public.sq_warehouse_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="virtual_type">
+		<type name="public.type_virtual_warehouse" length="0"/>
+	</column>
+	<column name="active" not-null="true" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="uq_store" type="uq-constr" table="public.warehouse">
+		<columns names="name" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="store_pk" type="pk-constr" table="public.warehouse">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_warehouse_virtual" type="uq-constr" table="public.warehouse">
+		<columns names="virtual_type" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="item_has_many_balance" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fa5764"
+	 src-table="public.item"
+	 dst-table="public.balance"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="mmq_user_owns_many_item" type="rel1n" layers="0"
+	 src-col-pattern="owner"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d3a469"
+	 src-table="public.mmq_user"
+	 dst-table="public.item"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<sequence name="sq_movement_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<usertype name="type_movement" configuration="enumeration">
+	<schema name="public"/>
+	<enumeration label="IN_PURCHASE"/>
+	<enumeration label="IN_RETURN"/>
+	<enumeration label="IN_TRANSFER"/>
+	<enumeration label="IN_PRODUCTION"/>
+	<enumeration label="IN_FIX"/>
+	<enumeration label="OUT_SALE"/>
+	<enumeration label="OUT_RETURN"/>
+	<enumeration label="OUT_TRANSFER"/>
+	<enumeration label="OUT_PRODUCTION"/>
+	<enumeration label="OUT_FIX"/>
+	<enumeration label="OUT_WASTE"/>
+	<enumeration label="OUT_GIFT"/>
+</usertype>
+
+<sequence name="sq_movement_detail_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="movement" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="public"/>
+	<position x="1100" y="820"/>
+	<column name="id" not-null="true" sequence="public.sq_movement_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="public.type_movement" length="0"/>
+	</column>
+	<column name="doc_date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="own_date" not-null="true">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<column name="folio_serie">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="folio_number">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="notes">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="movement_pk" type="pk-constr" table="public.movement">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="folio_type" index="6"/>
+		<object name="owner" index="9"/>
+		<object name="person" index="5"/>
+		<object name="warehouse" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="mmq_user_fk" index="4"/>
+		<object name="person_fk" index="1"/>
+		<object name="type_folio_fk" index="2"/>
+		<object name="warehouse_fk" index="3"/>
+	</customidxs>
+</table>
+
+<relationship name="store_has_many_balance" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f52531"
+	 src-table="public.warehouse"
+	 dst-table="public.balance"
+	 src-required="false" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<sequence name="sq_balance_detail_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+</sequence>
+
+<table name="balance_detail" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<position x="1040" y="40"/>
+	<column name="id" not-null="true" sequence="public.sq_balance_detail_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="summary_type" not-null="true">
+		<type name="public.type_movement" length="14"/>
+	</column>
+	<column name="quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<constraint name="balance_detail_pk" type="pk-constr" table="public.balance_detail">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="balance" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="balance_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="balance_has_detail" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#41e308"
+	 src-table="public.balance"
+	 dst-table="public.balance_detail"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="balance_from_user" type="rel1n" layers="0"
+	 src-col-pattern="owner"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9fdb2c"
+	 src-table="public.mmq_user"
+	 dst-table="public.balance"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<constraint name="uq_balance_detail" type="uq-constr" table="public.balance_detail">
+	<columns names="balance,summary_type" ref-type="src-columns"/>
+</constraint>
+
+<relationship name="movement_belongs_party" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#84d37e"
+	 src-table="public.person"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="movement_has_foliotype" type="rel1n" layers="0"
+	 src-col-pattern="folio_type"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#48765f"
+	 src-table="public.type_folio"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="movement_in_warehouse" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#266535"
+	 src-table="public.warehouse"
+	 dst-table="public.movement"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="movement_belongs_user" type="rel1n" layers="0"
+	 src-col-pattern="owner"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9fda7b"
+	 src-table="public.mmq_user"
+	 dst-table="public.movement"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<table name="movement_detail" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
+	<schema name="public"/>
+	<position x="420" y="700"/>
+	<column name="id" not-null="true" sequence="public.sq_movement_detail_id">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="line" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="before_quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="before_price" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="before_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="in_quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="in_price" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="in_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="out_quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="out_price" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="out_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_price" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<column name="balance_cost" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
+	</column>
+	<constraint name="movement_detail_pk" type="pk-constr" table="public.movement_detail">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="item" index="3"/>
+		<object name="movement" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="item_fk" index="1"/>
+		<object name="movement_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="mov_has_detail" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f903b7"
+	 src-table="public.movement"
+	 dst-table="public.movement_detail"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<relationship name="movdetail_has_item" type="rel1n" layers="0"
+	 src-col-pattern="{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#79b194"
+	 src-table="public.item"
+	 dst-table="public.movement_detail"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT"/>
+
+<constraint name="uq_detail" type="uq-constr" table="public.movement_detail">
+	<columns names="movement,item" ref-type="src-columns"/>
+</constraint>
+
+<constraint name="uq_detail_line" type="uq-constr" table="public.movement_detail">
+	<columns names="movement,line" ref-type="src-columns"/>
+</constraint>
+
+<textbox name="Lunatico v1.0" layers="0" color="#ff0000" z-value="0" font-size="9">
+	<position x="20" y="920"/>
+	<comment> <![CDATA[Lunatico v1.0
+
+Software product Licensed under GPLv3.0 or later.
+Documentation licensed under Creative Commons CC BY-SA v4.0
+
+Designed and created by David Vidal Escudero
+At labs of Infoyupay SACS
+By requirement of: Pachamama Gifts SAC
+Using pgModeler 1.0.2
+
+Copyleft 2023, Lima - Peru]]> </comment>
+</textbox>
+
+</dbmodel>

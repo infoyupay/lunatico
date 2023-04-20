@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<Scene xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/19"
+       fx:controller="com.yupay.lunatico.fxforms.LunaticoScene">
+    <VBox prefHeight="600.0" prefWidth="750.0">
+        <MenuBar>
+            <Menu text="Sistema">
+                <Menu text="Administrar">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-businessman-24.png"/>
+                        </ImageView>
+                    </graphic>
+                    <MenuItem text="Configuración Local">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-gears-24.png"/>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="Configuración Global">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-heaven-24.png"/>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="Usuarios">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-user-folder-24.png"/>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                </Menu>
+                <SeparatorMenuItem/>
+                <MenuItem text="Desbloquear">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-unlock-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Bloquear">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-lock-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <SeparatorMenuItem/>
+                <MenuItem text="Salir">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-fire-exit-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+            </Menu>
+            <Menu text="Mantenimiento">
+                <MenuItem text="Almacenes">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-depot-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Artículos">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-ingredients-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Empleados">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-road-construction-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Personas Relacionadas">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-hug-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Tipo de Documento">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-receipt-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Unidad de Medida">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-measuring-cup-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+            </Menu>
+            <Menu text="Reportes">
+                <MenuItem text="Productos Críticos">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-siren-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Tendencia de Logística" onAction="#onItemTrendAction">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-area-chart-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+            </Menu>
+            <Menu text="Gestión">
+                <MenuItem text="Generar Apertura Diaria">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-open-sign-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+                <MenuItem text="Generar Cierre Diario">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                            <Image url="@png/icons8-close-sign-24.png"/>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+            </Menu>
+        </MenuBar>
+        <ToolBar>
+            <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0">
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <Image url="@png/icons8-add-file-24.png"/>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip maxWidth="360.0" text="Registrar nuevo movimiento." wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="48.0" fitWidth="48.0">
+                                <Image url="@png/icons8-add-file-48.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Tooltip>
+                </tooltip>
+            </Button>
+            <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity"
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <Image url="@png/icons8-delete-file-24.png"/>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip maxWidth="360.0" text="Revertir un movimiento." wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="48.0" fitWidth="48.0">
+                                <Image url="@png/icons8-delete-file-48.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Tooltip>
+                </tooltip>
+            </Button>
+            <Button contentDisplay="GRAPHIC_ONLY" layoutX="46.0" layoutY="10.0" maxHeight="-Infinity"
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <Image url="@png/icons8-stanley-knife-24.png"/>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip maxWidth="360.0"
+                             text="Ajustar el inventario por contabilización física. También se puede usar para estimar consumo."
+                             wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="48.0" fitWidth="48.0">
+                                <Image url="@png/icons8-stanley-knife-48.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Tooltip>
+                </tooltip>
+            </Button>
+            <Separator orientation="VERTICAL"/>
+            <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0"
+                      text="Por sede:"/>
+            <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="32.0" prefWidth="175.0" fx:id="cboStore"/>
+            <Button contentDisplay="GRAPHIC_ONLY" layoutX="82.0" layoutY="10.0" maxHeight="-Infinity"
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <Image url="@png/icons8-synchronize-24.png"/>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip maxWidth="360.0" text="Cargar (o refrescar) listado desde la base de datos."
+                             wrapText="true">
+                        <graphic>
+                            <ImageView fitHeight="48.0" fitWidth="48.0">
+                                <Image url="@png/icons8-synchronize-48.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Tooltip>
+                </tooltip>
+            </Button>
+        </ToolBar>
+        <TableView fx:id="tblData" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Producto">
+                    <columns>
+                        <TableColumn fx:id="colID" prefWidth="100.0" text="Código"/>
+                        <TableColumn fx:id="colDescription" prefWidth="200.0" text="Descripción"/>
+                    </columns>
+                </TableColumn>
+                <TableColumn prefWidth="150.0" text="Saldo">
+                    <columns>
+                        <TableColumn fx:id="colUnit" prefWidth="75.0" text="U. Med."/>
+                        <TableColumn fx:id="colStock" prefWidth="125.0" text="Total"/>
+                        <TableColumn fx:id="colSaved" prefWidth="125.0" text="Guardado"/>
+                        <TableColumn fx:id="colTransit" prefWidth="125.0" text="Tránsito"/>
+                        <TableColumn fx:id="colStore" prefWidth="125.0" text="Almacén"/>
+                        <TableColumn fx:id="colSale" prefWidth="125.0" text="Venta"/>
+                    </columns>
+                </TableColumn>
+                <TableColumn prefWidth="75.0" text="Entradas">
+                    <columns>
+                        <TableColumn fx:id="colInPurchase" prefWidth="125.0" text="Compras"/>
+                        <TableColumn fx:id="colInAdj" prefWidth="125.0" text="Ajustes"/>
+                        <TableColumn fx:id="colInReturn" prefWidth="125.0" text="Devolución C"/>
+                        <TableColumn fx:id="colInProduction" prefWidth="125.0" text="Producción"/>
+                        <TableColumn fx:id="colInFreight" prefWidth="125.0" text="Traslado"/>
+                    </columns>
+                </TableColumn>
+                <TableColumn prefWidth="75.0" text="Salidas">
+                    <columns>
+                        <TableColumn fx:id="colOutSale" prefWidth="125.0" text="Venta"/>
+                        <TableColumn fx:id="colOutWaste" prefWidth="125.0" text="Merma"/>
+                        <TableColumn fx:id="colOutAdj" prefWidth="125.0" text="Ajustes"/>
+                        <TableColumn fx:id="colOutReturn" prefWidth="125.0" text="Devolución P"/>
+                        <TableColumn fx:id="colOutProduction" prefWidth="125.0" text="Producción"/>
+                        <TableColumn fx:id="colOutFreight" prefWidth="125.0" text="Traslado"/>
+                        <TableColumn fx:id="colOutGift" prefWidth="125.0" text="Regalo"/>
+                    </columns>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+
+</Scene>
