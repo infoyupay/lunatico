@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Databse model implemented." />
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Deleted data dictionary.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOUserImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUserCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/user-card.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/lunatico_pg.dbm" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_pg.dbm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,10 +55,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="package-info" />
-        <option value="FxmlFile" />
         <option value="Enum" />
+        <option value="package-info" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -151,7 +163,9 @@
       <workItem from="1681591537199" duration="4702000" />
       <workItem from="1681661902093" duration="8677000" />
       <workItem from="1681867701811" duration="7007000" />
-      <workItem from="1681960573032" duration="1612000" />
+      <workItem from="1681960573032" duration="6361000" />
+      <workItem from="1682046980545" duration="626000" />
+      <workItem from="1682304356430" duration="1363000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -160,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681961952437</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Deleted data dictionary.">
+      <created>1681962369144</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681962369144</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,7 +200,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Databse model implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Databse model implemented." />
+    <MESSAGE value="Deleted data dictionary." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted data dictionary." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

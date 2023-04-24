@@ -26,7 +26,8 @@
 
 
         <properties>
-            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/lunatico_db"/>
+            <property name="eclipselink.jdbc.url"
+                      value="jdbc:postgresql://localhost:5432/lunatico_db?stringtype=unspecified&amp;ApplicationName=lunatico"/>
             <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="eclipselink.jdbc.user" value="postgres"/>
         </properties>

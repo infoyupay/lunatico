@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" author="Infoyupay SACS" last-position="0,580" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" author="Infoyupay SACS" last-position="490,491" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer"
 	 active-layers="0"
@@ -29,7 +29,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="real_name" not-null="true">
 		<type name="varchar" length="0"/>
 	</column>
-	<column name="password" not-null="true">
+	<column name="password" not-null="true" default-value="crypt('changeme',  gen_salt('bf'))">
 		<type name="varchar" length="0"/>
 	</column>
 	<column name="role_viewer" not-null="true">
@@ -115,10 +115,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="doi_type,doi_num" ref-type="src-columns"/>
 	</constraint>
 </table>
-
-<sequence name="sq_employee_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
-	<schema name="public"/>
-</sequence>
 
 <sequence name="sq_type_folio_id" cycle="false" start="1" increment="1" min-value="0" max-value="9223372036854775807" cache="1">
 	<schema name="public"/>
