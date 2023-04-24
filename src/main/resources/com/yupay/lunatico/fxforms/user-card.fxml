@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<fx:root hgap="5.0" type="GridPane" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yupay.lunatico.fxforms.FxUserCard">
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+   </columnConstraints>
+   <children>
+      <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Usuario:" />
+      <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" />
+      <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Nombre Real:" GridPane.rowIndex="1" />
+      <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Activo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TitledPane animated="false" collapsible="false" text="Roles" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" GridPane.rowSpan="2147483647">
+         <content>
+            <FlowPane hgap="5.0" prefWrapLength="0.0" vgap="5.0">
+               <children>
+                  <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Visualizador" />
+                  <CheckBox layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Administrador" />
+                  <CheckBox layoutX="20.0" layoutY="52.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Reportador" />
+                  <CheckBox layoutX="20.0" layoutY="84.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Superusuario" />
+               </children>
+            </FlowPane>
+         </content>
+      </TitledPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</fx:root>
