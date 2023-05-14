@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<Stage xmlns:fx="http://javafx.com/fxml/1" fx:id="top" title="Administración de Usuarios"
+       xmlns="http://javafx.com/javafx/19" fx:controller="com.yupay.lunatico.fxforms.FxUserView"
+       onShown="#onStageShown" onHidden="#onStageClosed">
+    <scene>
+        <Scene>
+            <VBox>
+                <ToolBar>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onAction="#onRefreshDBAction" prefHeight="32.0" prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-synchronize-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Refrescar listado de usuarios." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-synchronize-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onAction="#onCreateAction" prefHeight="32.0" prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-add-row-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Crear nuevo usuario." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-add-row-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onAction="#onEditAction" prefHeight="32.0" prefWidth="32.0"
+                            disable="${controller.emptySelection}">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-edit-row-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Editar usuario seleccionado." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-edit-row-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onAction="#onForcePasswordAction" prefHeight="32.0" prefWidth="32.0"
+                            disable="${controller.emptySelection}">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-password-reset-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Forzar cambio de contraseña." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-password-reset-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Separator orientation="VERTICAL"/>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Buscar:"/>
+                    <TextField fx:id="txtFilter" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"/>
+                </ToolBar>
+                <TableView fx:id="tblData" VBox.vgrow="ALWAYS" onMouseClicked="#onTableDataClicked">
+                    <columns>
+                        <TableColumn fx:id="colID" prefWidth="150.0" text="Login"/>
+                        <TableColumn fx:id="colName" prefWidth="210.0" text="Nombre Real"/>
+                        <TableColumn fx:id="colActive" prefWidth="75.0" text="Activo"/>
+                        <TableColumn prefWidth="75.0" text="Roles">
+                            <columns>
+                                <TableColumn fx:id="colRoleViewer" prefWidth="75.0" text="Visor"/>
+                                <TableColumn fx:id="colRoleAdmin" prefWidth="75.0" text="Admin"/>
+                                <TableColumn fx:id="colRoleReport" prefWidth="75.0" text="Informe"/>
+                                <TableColumn fx:id="colRoleSuper" prefWidth="75.0" text="Super"/>
+                            </columns>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Scene>
+    </scene>
+</Stage>

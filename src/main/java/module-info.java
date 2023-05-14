@@ -17,10 +17,13 @@ module lunatico {
 
     exports com.yupay.lunatico.fxforms;
     exports com.yupay.lunatico.fxmview;
+    exports com.yupay.lunatico.fxtools;
     exports com.yupay.lunatico.model;
+    exports com.yupay.lunatico.security;
 
     opens com.yupay.lunatico.fxforms
             to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
     opens com.yupay.lunatico.fxmview
             to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
+    opens com.yupay.lunatico.fxtools to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
 }

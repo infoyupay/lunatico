@@ -1,5 +1,6 @@
 package com.yupay.lunatico.fxforms;
 
+import com.yupay.lunatico.dao.DataSource;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
@@ -19,5 +20,10 @@ public class FxLunatico extends Application {
     @Override
     public void start(@NotNull Stage primaryStage) throws Exception {
         FxForms.lunaticoScene().show(primaryStage);
+    }
+
+    @Override
+    public void stop() {
+        DataSource.closeAll();
     }
 }

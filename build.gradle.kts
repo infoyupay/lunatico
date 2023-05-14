@@ -13,7 +13,7 @@ repositories {
 
 javafx {
     modules("javafx.controls", "javafx.fxml")
-    version = "19.0.2.1"
+    version = "20.0.1"
 }
 
 application {

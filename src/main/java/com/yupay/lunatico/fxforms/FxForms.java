@@ -34,6 +34,33 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for user-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxUserView userView() {
+        return loadFxml("user-view.fxml");
+    }
+
+    /**
+     * FxFactory for user-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxUserCard userCard() {
+        return loadFxml("user-card.fxml");
+    }
+
+    /**
+     * FxFactory for password-change.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxPasswordChange passwordChange() {
+        return loadFxml("password-change.fxml");
+    }
+
+    /**
      * FxFactory for movement-card.fxml
      *
      * @return a new form controller.

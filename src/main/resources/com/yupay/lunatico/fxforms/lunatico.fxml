@@ -29,7 +29,8 @@
                             </ImageView>
                         </graphic>
                     </MenuItem>
-                    <MenuItem text="Usuarios">
+                    <MenuItem text="Usuarios" onAction="#onSysUserAction"
+                              fx:id="mniSysUser">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-user-folder-24.png"/>
@@ -45,7 +46,7 @@
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Bloquear">
+                <MenuItem text="Bloquear" onAction="#onLockAction">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-lock-24.png"/>
