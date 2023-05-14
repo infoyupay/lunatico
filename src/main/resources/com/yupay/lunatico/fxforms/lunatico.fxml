@@ -39,7 +39,7 @@
                     </MenuItem>
                 </Menu>
                 <SeparatorMenuItem/>
-                <MenuItem text="Desbloquear">
+                <MenuItem text="Desbloquear" onAction="#onUnlockAction">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-unlock-24.png"/>

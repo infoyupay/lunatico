@@ -2,7 +2,10 @@ package com.yupay.lunatico.dao;
 
 import com.yupay.lunatico.model.User;
 import jakarta.persistence.EntityManager;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 /**
  * DAO Implementation for User.
@@ -28,19 +31,28 @@ public final class DAOUserImpl implements DAO<User> {
      * @param em       the entity manager object.
      * @param user     the user ID to check.
      * @param password the user password to check.
-     * @return true if ONE user matches.
+     * @return Optional containing the authenticated user.
+     * {@snippet : Optional.empty()} if authentication fail
+     * due non existing user, or password didn't match.
      */
-    public boolean authenticateUser(@NotNull EntityManager em,
-                                    @NotNull String user,
-                                    @NotNull String password) {
+    @Contract("_,_,_->new")
+    public @NotNull Optional<User> authenticateUser(@NotNull EntityManager em,
+                                                    @NotNull String user,
+                                                    @NotNull String password) {
         var qry = em.createNativeQuery(
                 "SELECT * FROM mmq_user U " +
                         "WHERE U.id = ?1" +
                         " AND U.active" +
-                        " AND U.password = crypt(U.password, ?2)");
+                        " AND U.password = crypt(?2, U.password)",
+                User.class);
         qry.setParameter(1, user);
         qry.setParameter(2, password);
-        return qry.getResultStream().findAny().isPresent();
+        var r = qry.getResultStream().findAny();
+        if (r.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.ofNullable(r.get() instanceof User usr ? usr : null);
+        }
     }
 
     /**

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane fx:id="top" headerText="Ingrese sus credenciales:" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yupay.lunatico.fxforms.FxUserLogin">
+    <content>
+        <GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" vgap="5.0">
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="NEVER" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <children>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Usuario:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtId" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+</DialogPane>

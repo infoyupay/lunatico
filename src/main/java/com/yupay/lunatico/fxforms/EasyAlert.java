@@ -64,6 +64,16 @@ public class EasyAlert extends Alert
     }
 
     /**
+     * Static factory to create a new alert for errors.
+     *
+     * @return an error alert.
+     */
+    @Contract(" -> new")
+    public static @NotNull EasyAlert error() {
+        return new EasyAlert(AlertType.ERROR);
+    }
+
+    /**
      * Fluent setter - with.
      *
      * @param title the new value.

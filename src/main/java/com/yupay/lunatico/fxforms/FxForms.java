@@ -61,6 +61,15 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for user-login.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxUserLogin userLogin() {
+        return loadFxml("user-login.fxml");
+    }
+
+    /**
      * FxFactory for movement-card.fxml
      *
      * @return a new form controller.

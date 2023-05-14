@@ -1,6 +1,7 @@
 package com.yupay.lunatico.fxforms;
 
 import com.yupay.lunatico.Prototypes;
+import com.yupay.lunatico.fxflows.FxLoginFlow;
 import com.yupay.lunatico.fxmview.FxItem;
 import com.yupay.lunatico.fxmview.FxStore;
 import com.yupay.lunatico.fxmview.FxUnit;
@@ -231,6 +232,14 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
              *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
             wdw.close();
         }
+    }
+
+    /**
+     * FXML event handler.
+     */
+    @FXML
+    void onUnlockAction() {
+        new FxLoginFlow().login(p -> System.out.println(p.getId()));
     }
 
     /**
