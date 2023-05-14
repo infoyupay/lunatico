@@ -53,6 +53,7 @@ public class EasyAlert extends Alert
      * Creates a new alert for information showing a
      * successful database update completed.
      *
+     * @param content the content text to show.
      * @return an information alert.
      */
     @Contract(" _-> new")
@@ -60,6 +61,7 @@ public class EasyAlert extends Alert
         return info()
                 .withTitle("Completado")
                 .withHeaderText("Actualización completada satisfactoriamente.")
+                .withContentText(content)
                 .buttonOkOnly();
     }
 
