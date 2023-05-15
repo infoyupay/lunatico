@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Minor code styling fixing.">
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="User profile enforcing at login time: OK.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/EasyAlert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/EasyAlert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +52,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="dvidal &lt;dvidal@infoyupay.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="ProjectId" id="2NnxbJYnpsjg7X4l3cj6r9SNLyr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -210,7 +213,7 @@
       <workItem from="1683745929847" duration="6316000" />
       <workItem from="1683947873904" duration="8511000" />
       <workItem from="1684070710863" duration="11175000" />
-      <workItem from="1684121044398" duration="2598000" />
+      <workItem from="1684121044398" duration="2869000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -261,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684085062694</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="User profile enforcing at login time: OK.">
+      <created>1684125692723</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684125692723</updated>
+    </task>
+    <task id="LOCAL-00009" summary="User profile enforcing at login time: OK.">
+      <created>1684125753725</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684125753725</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +303,8 @@
     <MESSAGE value="User management implemented." />
     <MESSAGE value="User login implemented." />
     <MESSAGE value="Minor code styling fixing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor code styling fixing." />
+    <MESSAGE value="User profile enforcing at login time: OK." />
+    <option name="LAST_COMMIT_MESSAGE" value="User profile enforcing at login time: OK." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
