@@ -15,21 +15,21 @@
                             <Image url="@png/icons8-businessman-24.png"/>
                         </ImageView>
                     </graphic>
-                    <MenuItem text="Configuración Local">
+                    <MenuItem text="Configuración Local" visible="${controller.locked}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-gears-24.png"/>
                             </ImageView>
                         </graphic>
                     </MenuItem>
-                    <MenuItem text="Configuración Global">
+                    <MenuItem text="Configuración Global" visible="${controller.unlockedAndSudoer}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-heaven-24.png"/>
                             </ImageView>
                         </graphic>
                     </MenuItem>
-                    <MenuItem text="Usuarios" onAction="#onSysUserAction"
+                    <MenuItem text="Usuarios" onAction="#onSysUserAction" visible="${controller.unlockedAndSudoer}"
                               fx:id="mniSysUser">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
@@ -39,14 +39,14 @@
                     </MenuItem>
                 </Menu>
                 <SeparatorMenuItem/>
-                <MenuItem text="Desbloquear" onAction="#onUnlockAction">
+                <MenuItem text="Desbloquear" onAction="#onUnlockAction" visible="${controller.locked}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-unlock-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Bloquear" onAction="#onLockAction">
+                <MenuItem text="Bloquear" onAction="#onLockAction" visible="${controller.unlocked}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-lock-24.png"/>
@@ -54,7 +54,7 @@
                     </graphic>
                 </MenuItem>
                 <SeparatorMenuItem/>
-                <MenuItem text="Salir">
+                <MenuItem text="Salir" onAction="#onExitAction">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-fire-exit-24.png"/>
@@ -62,43 +62,36 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Mantenimiento">
-                <MenuItem text="Almacenes">
+            <Menu text="Mantenimiento" visible="${controller.unlocked}">
+                <MenuItem text="Almacenes" visible="${controller.roleAdmin}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-depot-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Artículos">
+                <MenuItem text="Artículos" visible="${controller.roleAdmin}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-ingredients-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Empleados">
-                    <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                            <Image url="@png/icons8-road-construction-24.png"/>
-                        </ImageView>
-                    </graphic>
-                </MenuItem>
-                <MenuItem text="Personas Relacionadas">
+                <MenuItem text="Personas Relacionadas" visible="${controller.roleReport}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-hug-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Tipo de Documento">
+                <MenuItem text="Tipo de Documento" visible="${controller.roleAdmin}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-receipt-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Unidad de Medida">
+                <MenuItem text="Unidad de Medida" visible="${controller.roleAdmin}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-measuring-cup-24.png"/>
@@ -106,15 +99,16 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Reportes">
-                <MenuItem text="Productos Críticos">
+            <Menu text="Reportes" visible="${controller.unlocked}">
+                <MenuItem text="Productos Críticos" visible="${controller.roleViewer}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-siren-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Tendencia de Logística" onAction="#onItemTrendAction">
+                <MenuItem text="Tendencia de Logística" onAction="#onItemTrendAction"
+                visible="${controller.roleViewer}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-area-chart-24.png"/>
@@ -122,15 +116,15 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Gestión">
-                <MenuItem text="Generar Apertura Diaria">
+            <Menu text="Gestión" visible="${controller.unlocked}">
+                <MenuItem text="Generar Apertura Diaria" visible="${controller.roleReport}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-open-sign-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Generar Cierre Diario">
+                <MenuItem text="Generar Cierre Diario" visible="${controller.roleReport}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-close-sign-24.png"/>
@@ -139,9 +133,10 @@
                 </MenuItem>
             </Menu>
         </MenuBar>
-        <ToolBar>
+        <ToolBar visible="${controller.unlocked}">
             <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0">
+                    minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0"
+            visible="${controller.roleReport}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-add-file-24.png"/>
@@ -158,7 +153,8 @@
                 </tooltip>
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity"
-                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
+            visible="${controller.roleAdmin}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-delete-file-24.png"/>
@@ -175,7 +171,8 @@
                 </tooltip>
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="46.0" layoutY="10.0" maxHeight="-Infinity"
-                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
+            visible="${controller.roleReport}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-stanley-knife-24.png"/>

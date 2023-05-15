@@ -18,7 +18,7 @@ public class FxLunatico extends Application {
     }
 
     @Override
-    public void start(@NotNull Stage primaryStage) throws Exception {
+    public void start(@NotNull Stage primaryStage) {
         FxForms.lunaticoScene().show(primaryStage);
     }
 

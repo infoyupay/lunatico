@@ -5,14 +5,19 @@ import com.yupay.lunatico.fxflows.FxLoginFlow;
 import com.yupay.lunatico.fxmview.FxItem;
 import com.yupay.lunatico.fxmview.FxStore;
 import com.yupay.lunatico.fxmview.FxUnit;
+import com.yupay.lunatico.fxmview.FxUserMV;
+import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * The main scene controller with UI defined in lunatico.fxml.
@@ -34,6 +40,46 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      * List to keep track of open children.
      */
     private final List<Stage> childrenWindow = new ArrayList<>();
+    /**
+     * Property to hold the currently logged-in user.
+     */
+    private final ObjectProperty<FxUserMV> loggedUser =
+            new SimpleObjectProperty<>(this, "loggedUser");
+    /**
+     * Holds true if no user has been logged in.
+     */
+    private final ReadOnlyBooleanWrapper locked =
+            new ReadOnlyBooleanWrapper(this, "locked");
+    /**
+     * Holds true if any user has been logged in.
+     */
+    private final ReadOnlyBooleanWrapper unlocked =
+            new ReadOnlyBooleanWrapper(this, "unlocked");
+    /**
+     * Holds true if the logged user may assume the viewer role.
+     */
+    private final ReadOnlyBooleanWrapper roleViewer =
+            new ReadOnlyBooleanWrapper(this, "roleViewer");
+    /**
+     * Holds true if the logged user may assume the business admin role.
+     */
+    private final ReadOnlyBooleanWrapper roleAdmin =
+            new ReadOnlyBooleanWrapper(this, "roleAdmin");
+    /**
+     * Holds true if the logged user is a superuser.
+     */
+    private final ReadOnlyBooleanWrapper roleSudoer =
+            new ReadOnlyBooleanWrapper(this, "roleSudoer");
+    /**
+     * Holds true if the logged user may assume the reporter role.
+     */
+    private final ReadOnlyBooleanWrapper roleReport =
+            new ReadOnlyBooleanWrapper(this, "roleReport");
+    /**
+     * Holds true if it's unlocked AND the logged user is a sudoer.
+     */
+    private final ReadOnlyBooleanWrapper unlockedAndSudoer =
+            new ReadOnlyBooleanWrapper(this, "unlockedAndSudoer", false);
     /**
      * The primary stage window.
      */
@@ -175,6 +221,8 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void initialize() {
+        //<editor-fold desc="Fool implementation to be removed.">
+        //TODO: REMOVE THIS ENTIRE SECTION AFTER REAL IMPLEMENTATION!!
         cboStore.setItems(Prototypes.STORES);
         tblData.setItems(FXCollections.observableList(Prototypes.items()));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -197,6 +245,13 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
         colStore.setCellValueFactory(new PropertyValueFactory<>("balanceStore"));
         colTransit.setCellValueFactory(new PropertyValueFactory<>("balanceTransit"));
         colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        //</editor-fold>
+
+        locked.bind(loggedUserProperty().isNull());
+        unlocked.bind(loggedUserProperty().isNotNull());
+        unlockedAndSudoer.bind(unlocked.and(roleSudoer));
+
+        loggedUserProperty().addListener(new UserChanged());
     }
 
     /**
@@ -217,21 +272,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onLockAction() {
-        /*#**********************************************************************
-         * First extract to an array, so concurrent modification is avoided.    *
-         *                                                                      *
-         * DO NOT MODIFY IF YOU DON'T UNDERSTAND WHY IT DOES WORK. THOROUGHLY   *
-         * READ THE REMARKS BEFORE TRYING TO TOUCH THIS.                        *
-         ************************************************************************/
-        for (var wdw : childrenWindow.toArray(Stage[]::new)) {
-            /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*
-             ! This would cause a concurrent modification exception                 !
-             ! if invoked directly as childrenWindow.forEach(Stage::close),         !
-             ! this is because each added children is deleted from childrenWindow   !
-             ! when stage fires the hidden event.                                   !
-             *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-            wdw.close();
-        }
+        setLoggedUser(null);
     }
 
     /**
@@ -239,7 +280,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onUnlockAction() {
-        new FxLoginFlow().login(p -> System.out.println(p.getId()));
+        new FxLoginFlow().login(this::setLoggedUser);
     }
 
     /**
@@ -269,4 +310,236 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     void onItemTrendAction() {
         FxForms.itemTrend().showAndWait();
     }
+
+    /**
+     * FXML event handler.
+     */
+    @FXML
+    void onExitAction() {
+        EasyAlert.warning()
+                .withTitle("Confirmar Cierre")
+                .withHeaderText("¿Estás seguro que quieres salir?")
+                .withContentText("Salir de la aplicación hará que los datos " +
+                        "que no hayas enviado a la base de datos se pierdan. " +
+                        "Si alguna operación está en curso nunca sabremos el resultado.")
+                .buttonYesNoCancel()
+                .showAndExpect(ButtonType.YES, Platform::exit);
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #loggedUser}.get();
+     */
+    public final FxUserMV getLoggedUser() {
+        return loggedUser.get();
+    }
+
+    /**
+     * FX Accessor - setter.
+     *
+     * @param loggedUser value to assign into {@link #loggedUser}.
+     */
+    public final void setLoggedUser(FxUserMV loggedUser) {
+        this.loggedUser.set(loggedUser);
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #loggedUser}.
+     */
+    public final ObjectProperty<FxUserMV> loggedUserProperty() {
+        return loggedUser;
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #locked}.get();
+     */
+    public final boolean isLocked() {
+        return locked.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #locked}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty lockedProperty() {
+        return locked.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #unlocked}.get();
+     */
+    public final boolean isUnlocked() {
+        return unlocked.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #unlocked}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty unlockedProperty() {
+        return unlocked.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #roleViewer}.get();
+     */
+    public final boolean isRoleViewer() {
+        return roleViewer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #roleViewer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty roleViewerProperty() {
+        return roleViewer.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #roleAdmin}.get();
+     */
+    public final boolean isRoleAdmin() {
+        return roleAdmin.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #roleAdmin}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty roleAdminProperty() {
+        return roleAdmin.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #roleSudoer}.get();
+     */
+    public final boolean isRoleSudoer() {
+        return roleSudoer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #roleSudoer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty roleSudoerProperty() {
+        return roleSudoer.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #roleReport}.get();
+     */
+    public final boolean isRoleReport() {
+        return roleReport.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #roleReport}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty roleReportProperty() {
+        return roleReport.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #unlockedAndSudoer}.get();
+     */
+    public final boolean isUnlockedAndSudoer() {
+        return unlockedAndSudoer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #unlockedAndSudoer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty unlockedAndSudoerProperty() {
+        return unlockedAndSudoer.getReadOnlyProperty();
+    }
+
+    /**
+     * Synchronizes roles when user changes.
+     *
+     * @author InfoYupay SACS
+     * @version 1.0
+     */
+    private class UserChanged implements ChangeListener<FxUserMV> {
+        @Override
+        public void changed(ObservableValue<? extends FxUserMV> observable,
+                            FxUserMV oldValue,
+                            FxUserMV n) {
+            //Clear roles always.
+            Stream.of(
+                            roleAdmin,
+                            roleReport,
+                            roleSudoer,
+                            roleViewer)
+                    .forEach(w -> w.setValue(false));
+            //If new value is null or not active, no role should be granted
+            // and a lockdown should be performed.
+            if (n == null || !n.isActive()) {
+                /*#**********************************************************************
+                 * First extract to an array, so concurrent modification is avoided.    *
+                 *                                                                      *
+                 * DO NOT MODIFY IF YOU DON'T UNDERSTAND WHY IT DOES WORK. THOROUGHLY   *
+                 * READ THE REMARKS BEFORE TRYING TO TOUCH THIS.                        *
+                 ************************************************************************/
+                for (var wdw : childrenWindow.toArray(Stage[]::new)) {
+                    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*
+                    ! This would cause a concurrent modification exception                 !
+                    ! if invoked directly as childrenWindow.forEach(Stage::close),         !
+                    ! this is because each added children is deleted from childrenWindow   !
+                    ! when stage fires the hidden event.                                   !
+                    *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                    wdw.close();
+                }
+                return;
+            }
+            //The sudoer role, only by the sudoer.
+            roleSudoer.set(n.isRoleAdminSys());
+            //The sudoer and business admin are business admins.
+            roleAdmin.set(n.isRoleAdmin()
+                    || n.isRoleAdminSys());
+            //The sudoer, business admin and reporter are reporters.
+            roleReport.set(n.isRoleReporter()
+                    || n.isRoleAdmin()
+                    || n.isRoleAdminSys());
+            //The viewer is the lowest role of all.
+            roleViewer.set(n.isRoleViewer()
+                    || n.isRoleReporter()
+                    || n.isRoleAdmin()
+                    || n.isRoleAdminSys());
+
+        }
+    }
 }
+

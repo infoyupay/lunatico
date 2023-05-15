@@ -50,6 +50,16 @@ public class EasyAlert extends Alert
     }
 
     /**
+     * Creates a new alert for warning.
+     *
+     * @return a warning alert.
+     */
+    @Contract(" -> new")
+    public static @NotNull EasyAlert warning() {
+        return new EasyAlert(AlertType.WARNING);
+    }
+
+    /**
      * Creates a new alert for information showing a
      * successful database update completed.
      *
@@ -138,8 +148,35 @@ public class EasyAlert extends Alert
         return withButtonTypes(ButtonType.OK);
     }
 
+    /**
+     * Sets the button types to Yes, No or Cancel.
+     * Shorthand for {@snippet :
+     *     this.withButtonTypes(
+     *          ButtonType.YES,
+     *          ButtonType.NO,
+     * ButtonType.CANCEL);}
+     *
+     * @return this instance.
+     */
+    @Contract("->this")
+    public @NotNull EasyAlert buttonYesNoCancel() {
+        return withButtonTypes(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    }
+
     @Override
     public void run() {
         showAndWait();
+    }
+
+    /**
+     * Invokes show and wait expecting a given user answer.
+     * If said answer is the expected, will run onSuccess.
+     *
+     * @param expected  the expected value.
+     * @param onSuccess what to do if expected value matches.
+     */
+    public void showAndExpect(@NotNull ButtonType expected,
+                              @NotNull Runnable onSuccess) {
+        showAndWait().filter(expected::equals).ifPresent(p -> onSuccess.run());
     }
 }
