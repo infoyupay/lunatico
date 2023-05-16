@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="User profile enforcing at login time: OK.">
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Added a shared (Static) reference to the application controller for further usage.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxWarehouseMV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEnumCollections.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/UppercaseConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/warehouse-card.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ClearFacility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ClearFacility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +53,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="package-info" />
-        <option value="FxmlFile" />
         <option value="Record" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -213,7 +221,9 @@
       <workItem from="1683745929847" duration="6316000" />
       <workItem from="1683947873904" duration="8511000" />
       <workItem from="1684070710863" duration="11175000" />
-      <workItem from="1684121044398" duration="2869000" />
+      <workItem from="1684121044398" duration="7804000" />
+      <workItem from="1684200538648" duration="5811000" />
+      <workItem from="1684255046237" duration="597000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -278,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684125753725</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added a shared (Static) reference to the application controller for further usage.">
+      <created>1684125995753</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1684125995753</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +321,8 @@
     <MESSAGE value="User login implemented." />
     <MESSAGE value="Minor code styling fixing." />
     <MESSAGE value="User profile enforcing at login time: OK." />
-    <option name="LAST_COMMIT_MESSAGE" value="User profile enforcing at login time: OK." />
+    <MESSAGE value="Added a shared (Static) reference to the application controller for further usage." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a shared (Static) reference to the application controller for further usage." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.yupay.lunatico.fxtools.FxEnumCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="top" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="230.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxWarehouseCard">
+    <content>
+        <GridPane hgap="5.0" vgap="5.0">
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                   text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="lblID" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                   prefHeight="32.0" style="-fx-border-color: BLACK;" text="0" GridPane.columnIndex="1"
+                   GridPane.rowIndex="0">
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+            </Label>
+            <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                   text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtName" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       textFormatter="${controller.fmtName}" editable="${controller.notViewer}"/>
+            <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                   text="Tipo Virtual:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem text="Eliminar tipo virtual" onAction="#onClearType"
+                                      disable="${controller.notCreator}"/>
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </Label>
+            <ComboBox fx:id="cboType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                      prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                      disable="${controller.notCreator}">
+                <items>
+                    <FxEnumCollections fx:factory="virtualWarehouseTypes"/>
+                </items>
+            </ComboBox>
+            <CheckBox fx:id="chkActive" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                      minHeight="-Infinity" prefHeight="32.0" text="Activo" GridPane.columnIndex="1"
+                      GridPane.rowIndex="3" disable="${controller.viewer}"/>
+        </GridPane>
+    </content>
+    <ButtonType fx:constant="OK"/>
+    <ButtonType fx:constant="CANCEL"/>
+</DialogPane>

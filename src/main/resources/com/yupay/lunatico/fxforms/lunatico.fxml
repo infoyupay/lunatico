@@ -63,7 +63,8 @@
                 </MenuItem>
             </Menu>
             <Menu text="Mantenimiento" visible="${controller.unlocked}">
-                <MenuItem text="Almacenes" visible="${controller.roleAdmin}">
+                <MenuItem text="Almacenes" visible="${controller.roleAdmin}"
+                onAction="#onMgmWarehouse">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-depot-24.png"/>
@@ -84,7 +85,7 @@
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Tipo de Documento" visible="${controller.roleAdmin}">
+                <MenuItem text="Tipo de Folio" visible="${controller.roleAdmin}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-receipt-24.png"/>
@@ -108,7 +109,7 @@
                     </graphic>
                 </MenuItem>
                 <MenuItem text="Tendencia de Logística" onAction="#onItemTrendAction"
-                visible="${controller.roleViewer}">
+                          visible="${controller.roleViewer}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-area-chart-24.png"/>
@@ -136,7 +137,7 @@
         <ToolBar visible="${controller.unlocked}">
             <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                     minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0"
-            visible="${controller.roleReport}">
+                    visible="${controller.roleReport}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-add-file-24.png"/>
@@ -154,7 +155,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity"
                     maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
-            visible="${controller.roleAdmin}">
+                    visible="${controller.roleAdmin}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-delete-file-24.png"/>
@@ -172,7 +173,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="46.0" layoutY="10.0" maxHeight="-Infinity"
                     maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
-            visible="${controller.roleReport}">
+                    visible="${controller.roleReport}">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-stanley-knife-24.png"/>

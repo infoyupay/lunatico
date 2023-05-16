@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,6 +32,17 @@ public class ClearFacility {
     @Contract("_->this")
     public @NotNull <T> ClearFacility add(@NotNull T x) {
         elements.add(x);
+        return this;
+    }
+
+    /**
+     * Registers many controls, properties or formatters.
+     *
+     * @param x the elemets to add.
+     * @return this instance.
+     */
+    public @NotNull ClearFacility add(@NotNull Object... x) {
+        elements.addAll(Arrays.asList(x));
         return this;
     }
 

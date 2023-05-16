@@ -327,6 +327,14 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     }
 
     /**
+     * FXML event handler.
+     */
+    @FXML
+    void onMgmWarehouse() {
+        //TODO: implement this!
+    }
+
+    /**
      * FX Accessor - getter.
      *
      * @return value of {@link #loggedUser}.get();

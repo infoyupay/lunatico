@@ -88,6 +88,15 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for warehouse-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxWarehouseCard warehouseCard() {
+        return loadFxml("warehouse-card.fxml");
+    }
+
+    /**
      * Loads the fxml controller based on the fxml definition.
      *
      * @param <T>  type erasure of controller.
