@@ -6,9 +6,11 @@ import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
 import com.yupay.lunatico.fxforms.FxForms;
 import com.yupay.lunatico.fxmview.FxUserMV;
+import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.CardDialog;
 import com.yupay.lunatico.model.ModelView;
 import com.yupay.lunatico.model.User;
+import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityTransaction;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
@@ -36,7 +38,7 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
     /**
      * Static factory to create a User.
      *
-     * @return the flow to insert a item.
+     * @return the flow to insert an item.
      */
     @Contract(value = " -> new", pure = true)
     public static @NotNull FxInsertFlow<User, FxUserMV> user() {
@@ -50,6 +52,27 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
             protected @NotNull DAO<User> dao() {
                 return DAOFactory.user();
             }
+        };
+    }
+
+    /**
+     * Static factory to create a Warehouse.
+     *
+     * @return the flow ti insert an item.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxInsertFlow<Warehouse, FxWarehouseMV> warehouse() {
+        return new FxInsertFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxWarehouseMV> card() {
+                return FxForms.warehouseCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Warehouse> dao() {
+                return DAOFactory.warehouse();
+            }
+
         };
     }
 

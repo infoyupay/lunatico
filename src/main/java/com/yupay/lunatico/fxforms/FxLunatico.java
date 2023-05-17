@@ -20,6 +20,10 @@ public class FxLunatico extends Application {
      * Holds application main window controller instance.
      */
     public static LunaticoScene APP_CONTROLLER;
+    /**
+     * Holds primary stage instance.
+     */
+    public static Stage PRIMARY;
 
     /**
      * Entry point to the application.
@@ -32,6 +36,7 @@ public class FxLunatico extends Application {
 
     @Override
     public void start(@NotNull Stage primaryStage) {
+        PRIMARY = primaryStage;
         MY_APP = this;
         APP_CONTROLLER = FxForms.lunaticoScene();
         APP_CONTROLLER.show(primaryStage);

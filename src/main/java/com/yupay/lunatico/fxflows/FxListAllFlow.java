@@ -5,8 +5,10 @@ import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
 import com.yupay.lunatico.fxmview.FxUserMV;
+import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.model.ModelView;
 import com.yupay.lunatico.model.User;
+import com.yupay.lunatico.model.Warehouse;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,6 +53,25 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             @Override
             protected @NotNull DAO<User> dao() {
                 return DAOFactory.user();
+            }
+        };
+    }
+    /**
+     * Static factory to create a flow for users.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Warehouse, FxWarehouseMV> warehouse() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxWarehouseMV toView(@NotNull Warehouse model) {
+                return new FxWarehouseMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Warehouse> dao() {
+                return DAOFactory.warehouse();
             }
         };
     }

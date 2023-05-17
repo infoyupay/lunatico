@@ -1,5 +1,6 @@
 package com.yupay.lunatico.fxtools;
 
+import javafx.beans.property.LongProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
@@ -50,6 +51,30 @@ public class ValueFactoryManager<S> {
                     var v = d.getValue();
                     if (v == null) return null;
                     else return accesor.apply(v);
+                }));
+        return this;
+    }
+
+    /**
+     * Adds a long column - factory where the factory
+     * will invoke an accessor function. It usually is
+     * {@code S::xxxProperty}
+     *
+     * @param column  the table column.
+     * @param accesor the accessor function.
+     * @return this instance.
+     */
+    @Contract("_,_->this")
+    public
+    @NotNull ValueFactoryManager<S> addLong(
+            TableColumn<S, Long> column,
+            Function<S, LongProperty> accesor
+    ) {
+        pairs.add(new ValuePair<>(column,
+                d -> {
+                    var v = d.getValue();
+                    if (v == null) return null;
+                    else return accesor.apply(v).asObject();
                 }));
         return this;
     }

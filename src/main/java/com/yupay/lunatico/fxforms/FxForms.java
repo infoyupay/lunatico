@@ -88,6 +88,15 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for warehouse-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxWarehouseView warehouseView() {
+        return loadFxml("warehouse-view.fxml");
+    }
+
+    /**
      * FxFactory for warehouse-card.fxml
      *
      * @return a new form controller.

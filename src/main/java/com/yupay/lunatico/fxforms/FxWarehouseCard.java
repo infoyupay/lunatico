@@ -93,6 +93,7 @@ public class FxWarehouseCard extends Dialog<FxWarehouseMV>
     void initialize() {
         setDialogPane(top);
         setTitle("Editor de Almacén");
+        setResultConverter(b -> b == ButtonType.OK ? getValue() : null);
         valueProperty().addListener(new ValueChanged());
         top.lookupButton(ButtonType.OK)
                 .disableProperty()

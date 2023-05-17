@@ -39,7 +39,8 @@ public class Warehouse {
             generator = "GenWarehouseID")
     @SequenceGenerator(name = "GenWarehouseID",
             schema = "public",
-            sequenceName = "sq_warehouse_id")
+            sequenceName = "sq_warehouse_id",
+            allocationSize = 1)
     @Id
     @Column(name = "id", nullable = false)
     public long getId() {

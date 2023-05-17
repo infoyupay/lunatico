@@ -14,7 +14,6 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,7 +22,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -217,21 +215,14 @@ public class FxUserView {
      * window moadlity to APPLICATION_MODAL,
      * and then shows and wait.
      *
-     * @param owner    the parent window.
-     * @param master   an external event handler that keeps
-     *                 track of opened and closed children windows
-     *                 so they can be closed with the lock option.
      * @param disabled external boolean properties to disable controls
      *                 while this windows is kept open.
-     * @see Stage#initOwner(Window)
      * @see Stage#showAndWait()
      */
-    public void showAndWait(@NotNull Stage owner,
-                            @NotNull EventHandler<WindowEvent> master,
-                            @Nullable BooleanProperty... disabled) {
+    public void showAndWait(@Nullable BooleanProperty... disabled) {
         if (disabled != null) this.disabled = Arrays.asList(disabled);
-        top.addEventHandler(WindowEvent.ANY, master);
-        top.initOwner(owner);
+        top.addEventHandler(WindowEvent.ANY, FxLunatico.APP_CONTROLLER);
+        top.initOwner(FxLunatico.PRIMARY);
         top.initModality(Modality.NONE);
         top.showAndWait();
     }
@@ -260,6 +251,7 @@ public class FxUserView {
      *
      * @return property {@link #emptySelection}.
      */
+    @SuppressWarnings("unused")
     public final ReadOnlyBooleanProperty emptySelectionProperty() {
         return emptySelection.getReadOnlyProperty();
     }

@@ -9,6 +9,7 @@ module lunatico {
     requires javafx.fxml;
     requires javafx.graphics;
 
+
     requires jakarta.persistence;
     requires eclipselink;
     requires org.postgresql.jdbc;

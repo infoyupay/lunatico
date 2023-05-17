@@ -14,6 +14,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -199,11 +200,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     private ComboBox<FxStore> cboStore;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private MenuItem mniSysUser;
 
     @Override
     public void handle(@NotNull WindowEvent event) {
@@ -285,11 +281,24 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
 
     /**
      * FXML event handler.
+     *
+     * @param evt event object.
      */
     @FXML
-    void onSysUserAction() {
-        FxForms.userView().showAndWait(primaryStage, this,
-                mniSysUser.disableProperty());
+    void onSysUserAction(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.userView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmWarehouse(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.warehouseView().showAndWait(mni.disableProperty());
     }
 
     /**
@@ -324,14 +333,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                         "Si alguna operación está en curso nunca sabremos el resultado.")
                 .buttonYesNoCancel()
                 .showAndExpect(ButtonType.YES, Platform::exit);
-    }
-
-    /**
-     * FXML event handler.
-     */
-    @FXML
-    void onMgmWarehouse() {
-        //TODO: implement this!
     }
 
     /**

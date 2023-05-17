@@ -5,9 +5,11 @@ import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.FxForms;
 import com.yupay.lunatico.fxmview.FxUserMV;
+import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.CardDialog;
 import com.yupay.lunatico.model.ModelView;
 import com.yupay.lunatico.model.User;
+import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityTransaction;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
@@ -54,6 +56,26 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
             @Override
             protected @NotNull DAO<User> dao() {
                 return DAOFactory.user();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a new instance to edit warehouses.
+     *
+     * @return the new instance.
+     */
+    @Contract(" -> new")
+    public static @NotNull FxEditFlow<Warehouse, FxWarehouseMV> warehouse() {
+        return new FxEditFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxWarehouseMV> card() {
+                return FxForms.warehouseCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Warehouse> dao() {
+                return DAOFactory.warehouse();
             }
         };
     }
