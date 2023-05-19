@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.yupay.lunatico.fxtools.FxEnumCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/20.0.1"
+            fx:controller="com.yupay.lunatico.fxforms.FxItemCard">
+    <content>
+        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0">
+            <GridPane hgap="5.0" vgap="5.0">
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="NEVER"/>
+                    <RowConstraints vgrow="NEVER"/>
+                    <RowConstraints vgrow="NEVER"/>
+                    <RowConstraints vgrow="NEVER"/>
+                </rowConstraints>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="lblID" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" style="-fx-border-color: BLACK" GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"/>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtName" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Tipo:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="cboType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                          minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <items>
+                        <FxEnumCollections fx:factory="itemTypes"/>
+                    </items>
+                </ComboBox>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Unidad de Medida:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <ComboBox fx:id="cboUnit" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                          minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+            <TabPane style="-fx-border-style: SOLID;" tabClosingPolicy="UNAVAILABLE">
+                <Tab closable="false" text="Saldos">
+                    <GridPane vgap="5.0">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="33.0"/>
+                            <ColumnConstraints percentWidth="33.0"/>
+                            <ColumnConstraints percentWidth="33.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints vgrow="NEVER"/>
+                            <RowConstraints vgrow="NEVER"/>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                                            vgrow="NEVER"/>
+                            <RowConstraints vgrow="NEVER"/>
+                            <RowConstraints vgrow="NEVER"/>
+                        </rowConstraints>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
+                               text="En Venta" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
+                               text="Almacenado" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label fx:id="lblBalOnsale" alignment="CENTER_RIGHT" maxHeight="-Infinity"
+                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                               style="-fx-border-color: BLACK TRANSPARENT" text="0.00000000"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <Label fx:id="lblBalStorage" alignment="CENTER_RIGHT" maxHeight="-Infinity"
+                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                               style="-fx-border-color: BLACK TRANSPARENT" text="0.00000000"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
+                               text="Unidades" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
+                               text="Costo Unitario" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
+                               text="Costo Total" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                        <Label fx:id="lblBalUnits" alignment="CENTER_RIGHT" maxHeight="-Infinity"
+                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                               style="-fx-border-color: BLACK TRANSPARENT" text="0.00000000"
+                               GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <Label fx:id="lblBalUnitary" alignment="CENTER_RIGHT" maxHeight="-Infinity"
+                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                               style="-fx-border-color: BLACK TRANSPARENT" text="0.00000000"
+                               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label fx:id="lblBalTotal" alignment="CENTER_RIGHT" maxHeight="-Infinity"
+                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                               style="-fx-border-color: BLACK TRANSPARENT" text="0.00000000"
+                               GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                    </GridPane>
+                </Tab>
+                <Tab closable="false" text="Notas">
+                    <TextArea fx:id="txtNotes" promptText="Escribe aquí tus notas..."/>
+                </Tab>
+                <Tab closable="false" text="Metadatos">
+                    <VBox spacing="5.0">
+                        <CheckBox fx:id="chkActive" maxHeight="-Infinity" minHeight="-Infinity"
+                                  prefHeight="32.0" text="Activado"/>
+                        <HBox spacing="5.0">
+                            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                                   text="Creado por:"/>
+                            <Label fx:id="lblOwner" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                   minHeight="-Infinity" prefHeight="32.0" text="root" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <HBox spacing="5.0">
+                            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                                   text="Creado el:"/>
+                            <Label fx:id="lblCreatedStamp" maxHeight="-Infinity"
+                                   maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                                   text="99/99/9999 99:99:99.999" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                    </VBox>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </content>
+    <ButtonType fx:constant="OK"/>
+    <ButtonType fx:constant="CANCEL"/>
+</DialogPane>
