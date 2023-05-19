@@ -41,7 +41,8 @@ public class Unit {
             generator = "GenUnitID")
     @SequenceGenerator(name = "GenUnitID",
             schema = "public",
-            sequenceName = "sq_unit_id")
+            sequenceName = "sq_unit_id",
+            allocationSize = 1)
     @Id
     @Column(name = "id", nullable = false)
     public long getId() {

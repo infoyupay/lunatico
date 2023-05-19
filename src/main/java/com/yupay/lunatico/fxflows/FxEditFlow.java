@@ -4,10 +4,12 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.FxForms;
+import com.yupay.lunatico.fxmview.FxUnitMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.CardDialog;
 import com.yupay.lunatico.model.ModelView;
+import com.yupay.lunatico.model.Unit;
 import com.yupay.lunatico.model.User;
 import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityTransaction;
@@ -76,6 +78,27 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
             @Override
             protected @NotNull DAO<Warehouse> dao() {
                 return DAOFactory.warehouse();
+            }
+        };
+    }
+
+
+    /**
+     * Static factory to create a new instance to edit measurement units.
+     *
+     * @return the new instance.
+     */
+    @Contract(" -> new")
+    public static @NotNull FxEditFlow<Unit, FxUnitMV> unit() {
+        return new FxEditFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxUnitMV> card() {
+                return FxForms.unitCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Unit> dao() {
+                return DAOFactory.unit();
             }
         };
     }

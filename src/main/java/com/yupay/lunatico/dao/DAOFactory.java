@@ -40,4 +40,14 @@ public final class DAOFactory {
     public static @NotNull DAOWarehouseImpl warehouse() {
         return new DAOWarehouseImpl();
     }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Unit}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOUnitImpl unit() {
+        return new DAOUnitImpl();
+    }
 }

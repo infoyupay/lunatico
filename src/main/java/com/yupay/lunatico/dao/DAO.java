@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @author InfoYupay SACS
  * @version 1.0
  */
-public sealed interface DAO<T> permits DAOUserImpl, DAOWarehouseImpl {
+public sealed interface DAO<T> permits DAOUnitImpl, DAOUserImpl, DAOWarehouseImpl {
     /**
      * The entity class representation.
      *
@@ -43,6 +43,22 @@ public sealed interface DAO<T> permits DAOUserImpl, DAOWarehouseImpl {
     @Unmodifiable
     default Stream<T> listAll(@NotNull EntityManager em) {
         return list(em, null);
+    }
+
+    /**
+     * Select * from ENTITY WHERE active
+     *
+     * @param em the entity manager object.
+     * @return the stream of all retrieved entities.
+     */
+    @NotNull
+    @Unmodifiable
+    default Stream<T> listActive(@NotNull EntityManager em) {
+        var cb = em.getCriteriaBuilder();
+        var qry = cb.createQuery(entity());
+        var rt = qry.from(entity());
+        qry.where(rt.get("active"));
+        return em.createQuery(qry).getResultStream();
     }
 
     /**

@@ -4,9 +4,11 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
+import com.yupay.lunatico.fxmview.FxUnitMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.model.ModelView;
+import com.yupay.lunatico.model.Unit;
 import com.yupay.lunatico.model.User;
 import com.yupay.lunatico.model.Warehouse;
 import org.jetbrains.annotations.Contract;
@@ -56,6 +58,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             }
         };
     }
+
     /**
      * Static factory to create a flow for users.
      *
@@ -72,6 +75,26 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             @Override
             protected @NotNull DAO<Warehouse> dao() {
                 return DAOFactory.warehouse();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for measurement units.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Unit, FxUnitMV> unit() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxUnitMV toView(@NotNull Unit model) {
+                return new FxUnitMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Unit> dao() {
+                return DAOFactory.unit();
             }
         };
     }
@@ -158,6 +181,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @param after new value to set in {@link #after}
      * @return this instance.
      */
+    @Contract(value = "_ -> this")
     public final FxListAllFlow<T, U> withAfter(Runnable after) {
         this.after = after;
         return this;

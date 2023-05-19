@@ -106,6 +106,33 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for unit-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxUnitCard unitCard() {
+        return loadFxml("unit-card.fxml");
+    }
+
+    /**
+     * FxFactory for unit-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxUnitView unitView() {
+        return loadFxml("unit-view.fxml");
+    }
+
+    /**
+     * FxFactory for item-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxItemCard itemCard() {
+        return loadFxml("item-card.fxml");
+    }
+
+    /**
      * Loads the fxml controller based on the fxml definition.
      *
      * @param <T>  type erasure of controller.
