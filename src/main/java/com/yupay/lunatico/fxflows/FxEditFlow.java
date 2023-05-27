@@ -4,14 +4,12 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.FxForms;
+import com.yupay.lunatico.fxmview.FxItemMV;
 import com.yupay.lunatico.fxmview.FxUnitMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.CardDialog;
-import com.yupay.lunatico.model.ModelView;
-import com.yupay.lunatico.model.Unit;
-import com.yupay.lunatico.model.User;
-import com.yupay.lunatico.model.Warehouse;
+import com.yupay.lunatico.model.*;
 import jakarta.persistence.EntityTransaction;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
@@ -82,7 +80,6 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
         };
     }
 
-
     /**
      * Static factory to create a new instance to edit measurement units.
      *
@@ -99,6 +96,26 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
             @Override
             protected @NotNull DAO<Unit> dao() {
                 return DAOFactory.unit();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a new instance to edit Item entities.
+     *
+     * @return the new instance.
+     */
+    @Contract(" -> new")
+    public static @NotNull FxEditFlow<Item, FxItemMV> item() {
+        return new FxEditFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxItemMV> card() {
+                return FxForms.itemCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Item> dao() {
+                return DAOFactory.item();
             }
         };
     }
@@ -132,7 +149,7 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
 
     private @NotNull T update(@NotNull T item) {
         EntityTransaction trx = null;
-        T r = null;
+        T r;
         try (var em = DataSource.em()) {
             trx = em.getTransaction();
             trx.begin();

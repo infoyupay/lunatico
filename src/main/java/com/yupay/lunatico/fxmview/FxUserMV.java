@@ -307,4 +307,9 @@ public class FxUserMV extends ModelView<User, FxUserMV> {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return getId() + " (" + getRealName() + ")";
+    }
 }

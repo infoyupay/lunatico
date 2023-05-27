@@ -1,6 +1,7 @@
 package com.yupay.lunatico.fxforms;
 
 import com.yupay.lunatico.Prototypes;
+import com.yupay.lunatico.fxflows.FxListActiveFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
 import com.yupay.lunatico.fxmview.*;
 import javafx.application.Platform;
@@ -196,7 +197,12 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private ComboBox<FxStore> cboStore;
+    private ComboBox<FxWarehouseMV> cboStore;
+    /**
+     * FXML control injected from lunatico.fxml
+     */
+    @FXML
+    private CheckBox chkStore;
 
     @Override
     public void handle(@NotNull WindowEvent event) {
@@ -216,7 +222,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     void initialize() {
         //<editor-fold desc="Fool implementation to be removed.">
         //TODO: REMOVE THIS ENTIRE SECTION AFTER REAL IMPLEMENTATION!!
-        cboStore.setItems(Prototypes.STORES);
         tblData.setItems(FXCollections.observableList(Prototypes.items()));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -306,7 +311,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     @FXML
     void onMgmItems(@NotNull ActionEvent evt) {
         if (evt.getSource() instanceof MenuItem mni)
-            FxForms.itemCard().showAndWait();
+            FxForms.itemView().showAndWait(mni.disableProperty());
     }
 
     /**
@@ -555,6 +560,10 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                     *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
                     wdw.close();
                 }
+                //Clean data
+                cboStore.setValue(null);
+                cboStore.setItems(FXCollections.observableArrayList());
+                chkStore.setSelected(false);
                 return;
             }
             //The sudoer role, only by the sudoer.
@@ -571,7 +580,12 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                     || n.isRoleReporter()
                     || n.isRoleAdmin()
                     || n.isRoleAdminSys());
-
+            //If is at least viewer, will load combo box.
+            if (isRoleViewer()) {
+                FxListActiveFlow.warehouse()
+                        .withForEach(cboStore.getItems()::add)
+                        .go();
+            }
         }
     }
 }

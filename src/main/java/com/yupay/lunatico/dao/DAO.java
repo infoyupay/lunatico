@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @author InfoYupay SACS
  * @version 1.0
  */
-public sealed interface DAO<T> permits DAOUnitImpl, DAOUserImpl, DAOWarehouseImpl {
+public sealed interface DAO<T> permits DAOItemImpl, DAOUnitImpl, DAOUserImpl, DAOWarehouseImpl {
     /**
      * The entity class representation.
      *

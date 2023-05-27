@@ -196,4 +196,9 @@ public class FxUnitMV extends ModelView<Unit, FxUnitMV> {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return "[" + getSymbol() + "] - " + getTag();
+    }
 }

@@ -4,27 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Warehouse view implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOUnitImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUnitCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUnitView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxUnitMV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/Functionals.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-card.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/unit-card.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/unit-view.fxml" afterDir="false" />
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Item card impl partially.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOItemImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListActiveFlow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxItemMV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/NumberStringBinding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/PeruvianLocalization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/TimeStampStringBinding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/lunatico_pg.dbm" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_pg.dbm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOWarehouseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOWarehouseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEnumCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEnumCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxUnitMV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxUnitMV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxUserMV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxUserMV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxWarehouseMV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxWarehouseMV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-card.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +107,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20230518_0001",
+    "com.google.cloudcode.ide_session_index": "20230526_0001",
     "com.google.gct.idea.git.username": "dvidal@infoyupay.com",
     "git-widget-placeholder": "munit",
     "jdk.selected.JAVA_MODULE": "19",
@@ -139,6 +143,9 @@
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.yupay.lunatico.model" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yupay.lunatico.fxflows" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -249,7 +256,15 @@
       <workItem from="1684255046237" duration="6655000" />
       <workItem from="1684338453859" duration="1089000" />
       <workItem from="1684340158978" duration="14096000" />
-      <workItem from="1684460810463" duration="5734000" />
+      <workItem from="1684460810463" duration="5967000" />
+      <workItem from="1684685686173" duration="1254000" />
+      <workItem from="1684703516737" duration="1730000" />
+      <workItem from="1684900011972" duration="6780000" />
+      <workItem from="1684969941926" duration="599000" />
+      <workItem from="1685020250346" duration="6413000" />
+      <workItem from="1685047166024" duration="4649000" />
+      <workItem from="1685069220013" duration="597000" />
+      <workItem from="1685157745459" duration="599000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -335,7 +350,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684300134825</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Measurement units feature implemented.">
+      <created>1684467461267</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684467461267</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Item card impl partially.">
+      <created>1684467536410</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684467536410</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +381,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="munit" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -376,7 +405,9 @@
     <MESSAGE value="Added a shared (Static) reference to the application controller for further usage." />
     <MESSAGE value="Warehouse card implemented." />
     <MESSAGE value="Warehouse view implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Warehouse view implemented." />
+    <MESSAGE value="Measurement units feature implemented." />
+    <MESSAGE value="Item card impl partially." />
+    <option name="LAST_COMMIT_MESSAGE" value="Item card impl partially." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

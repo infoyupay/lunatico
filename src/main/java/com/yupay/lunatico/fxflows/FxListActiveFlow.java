@@ -4,25 +4,27 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
-import com.yupay.lunatico.fxmview.FxItemMV;
 import com.yupay.lunatico.fxmview.FxUnitMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
-import com.yupay.lunatico.model.*;
+import com.yupay.lunatico.model.ModelView;
+import com.yupay.lunatico.model.Unit;
+import com.yupay.lunatico.model.User;
+import com.yupay.lunatico.model.Warehouse;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 /**
- * The flow to list all items (without filter) from database.
+ * The flow to list all items matching ACTIVE=true from database.
  *
  * @param <T> type erasure of entities.
  * @param <U> type erasure of model view.
  * @author InfoYupay SACS
  * @version 1.0
  */
-public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
+public abstract class FxListActiveFlow<T, U extends ModelView<T, U>> {
 
     /**
      * Things to do before flow execution.
@@ -43,8 +45,8 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @return a new flow.
      */
     @Contract(value = " -> new", pure = true)
-    public static @NotNull FxListAllFlow<User, FxUserMV> user() {
-        return new FxListAllFlow<>() {
+    public static @NotNull FxListActiveFlow<User, FxUserMV> user() {
+        return new FxListActiveFlow<>() {
             @Override
             protected @NotNull FxUserMV toView(@NotNull User model) {
                 return new FxUserMV(model);
@@ -63,8 +65,8 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @return a new flow.
      */
     @Contract(value = " -> new", pure = true)
-    public static @NotNull FxListAllFlow<Warehouse, FxWarehouseMV> warehouse() {
-        return new FxListAllFlow<>() {
+    public static @NotNull FxListActiveFlow<Warehouse, FxWarehouseMV> warehouse() {
+        return new FxListActiveFlow<>() {
             @Override
             protected @NotNull FxWarehouseMV toView(@NotNull Warehouse model) {
                 return new FxWarehouseMV(model);
@@ -83,8 +85,8 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @return a new flow.
      */
     @Contract(value = " -> new", pure = true)
-    public static @NotNull FxListAllFlow<Unit, FxUnitMV> unit() {
-        return new FxListAllFlow<>() {
+    public static @NotNull FxListActiveFlow<Unit, FxUnitMV> unit() {
+        return new FxListActiveFlow<>() {
             @Override
             protected @NotNull FxUnitMV toView(@NotNull Unit model) {
                 return new FxUnitMV(model);
@@ -93,26 +95,6 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             @Override
             protected @NotNull DAO<Unit> dao() {
                 return DAOFactory.unit();
-            }
-        };
-    }
-
-    /**
-     * Static factory to create a flow for warehouse items.
-     *
-     * @return a new flow.
-     */
-    @Contract(value = " -> new", pure = true)
-    public static @NotNull FxListAllFlow<Item, FxItemMV> item() {
-        return new FxListAllFlow<>() {
-            @Override
-            protected @NotNull FxItemMV toView(@NotNull Item model) {
-                return new FxItemMV(model);
-            }
-
-            @Override
-            protected @NotNull DAO<Item> dao() {
-                return DAOFactory.item();
             }
         };
     }
@@ -139,7 +121,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
     public void go() {
         if (getBefore() != null) getBefore().run();
         try (var em = DataSource.em();
-             var str = dao().listAll(em)
+             var str = dao().listActive(em)
                      .map(this::toView)) {
             if (getForEach() != null) str.forEach(getForEach());
 
@@ -159,7 +141,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @param before new value to set in {@link #before}
      * @return this instance.
      */
-    public final FxListAllFlow<T, U> withBefore(Runnable before) {
+    public final FxListActiveFlow<T, U> withBefore(Runnable before) {
         this.before = before;
         return this;
     }
@@ -179,7 +161,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @param forEach new value to set in {@link #forEach}
      * @return this instance.
      */
-    public final FxListAllFlow<T, U> withForEach(Consumer<U> forEach) {
+    public final FxListActiveFlow<T, U> withForEach(Consumer<U> forEach) {
         this.forEach = forEach;
         return this;
     }
@@ -200,7 +182,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @return this instance.
      */
     @Contract(value = "_ -> this")
-    public final FxListAllFlow<T, U> withAfter(Runnable after) {
+    public final FxListActiveFlow<T, U> withAfter(Runnable after) {
         this.after = after;
         return this;
     }

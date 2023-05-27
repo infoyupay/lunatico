@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="lunatico_db@localhost" uuid="e84ad129-c35b-43ef-8bd2-85fd8ed6bf58">
+    <data-source source="LOCAL" name="lunatico_db@localhost" check-outdated="false" uuid="e84ad129-c35b-43ef-8bd2-85fd8ed6bf58">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

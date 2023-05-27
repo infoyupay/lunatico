@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" author="Infoyupay SACS" last-position="490,491" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.3" use-changelog="false" author="Infoyupay SACS" last-position="0,0" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer"
 	 active-layers="0"
@@ -191,7 +191,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="notes">
 		<type name="text" length="0"/>
 	</column>
-	<column name="created" not-null="true">
+	<column name="created" not-null="true" default-value="CURRENT_TIMESTAMP">
 		<type name="timestamp" length="0" precision="3"/>
 	</column>
 	<column name="active" not-null="true" default-value="TRUE">
@@ -362,7 +362,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="doc_date" not-null="true">
 		<type name="date" length="0"/>
 	</column>
-	<column name="own_date" not-null="true">
+	<column name="own_date" not-null="true" default-value="CURRENT_TIMESTAMP">
 		<type name="timestamp" length="0" precision="3"/>
 	</column>
 	<column name="folio_serie">

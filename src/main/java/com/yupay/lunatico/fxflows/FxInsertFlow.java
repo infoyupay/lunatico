@@ -5,14 +5,12 @@ import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
 import com.yupay.lunatico.fxforms.FxForms;
+import com.yupay.lunatico.fxmview.FxItemMV;
 import com.yupay.lunatico.fxmview.FxUnitMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.CardDialog;
-import com.yupay.lunatico.model.ModelView;
-import com.yupay.lunatico.model.Unit;
-import com.yupay.lunatico.model.User;
-import com.yupay.lunatico.model.Warehouse;
+import com.yupay.lunatico.model.*;
 import jakarta.persistence.EntityTransaction;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
@@ -73,6 +71,26 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
             @Override
             protected @NotNull DAO<Unit> dao() {
                 return DAOFactory.unit();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a Measurement Unit.
+     *
+     * @return the flow to insert an item.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxInsertFlow<Item, FxItemMV> item() {
+        return new FxInsertFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxItemMV> card() {
+                return FxForms.itemCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Item> dao() {
+                return DAOFactory.item();
             }
         };
     }

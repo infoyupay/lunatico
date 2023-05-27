@@ -263,6 +263,7 @@ public class Item {
      */
     @Basic
     @Column(name = "created", nullable = false,
+            updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     public LocalDateTime getCreated() {
         return created;

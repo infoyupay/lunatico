@@ -133,6 +133,15 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for item-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxItemView itemView() {
+        return loadFxml("item-view.fxml");
+    }
+
+    /**
      * Loads the fxml controller based on the fxml definition.
      *
      * @param <T>  type erasure of controller.

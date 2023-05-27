@@ -193,7 +193,7 @@
             </Button>
             <Separator orientation="VERTICAL"/>
             <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0"
-                      text="Por sede:"/>
+                      text="Por sede:" fx:id="chkStore"/>
             <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                       prefHeight="32.0" prefWidth="175.0" fx:id="cboStore"/>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="82.0" layoutY="10.0" maxHeight="-Infinity"
