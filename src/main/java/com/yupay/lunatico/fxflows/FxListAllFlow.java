@@ -4,10 +4,7 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
-import com.yupay.lunatico.fxmview.FxItemMV;
-import com.yupay.lunatico.fxmview.FxUnitMV;
-import com.yupay.lunatico.fxmview.FxUserMV;
-import com.yupay.lunatico.fxmview.FxWarehouseMV;
+import com.yupay.lunatico.fxmview.*;
 import com.yupay.lunatico.model.*;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -113,6 +110,26 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             @Override
             protected @NotNull DAO<Item> dao() {
                 return DAOFactory.item();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for folio type entities.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<TypeFolio, FxFolioTypeMV> folioType() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxFolioTypeMV toView(@NotNull TypeFolio model) {
+                return new FxFolioTypeMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<TypeFolio> dao() {
+                return DAOFactory.typeFolio();
             }
         };
     }

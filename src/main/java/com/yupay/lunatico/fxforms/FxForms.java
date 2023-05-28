@@ -142,6 +142,24 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for folio_type-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxFolioTypeCard folioTypeCard() {
+        return loadFxml("folio_type-card.fxml");
+    }
+
+    /**
+     * FxFactory for folio_type-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxFolioTypeView folioTypeView() {
+        return loadFxml("folio_type-view.fxml");
+    }
+
+    /**
      * Loads the fxml controller based on the fxml definition.
      *
      * @param <T>  type erasure of controller.

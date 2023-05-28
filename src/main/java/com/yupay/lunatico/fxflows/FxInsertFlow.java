@@ -5,10 +5,7 @@ import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
 import com.yupay.lunatico.fxforms.FxForms;
-import com.yupay.lunatico.fxmview.FxItemMV;
-import com.yupay.lunatico.fxmview.FxUnitMV;
-import com.yupay.lunatico.fxmview.FxUserMV;
-import com.yupay.lunatico.fxmview.FxWarehouseMV;
+import com.yupay.lunatico.fxmview.*;
 import com.yupay.lunatico.fxtools.CardDialog;
 import com.yupay.lunatico.model.*;
 import jakarta.persistence.EntityTransaction;
@@ -76,7 +73,7 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
     }
 
     /**
-     * Static factory to create a Measurement Unit.
+     * Static factory to create a warehouse item.
      *
      * @return the flow to insert an item.
      */
@@ -91,6 +88,26 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
             @Override
             protected @NotNull DAO<Item> dao() {
                 return DAOFactory.item();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a Type of folio.
+     *
+     * @return the flow to insert an item.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxInsertFlow<TypeFolio, FxFolioTypeMV> typeFolio() {
+        return new FxInsertFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxFolioTypeMV> card() {
+                return FxForms.folioTypeCard();
+            }
+
+            @Override
+            protected @NotNull DAO<TypeFolio> dao() {
+                return DAOFactory.typeFolio();
             }
         };
     }

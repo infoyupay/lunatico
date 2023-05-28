@@ -4,10 +4,7 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.FxForms;
-import com.yupay.lunatico.fxmview.FxItemMV;
-import com.yupay.lunatico.fxmview.FxUnitMV;
-import com.yupay.lunatico.fxmview.FxUserMV;
-import com.yupay.lunatico.fxmview.FxWarehouseMV;
+import com.yupay.lunatico.fxmview.*;
 import com.yupay.lunatico.fxtools.CardDialog;
 import com.yupay.lunatico.model.*;
 import jakarta.persistence.EntityTransaction;
@@ -121,6 +118,26 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
     }
 
     /**
+     * Static factory to create a new instance to edit Type of folio entities.
+     *
+     * @return the new instance.
+     */
+    @Contract(" -> new")
+    public static @NotNull FxEditFlow<TypeFolio, FxFolioTypeMV> typeFolio() {
+        return new FxEditFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxFolioTypeMV> card() {
+                return FxForms.folioTypeCard();
+            }
+
+            @Override
+            protected @NotNull DAO<TypeFolio> dao() {
+                return DAOFactory.typeFolio();
+            }
+        };
+    }
+
+    /**
      * Creates a form card dialog instance.
      *
      * @return the card dialog instance.
@@ -147,6 +164,12 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
                 }).ifPresent(getAfterSuccess());
     }
 
+    /**
+     * Updates in the DAO layer the element.
+     *
+     * @param item the element to be updated.
+     * @return the updated element.
+     */
     private @NotNull T update(@NotNull T item) {
         EntityTransaction trx = null;
         T r;

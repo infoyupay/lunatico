@@ -85,7 +85,7 @@
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Tipo de Folio" visible="${controller.roleAdmin}">
+                <MenuItem text="Tipo de Folio" visible="${controller.roleAdmin}" onAction="#onMgmFolioType">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-receipt-24.png"/>

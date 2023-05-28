@@ -28,7 +28,7 @@ public class MovementCard extends Dialog<FxMovement> {
      * FXML control injected from movement-card.fxml
      */
     @FXML
-    private ComboBox<FxFolioType> cboFolioType;
+    private ComboBox<FxFolioTypeCard> cboFolioType;
 
     /**
      * FXML control injected from movement-card.fxml

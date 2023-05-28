@@ -60,4 +60,14 @@ public final class DAOFactory {
     public static @NotNull DAOItemImpl item() {
         return new DAOItemImpl();
     }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.TypeFolio}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOTypeFolioImpl typeFolio() {
+        return new DAOTypeFolioImpl();
+    }
 }

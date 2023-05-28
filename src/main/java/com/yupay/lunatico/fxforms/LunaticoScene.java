@@ -3,7 +3,10 @@ package com.yupay.lunatico.fxforms;
 import com.yupay.lunatico.Prototypes;
 import com.yupay.lunatico.fxflows.FxListActiveFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
-import com.yupay.lunatico.fxmview.*;
+import com.yupay.lunatico.fxmview.FxItem;
+import com.yupay.lunatico.fxmview.FxUnit;
+import com.yupay.lunatico.fxmview.FxUserMV;
+import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -321,13 +324,19 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onMgmUnits(@NotNull ActionEvent evt) {
-        var x = new FxUnitMV();
-        x.setActive(true);
-        x.setId(15);
-        x.setTag("MI UNIDAD");
-        x.setSymbol("U");
         if (evt.getSource() instanceof MenuItem mni)
             FxForms.unitView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmFolioType(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.folioTypeView().showAndWait(mni.disableProperty());
     }
 
     /**
