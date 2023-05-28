@@ -90,6 +90,8 @@ public class FxFolioTypeView extends MasterView {
                 .withData(data)
                 .withFilter(new UserFiltering())
                 .setup(txtFilter.textProperty());
+
+        bindEmptySelection(tblData);
     }
 
     /**

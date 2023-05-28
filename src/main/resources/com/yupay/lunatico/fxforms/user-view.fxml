@@ -50,7 +50,7 @@
                     </Button>
                     <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
                             maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                            onAction="#onEditAction" prefHeight="32.0" prefWidth="32.0"
+                            onAction="#onEditRowAction" prefHeight="32.0" prefWidth="32.0"
                             disable="${controller.emptySelection}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">

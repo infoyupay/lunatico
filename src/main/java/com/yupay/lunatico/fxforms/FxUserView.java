@@ -9,9 +9,6 @@ import com.yupay.lunatico.fxtools.CellFactoryManager;
 import com.yupay.lunatico.fxtools.Patterns;
 import com.yupay.lunatico.fxtools.TextFilter;
 import com.yupay.lunatico.fxtools.ValueFactoryManager;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,13 +17,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -39,22 +32,13 @@ import java.util.regex.Pattern;
  * @author InfoYupay SACS
  * @version 1.0
  */
-public class FxUserView {
+public class FxUserView extends MasterView {
     /**
      * The data to show in the table view after filtering and sorting.
      */
     private final ObservableList<FxUserMV> data
             = FXCollections.observableArrayList();
-    /**
-     * Property to show if the table selection is empty.
-     * Visible for FXML purposes.
-     */
-    private final ReadOnlyBooleanWrapper emptySelection =
-            new ReadOnlyBooleanWrapper(this, "emptySelection");
-    /**
-     * External disabled flags to change when closing this stage.
-     */
-    private List<BooleanProperty> disabled;
+
     /**
      * FXML control injected from user-view.fxml
      */
@@ -131,8 +115,7 @@ public class FxUserView {
                 .withFilter(new UserFilter())
                 .setup(txtFilter.textProperty());
 
-        emptySelection
-                .bind(tblData.getSelectionModel().selectedItemProperty().isNull());
+        bindEmptySelection(tblData);
     }
 
     /**
@@ -168,23 +151,6 @@ public class FxUserView {
 
     /**
      * FXML event handler.
-     */
-    @FXML
-    void onStageClosed() {
-        if (disabled != null) disabled.forEach(b -> b.set(false));
-    }
-
-    /**
-     * FXML event handler.
-     */
-    @FXML
-    void onStageShown() {
-        if (disabled != null) disabled.forEach(b -> b.set(true));
-        onRefreshDBAction();
-    }
-
-    /**
-     * FXML event handler.
      *
      * @param event the event object.
      */
@@ -192,14 +158,14 @@ public class FxUserView {
     void onTableDataClicked(@NotNull MouseEvent event) {
         if (event.isConsumed()) return;
         if (event.getButton() == MouseButton.PRIMARY
-                && event.getClickCount() > 1) onEditAction();
+                && event.getClickCount() > 1) onEditRowAction();
     }
 
     /**
      * FXML event handler.
      */
     @FXML
-    void onEditAction() {
+    void onEditRowAction() {
         Optional
                 .ofNullable(tblData.getSelectionModel().getSelectedItem())
                 .ifPresent(FxEditFlow.user()
@@ -208,23 +174,6 @@ public class FxUserView {
                                 .editCompleted("Los datos del usuario "
                                         + p.getId() + " han sido actualizados satisfactoriamente.")
                                 .run()));
-    }
-
-    /**
-     * Initializes the window owner, and then
-     * window moadlity to APPLICATION_MODAL,
-     * and then shows and wait.
-     *
-     * @param disabled external boolean properties to disable controls
-     *                 while this windows is kept open.
-     * @see Stage#showAndWait()
-     */
-    public void showAndWait(@Nullable BooleanProperty... disabled) {
-        if (disabled != null) this.disabled = Arrays.asList(disabled);
-        top.addEventHandler(WindowEvent.ANY, FxLunatico.APP_CONTROLLER);
-        top.initOwner(FxLunatico.PRIMARY);
-        top.initModality(Modality.NONE);
-        top.showAndWait();
     }
 
     /**
@@ -237,23 +186,9 @@ public class FxUserView {
         tblData.getSortOrder().setAll(order);
     }
 
-    /**
-     * FX Accessor - getter.
-     *
-     * @return value of {@link #emptySelection}.get();
-     */
-    public final boolean isEmptySelection() {
-        return emptySelection.get();
-    }
-
-    /**
-     * FX Accessor - property.
-     *
-     * @return property {@link #emptySelection}.
-     */
-    @SuppressWarnings("unused")
-    public final ReadOnlyBooleanProperty emptySelectionProperty() {
-        return emptySelection.getReadOnlyProperty();
+    @Override
+    protected @NotNull Stage getTop() {
+        return top;
     }
 
 

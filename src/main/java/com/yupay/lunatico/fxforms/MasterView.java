@@ -2,7 +2,10 @@ package com.yupay.lunatico.fxforms;
 
 import com.yupay.lunatico.fxtools.Functionals;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -22,21 +25,14 @@ import java.util.List;
  */
 public abstract class MasterView {
     /**
+     * Holds true if table view selection is empty.
+     */
+    private final ReadOnlyBooleanWrapper emptySelection =
+            new ReadOnlyBooleanWrapper(this, "emptySelection");
+    /**
      * Collection of external disabled properties to update when leaving this view.
      */
     private List<BooleanProperty> externalDisabled;
-
-    /**
-     * FXML event handler when user requests refresh DB action.
-     */
-    abstract void onRefreshDBAction();
-
-    /**
-     * Accessor to the top stage.
-     *
-     * @return the top stage.
-     */
-    protected abstract @NotNull Stage getTop();
 
     /**
      * FXML event handler when stage is shown.
@@ -54,6 +50,26 @@ public abstract class MasterView {
     public void onStageClosed() {
         if (externalDisabled != null) externalDisabled.forEach(Functionals.setValue(false));
     }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #emptySelection}.get();
+     */
+    public final boolean isEmptySelection() {
+        return emptySelection.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #emptySelection}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty emptySelectionProperty() {
+        return emptySelection.getReadOnlyProperty();
+    }
+
 
     /**
      * Initializes the window owner, and then
@@ -89,7 +105,29 @@ public abstract class MasterView {
     }
 
     /**
+     * Binds the empty selection property to a given table view.
+     *
+     * @param table the table to observe.
+     */
+    protected void bindEmptySelection(@NotNull TableView<?> table) {
+        emptySelection.bind(table.getSelectionModel().selectedItemProperty().isNull());
+    }
+
+    /**
+     * FXML event handler when user requests refresh DB action.
+     */
+    abstract void onRefreshDBAction();
+
+    /**
+     * Accessor to the top stage.
+     *
+     * @return the top stage.
+     */
+    protected abstract @NotNull Stage getTop();
+
+    /**
      * FXML event handler to edit a row.
      */
     abstract void onEditRowAction();
+
 }

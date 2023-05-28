@@ -108,6 +108,8 @@ public class FxItemView extends MasterView {
                 .withData(data)
                 .withFilter(new UserFilter())
                 .setup(txtFilter.textProperty());
+
+        bindEmptySelection(tblData);
     }
 
     /**

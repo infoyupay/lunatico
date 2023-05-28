@@ -4,25 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Item card and view totally implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOTypeFolioImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxFolioTypeCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxFolioTypeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MasterView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxFolioTypeMV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/folio_type-card.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/folio_type-view.fxml" afterDir="false" />
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Type of folio card and master view implemented.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxFolioTypeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxFolioTypeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MovementCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MovementCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUnitView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUnitView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MasterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MasterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/folio_type-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/folio_type-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/user-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/user-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +136,7 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle wrapper --gradle-version 8.1.1" />
+      <command value="git push" />
     </option>
   </component>
   <component name="RunManager" selected="Application.FxLunatico">
@@ -259,7 +252,7 @@
       <workItem from="1685069220013" duration="597000" />
       <workItem from="1685157745459" duration="690000" />
       <workItem from="1685238665959" duration="2701000" />
-      <workItem from="1685290099243" duration="5614000" />
+      <workItem from="1685290099243" duration="8092000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -366,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685159254347</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Type of folio card and master view implemented.">
+      <created>1685295860200</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1685295860200</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +410,8 @@
     <MESSAGE value="Measurement units feature implemented." />
     <MESSAGE value="Item card impl partially." />
     <MESSAGE value="Item card and view totally implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Item card and view totally implemented." />
+    <MESSAGE value="Type of folio card and master view implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Type of folio card and master view implemented." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

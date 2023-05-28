@@ -4,26 +4,20 @@ import com.yupay.lunatico.fxflows.FxEditFlow;
 import com.yupay.lunatico.fxflows.FxInsertFlow;
 import com.yupay.lunatico.fxflows.FxListAllFlow;
 import com.yupay.lunatico.fxmview.FxUnitMV;
-import com.yupay.lunatico.fxtools.*;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyBooleanWrapper;
+import com.yupay.lunatico.fxtools.CellFactoryManager;
+import com.yupay.lunatico.fxtools.Patterns;
+import com.yupay.lunatico.fxtools.TextFilter;
+import com.yupay.lunatico.fxtools.ValueFactoryManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -36,21 +30,12 @@ import java.util.regex.Pattern;
  * @author InfoYupay SACS
  * @version 1.0
  */
-public class FxUnitView {
+public class FxUnitView extends MasterView {
     /**
      * The underlying data to show in the table view.
      */
     private final ObservableList<FxUnitMV> data
             = FXCollections.observableArrayList();
-    /**
-     * Holds true if table view selection is empty.
-     */
-    private final ReadOnlyBooleanWrapper emptySelection =
-            new ReadOnlyBooleanWrapper(this, "emptySelection");
-    /**
-     * Collection of external disabled properties to update when leaving this view.
-     */
-    private List<BooleanProperty> externalDisabled;
     /**
      * FXML control injected from unit-view.fxml
      */
@@ -92,10 +77,7 @@ public class FxUnitView {
      */
     @FXML
     void initialize() {
-        emptySelection.bind(tblData
-                .getSelectionModel()
-                .selectedItemProperty()
-                .isNull());
+        bindEmptySelection(tblData);
         new CellFactoryManager<FxUnitMV>()
                 .addCheckColumn(colActive)
                 .provide();
@@ -109,23 +91,6 @@ public class FxUnitView {
                 .withData(data)
                 .withFilter(new UserFiltering())
                 .setup(txtFilter.textProperty());
-    }
-
-    /**
-     * FXML event handler.
-     */
-    @FXML
-    void onStageShown() {
-        if (externalDisabled != null) externalDisabled.forEach(Functionals.setValue(true));
-        onRefreshDBAction();
-    }
-
-    /**
-     * FXML event handler.
-     */
-    @FXML
-    void onStageClosed() {
-        if (externalDisabled != null) externalDisabled.forEach(Functionals.setValue(false));
     }
 
     /**
@@ -164,40 +129,6 @@ public class FxUnitView {
     }
 
     /**
-     * FXML event handler.
-     *
-     * @param event the event object.
-     */
-    @FXML
-    void onTableDataClicked(@NotNull MouseEvent event) {
-        if (!event.isConsumed()
-                && event.getButton() == MouseButton.PRIMARY
-                && event.getClickCount() > 1) {
-            event.consume();
-            onEditRowAction();
-        }
-    }
-
-    /**
-     * FX Accessor - getter.
-     *
-     * @return value of {@link #emptySelection}.get();
-     */
-    public final boolean isEmptySelection() {
-        return emptySelection.get();
-    }
-
-    /**
-     * FX Accessor - property.
-     *
-     * @return property {@link #emptySelection}.
-     */
-    @SuppressWarnings("unused")
-    public final ReadOnlyBooleanProperty emptySelectionProperty() {
-        return emptySelection.getReadOnlyProperty();
-    }
-
-    /**
      * Resets the table sorting stuff.
      */
     private void sortTable() {
@@ -207,21 +138,9 @@ public class FxUnitView {
         tblData.getSortOrder().setAll(Arrays.asList(colActive, colTag, colID));
     }
 
-    /**
-     * Initializes the window owner, and then
-     * window moadlity to APPLICATION_MODAL,
-     * and then shows and wait.
-     *
-     * @param externalDisabled external boolean properties to disable controls
-     *                         while this windows is kept open.
-     * @see Stage#showAndWait()
-     */
-    public void showAndWait(@Nullable BooleanProperty... externalDisabled) {
-        if (externalDisabled != null) this.externalDisabled = Arrays.asList(externalDisabled);
-        top.addEventHandler(WindowEvent.ANY, FxLunatico.APP_CONTROLLER);
-        top.initOwner(FxLunatico.PRIMARY);
-        top.initModality(Modality.NONE);
-        top.showAndWait();
+    @Override
+    protected @NotNull Stage getTop() {
+        return top;
     }
 
     /**
