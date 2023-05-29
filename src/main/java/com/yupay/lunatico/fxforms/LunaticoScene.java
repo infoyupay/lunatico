@@ -341,6 +341,17 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
 
     /**
      * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmPerson(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.personView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
      */
     @FXML
     void onCreateMovAction() {

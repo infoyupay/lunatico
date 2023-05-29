@@ -1,5 +1,6 @@
 package com.yupay.lunatico.fxtools;
 
+import com.yupay.lunatico.model.DoiType;
 import com.yupay.lunatico.model.ItemType;
 import com.yupay.lunatico.model.VirtualWarehouseType;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ public final class FxEnumCollections {
     public static @NotNull ObservableList<VirtualWarehouseType> virtualWarehouseTypes() {
         return FXCollections.observableArrayList(VirtualWarehouseType.values());
     }
+
     /**
      * Types of warehouse items.
      *
@@ -32,5 +34,15 @@ public final class FxEnumCollections {
     @Contract(" -> new")
     public static @NotNull ObservableList<ItemType> itemTypes() {
         return FXCollections.observableArrayList(ItemType.values());
+    }
+
+    /**
+     * Types of Document Of Id.
+     *
+     * @return the item types in an observable list.
+     */
+    @Contract(" -> new")
+    public static @NotNull ObservableList<DoiType> doiTypes() {
+        return FXCollections.observableArrayList(DoiType.values());
     }
 }

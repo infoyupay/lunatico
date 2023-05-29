@@ -78,7 +78,7 @@
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Personas Relacionadas" visible="${controller.roleReport}">
+                <MenuItem text="Personas Relacionadas" visible="${controller.roleReport}" onAction="#onMgmPerson">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-hug-24.png"/>

@@ -138,6 +138,26 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
     }
 
     /**
+     * Static factory to create a new instance to edit Person entities.
+     *
+     * @return the new instance.
+     */
+    @Contract(" -> new")
+    public static @NotNull FxEditFlow<Person, FxPersonMV> person() {
+        return new FxEditFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxPersonMV> card() {
+                return FxForms.personCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Person> dao() {
+                return DAOFactory.person();
+            }
+        };
+    }
+
+    /**
      * Creates a form card dialog instance.
      *
      * @return the card dialog instance.

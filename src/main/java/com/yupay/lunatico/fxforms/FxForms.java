@@ -160,6 +160,24 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for person-card.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxPersonCard personCard() {
+        return loadFxml("person-card.fxml");
+    }
+
+    /**
+     * FxFactory for person-view.fxml
+     *
+     * @return a new form controller.
+     */
+    public static FxPersonView personView() {
+        return loadFxml("person-view.fxml");
+    }
+
+    /**
      * Loads the fxml controller based on the fxml definition.
      *
      * @param <T>  type erasure of controller.

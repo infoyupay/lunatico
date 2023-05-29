@@ -134,6 +134,27 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
     }
 
     /**
+     * Static factory to create a Person.
+     *
+     * @return the flow ti insert an item.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxInsertFlow<Person, FxPersonMV> person() {
+        return new FxInsertFlow<>() {
+            @Override
+            protected @NotNull CardDialog<FxPersonMV> card() {
+                return FxForms.personCard();
+            }
+
+            @Override
+            protected @NotNull DAO<Person> dao() {
+                return DAOFactory.person();
+            }
+
+        };
+    }
+
+    /**
      * Creates a form card dialog instance.
      *
      * @return the card dialog instance.

@@ -135,6 +135,26 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
     }
 
     /**
+     * Static factory to create a flow for Person entities.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Person, FxPersonMV> person() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxPersonMV toView(@NotNull Person model) {
+                return new FxPersonMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Person> dao() {
+                return DAOFactory.person();
+            }
+        };
+    }
+
+    /**
      * Function to convert a model entity into a model view entity.
      *
      * @param model the model entity to convert.
