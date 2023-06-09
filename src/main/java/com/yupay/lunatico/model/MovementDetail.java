@@ -23,6 +23,10 @@ public class MovementDetail {
      */
     private short line;
     /**
+     * Moved quantity.
+     */
+    private BigDecimal quantity;
+    /**
      * Quantity balance before movement.
      */
     private BigDecimal beforeQuantity;
@@ -123,6 +127,26 @@ public class MovementDetail {
      */
     public void setLine(short line) {
         this.line = line;
+    }
+
+    /**
+     * Public accessor - getter.
+     *
+     * @return value of {@link #quantity}
+     */
+    @Basic
+    @Column(name = "quantity", nullable = false, precision = 14, scale = 8)
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Public accessor - setter.
+     *
+     * @param quantity value to set into {@link #quantity}
+     */
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
     /**

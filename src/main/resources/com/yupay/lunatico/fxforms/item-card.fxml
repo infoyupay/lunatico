@@ -54,46 +54,29 @@
                         <rowConstraints>
                             <RowConstraints vgrow="NEVER"/>
                             <RowConstraints vgrow="NEVER"/>
-                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
-                                            vgrow="NEVER"/>
-                            <RowConstraints vgrow="NEVER"/>
-                            <RowConstraints vgrow="NEVER"/>
                         </rowConstraints>
+
                         <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                                prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
-                               text="En Venta" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                               text="Unidades" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                         <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                                prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
-                               text="Almacenado" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label fx:id="lblBalOnsale" alignment="CENTER_RIGHT" maxHeight="-Infinity"
-                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
-                               style="-fx-border-color: BLACK TRANSPARENT" GridPane.columnIndex="0"
-                               GridPane.rowIndex="1"/>
-                        <Label fx:id="lblBalStorage" alignment="CENTER_RIGHT" maxHeight="-Infinity"
-                               maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
-                               style="-fx-border-color: BLACK TRANSPARENT" GridPane.columnIndex="1"
-                               GridPane.rowIndex="1"/>
+                               text="Costo Unitario" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                         <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                                prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
-                               text="Unidades" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
-                               text="Costo Unitario" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                               prefHeight="32.0" style="-fx-alignment: CENTER; -fx-font-weight: BOLD;"
-                               text="Costo Total" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                               text="Costo Total" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
                         <Label fx:id="lblBalUnits" alignment="CENTER_RIGHT" maxHeight="-Infinity"
                                maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
                                style="-fx-border-color: BLACK TRANSPARENT" GridPane.columnIndex="0"
-                               GridPane.rowIndex="4"/>
+                               GridPane.rowIndex="1"/>
                         <Label fx:id="lblBalUnitary" alignment="CENTER_RIGHT" maxHeight="-Infinity"
                                maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
                                style="-fx-border-color: BLACK TRANSPARENT" GridPane.columnIndex="1"
-                               GridPane.rowIndex="4"/>
+                               GridPane.rowIndex="1"/>
                         <Label fx:id="lblBalTotal" alignment="CENTER_RIGHT" maxHeight="-Infinity"
                                maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
                                style="-fx-border-color: BLACK TRANSPARENT" GridPane.columnIndex="2"
-                               GridPane.rowIndex="4"/>
+                               GridPane.rowIndex="1"/>
                     </GridPane>
                 </Tab>
                 <Tab closable="false" text="Notas">

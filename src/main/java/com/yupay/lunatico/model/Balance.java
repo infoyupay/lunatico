@@ -41,14 +41,6 @@ public class Balance {
      */
     private BigDecimal balanceCost;
     /**
-     * Balance stock on sale exhibition.
-     */
-    private BigDecimal balanceOnsale;
-    /**
-     * Balance stock stored at warehouse.
-     */
-    private BigDecimal balanceStored;
-    /**
      * Warehouse at where the balance refers.
      */
     private Warehouse warehouse;
@@ -190,46 +182,6 @@ public class Balance {
      */
     public void setBalanceCost(BigDecimal balanceCost) {
         this.balanceCost = balanceCost;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
-     * @return value of {@link #balanceOnsale}
-     */
-    @Basic
-    @Column(name = "balance_onsale", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceOnsale() {
-        return balanceOnsale;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceOnsale value to set into {@link #balanceOnsale}
-     */
-    public void setBalanceOnsale(BigDecimal balanceOnsale) {
-        this.balanceOnsale = balanceOnsale;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
-     * @return value of {@link #balanceStored}
-     */
-    @Basic
-    @Column(name = "balance_stored", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceStored() {
-        return balanceStored;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceStored value to set into {@link #balanceStored}
-     */
-    public void setBalanceStored(BigDecimal balanceStored) {
-        this.balanceStored = balanceStored;
     }
 
     /**

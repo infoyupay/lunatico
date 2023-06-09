@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -34,5 +35,19 @@ public final class Functionals {
     @Contract(pure = true, value = "_->new")
     public static @NotNull Consumer<BooleanProperty> setValue(boolean value) {
         return p -> p.set(value);
+    }
+
+    /**
+     * Creates a consumer that replaces an existing item with a given item.
+     *
+     * @param list the list with existing elements.
+     * @param <T>  type erasure of items.
+     * @return the new consumer, never null.
+     */
+    public static <T> @NotNull Consumer<T> replace(@NotNull List<T> list) {
+        return t -> {
+            var ix = list.indexOf(t);
+            if (ix >= 0) list.set(ix, t);
+        };
     }
 }

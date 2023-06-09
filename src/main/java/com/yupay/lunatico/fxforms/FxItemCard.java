@@ -71,16 +71,6 @@ public class FxItemCard extends Dialog<FxItemMV>
      * FXML control injected from item-card.fxml
      */
     @FXML
-    private Label lblBalOnsale;
-    /**
-     * FXML control injected from item-card.fxml
-     */
-    @FXML
-    private Label lblBalStorage;
-    /**
-     * FXML control injected from item-card.fxml
-     */
-    @FXML
     private Label lblBalTotal;
     /**
      * FXML control injected from item-card.fxml
@@ -292,10 +282,6 @@ public class FxItemCard extends Dialog<FxItemMV>
             cboType.valueProperty().bindBidirectional(value.typeProperty());
             cboUnit.valueProperty().bindBidirectional(value.unitProperty());
             //Balance tab
-            lblBalOnsale.textProperty()
-                    .bind(NumberStringBinding.forWarehouse(value.balanceOnSaleProperty()));
-            lblBalStorage.textProperty()
-                    .bind(NumberStringBinding.forWarehouse(value.balanceStoredProperty()));
             lblBalUnits.textProperty()
                     .bind(NumberStringBinding.forWarehouse(value.balanceUnitsProperty()));
             lblBalUnitary.textProperty()
@@ -315,7 +301,7 @@ public class FxItemCard extends Dialog<FxItemMV>
         public void clear() {
             new ClearFacility()
                     .add(lblID, fmtName, cboType, cboUnit,
-                            lblBalOnsale, lblBalStorage, lblBalUnits, lblBalUnitary,
+                            lblBalUnits, lblBalUnitary,
                             lblBalTotal, fmtNotes, chkActive, lblOwner, lblCreatedStamp)
                     .clear();
         }
@@ -327,8 +313,6 @@ public class FxItemCard extends Dialog<FxItemMV>
             cboType.valueProperty().unbindBidirectional(value.typeProperty());
             cboUnit.valueProperty().unbindBidirectional(value.unitProperty());
             //Balance tab
-            lblBalOnsale.textProperty().unbind();
-            lblBalStorage.textProperty().unbind();
             lblBalUnits.textProperty().unbind();
             lblBalUnitary.textProperty().unbind();
             lblBalTotal.textProperty().unbind();

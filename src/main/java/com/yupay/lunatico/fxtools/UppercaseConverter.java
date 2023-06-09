@@ -82,4 +82,58 @@ public class UppercaseConverter extends StringConverter<String> {
     public String fromString(String string) {
         return process(string);
     }
+
+    /**
+     * Text formatter specialization for folio series and number,
+     * which is backed up by an uppercase converter with a
+     * maximum length of 20 characters.
+     *
+     * @author InfoYupay SACS
+     * @version 1.0
+     */
+    public static class FolioTextFormatter extends TextFormatter<String> {
+        /**
+         * Default constructor which creates an
+         * UppercaseConverter with maxLen 20 as
+         * a converter.
+         */
+        public FolioTextFormatter() {
+            super(
+                    new UppercaseConverter(20),
+                    "",
+                    c -> {
+                        if (c.getControlNewText()
+                                .strip()
+                                .length() > 20) {
+                            return null;
+                        }
+                        c.setText(c.getText().toUpperCase());
+                        return c;
+                    });
+        }
+    }
+
+    /**
+     * Text formatter specialization for notes and remarks
+     * which is backed up by an uppercase converter with no
+     * maximum characters length validation.
+     *
+     * @author InfoYupay SACS
+     * @version 1.0
+     */
+    public static class NotesTextFormatter extends TextFormatter<String> {
+        /**
+         * Default constructor that creates an Uppercase converter
+         * with no characters limit.
+         */
+        public NotesTextFormatter() {
+            super(
+                    new UppercaseConverter(-1),
+                    "",
+                    c -> {
+                        c.setText(c.getText().toUpperCase());
+                        return c;
+                    });
+        }
+    }
 }

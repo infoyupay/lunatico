@@ -1,5 +1,5 @@
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler version: 1.0.2
+-- pgModeler version: 1.0.4
 -- PostgreSQL version: 15.0
 -- Project Site: pgmodeler.io
 -- Model Author: Infoyupay SACS
@@ -24,7 +24,7 @@ WITH SCHEMA public;
 CREATE TABLE public.mmq_user (
 	id varchar NOT NULL,
 	real_name varchar NOT NULL,
-	password varchar NOT NULL,
+	password varchar NOT NULL DEFAULT crypt('changeme',  gen_salt('bf')),
 	role_viewer boolean NOT NULL,
 	role_admin boolean NOT NULL,
 	role_admin_sys boolean NOT NULL,
@@ -89,19 +89,6 @@ CREATE TABLE public.person (
 	CONSTRAINT person_pk PRIMARY KEY (id),
 	CONSTRAINT uq_person UNIQUE (doi_type,doi_num)
 );
--- ddl-end --
-
--- object: public.sq_employee_id | type: SEQUENCE --
--- DROP SEQUENCE IF EXISTS public.sq_employee_id CASCADE;
-CREATE SEQUENCE public.sq_employee_id
-	INCREMENT BY 1
-	MINVALUE 0
-	MAXVALUE 9223372036854775807
-	START WITH 1
-	CACHE 1
-	NO CYCLE
-	OWNED BY NONE;
-
 -- ddl-end --
 
 -- object: public.sq_type_folio_id | type: SEQUENCE --
@@ -173,14 +160,12 @@ CREATE TABLE public.item (
 	name varchar NOT NULL,
 	type public.type_item NOT NULL,
 	unit bigint NOT NULL,
-	balance_onsale decimal(14,8) NOT NULL,
-	balance_stored decimal(14,8) NOT NULL,
 	balance_units decimal(14,8) NOT NULL,
 	balance_unit_cost decimal(14,8) NOT NULL,
 	balance_cost decimal(14,8) NOT NULL,
 	notes text,
 	owner varchar NOT NULL,
-	created timestamp(3) NOT NULL,
+	created timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	active boolean NOT NULL DEFAULT TRUE,
 	CONSTRAINT item_pk PRIMARY KEY (id)
 );
@@ -223,8 +208,6 @@ CREATE TABLE public.balance (
 	balance_cost decimal(14,8) NOT NULL,
 	warehouse bigint,
 	item bigint NOT NULL,
-	balance_onsale decimal(14,8) NOT NULL,
-	balance_stored decimal(14,8) NOT NULL,
 	owner varchar NOT NULL,
 	CONSTRAINT balance_pk PRIMARY KEY (id)
 );
@@ -296,7 +279,7 @@ CREATE TABLE public.movement (
 	warehouse bigint NOT NULL,
 	type public.type_movement NOT NULL,
 	doc_date date NOT NULL,
-	own_date timestamp(3) NOT NULL,
+	own_date timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	person bigint,
 	folio_type bigint,
 	folio_serie varchar(20),
@@ -393,6 +376,7 @@ CREATE TABLE public.movement_detail (
 	line smallint NOT NULL,
 	movement bigint NOT NULL,
 	item bigint NOT NULL,
+	quantity decimal(14,8) NOT NULL,
 	before_quantity decimal(14,8) NOT NULL,
 	before_price decimal(14,8) NOT NULL,
 	before_cost decimal(14,8) NOT NULL,

@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.3" use-changelog="false" author="Infoyupay SACS" last-position="0,0" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="0,294" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer"
 	 active-layers="0"
@@ -161,7 +161,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="PRODUCT"/>
 </usertype>
 
-<table name="item" layers="0" collapse-mode="2" max-obj-count="15" z-value="0">
+<table name="item" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<position x="20" y="300"/>
 	<column name="id" not-null="true" sequence="public.sq_item_id">
@@ -172,12 +172,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<column name="type" not-null="true">
 		<type name="public.type_item" length="0"/>
-	</column>
-	<column name="balance_onsale" not-null="true">
-		<type name="decimal" length="14" precision="8"/>
-	</column>
-	<column name="balance_stored" not-null="true">
-		<type name="decimal" length="14" precision="8"/>
 	</column>
 	<column name="balance_units" not-null="true">
 		<type name="decimal" length="14" precision="8"/>
@@ -234,7 +228,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="public"/>
 </sequence>
 
-<table name="balance" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+<table name="balance" layers="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<position x="440" y="20"/>
 	<column name="id" not-null="true" sequence="public.sq_balance_id">
@@ -253,12 +247,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="decimal" length="14" precision="8"/>
 	</column>
 	<column name="balance_cost" not-null="true">
-		<type name="decimal" length="14" precision="8"/>
-	</column>
-	<column name="balance_onsale" not-null="true">
-		<type name="decimal" length="14" precision="8"/>
-	</column>
-	<column name="balance_stored" not-null="true">
 		<type name="decimal" length="14" precision="8"/>
 	</column>
 	<constraint name="balance_pk" type="pk-constr" table="public.balance">
@@ -506,14 +494,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	upd-action="CASCADE"
 	del-action="RESTRICT"/>
 
-<table name="movement_detail" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
+<table name="movement_detail" layers="0" collapse-mode="2" max-obj-count="20" z-value="0">
 	<schema name="public"/>
-	<position x="420" y="700"/>
+	<position x="420" y="680"/>
 	<column name="id" not-null="true" sequence="public.sq_movement_detail_id">
 		<type name="bigint" length="0"/>
 	</column>
 	<column name="line" not-null="true">
 		<type name="smallint" length="0"/>
+	</column>
+	<column name="quantity" not-null="true">
+		<type name="decimal" length="14" precision="8"/>
 	</column>
 	<column name="before_quantity" not-null="true">
 		<type name="decimal" length="14" precision="8"/>

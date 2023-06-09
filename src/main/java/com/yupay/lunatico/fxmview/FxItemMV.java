@@ -38,16 +38,6 @@ public class FxItemMV extends ModelView<Item, FxItemMV> {
     private final ObjectProperty<FxUnitMV> unit =
             new SimpleObjectProperty<>(this, "unit");
     /**
-     * The balance on sale at frontdesk.
-     */
-    private final ObjectProperty<BigDecimal> balanceOnSale =
-            new SimpleObjectProperty<>(this, "balanceOnSale", new BigDecimal("0.00000000"));
-    /**
-     * The reserved balance.
-     */
-    private final ObjectProperty<BigDecimal> balanceStored =
-            new SimpleObjectProperty<>(this, "balanceStored", new BigDecimal("0.00000000"));
-    /**
      * The total stock.
      */
     private final ObjectProperty<BigDecimal> balanceUnits =
@@ -204,60 +194,6 @@ public class FxItemMV extends ModelView<Item, FxItemMV> {
      */
     public final ObjectProperty<FxUnitMV> unitProperty() {
         return unit;
-    }
-
-    /**
-     * FX Accessor - getter.
-     *
-     * @return value of {@link #balanceOnSale}.get();
-     */
-    public final BigDecimal getBalanceOnSale() {
-        return balanceOnSale.get();
-    }
-
-    /**
-     * FX Accessor - setter.
-     *
-     * @param balanceOnSale value to assign into {@link #balanceOnSale}.
-     */
-    public final void setBalanceOnSale(BigDecimal balanceOnSale) {
-        this.balanceOnSale.set(balanceOnSale);
-    }
-
-    /**
-     * FX Accessor - property.
-     *
-     * @return property {@link #balanceOnSale}.
-     */
-    public final ObjectProperty<BigDecimal> balanceOnSaleProperty() {
-        return balanceOnSale;
-    }
-
-    /**
-     * FX Accessor - getter.
-     *
-     * @return value of {@link #balanceStored}.get();
-     */
-    public final BigDecimal getBalanceStored() {
-        return balanceStored.get();
-    }
-
-    /**
-     * FX Accessor - setter.
-     *
-     * @param balanceStored value to assign into {@link #balanceStored}.
-     */
-    public final void setBalanceStored(BigDecimal balanceStored) {
-        this.balanceStored.set(balanceStored);
-    }
-
-    /**
-     * FX Accessor - property.
-     *
-     * @return property {@link #balanceStored}.
-     */
-    public final ObjectProperty<BigDecimal> balanceStoredProperty() {
-        return balanceStored;
     }
 
     /**
@@ -460,13 +396,12 @@ public class FxItemMV extends ModelView<Item, FxItemMV> {
         return Objects.hash(getId());
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public @NotNull FxItemMV deepCopy() {
         var r = new FxItemMV();
         r.setActive(isActive());
         r.setBalanceCost(getBalanceCost());
-        r.setBalanceOnSale(getBalanceOnSale());
-        r.setBalanceStored(getBalanceStored());
         r.setBalanceUnitCost(getBalanceUnitCost());
         r.setBalanceUnits(getBalanceUnits());
         r.setCreated(getCreated());
@@ -479,13 +414,12 @@ public class FxItemMV extends ModelView<Item, FxItemMV> {
         return r;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public @NotNull Item toModel() {
         var r = new Item();
         r.setActive(isActive());
         r.setBalanceCost(getBalanceCost());
-        r.setBalanceOnsale(getBalanceOnSale());
-        r.setBalanceStored(getBalanceStored());
         r.setBalanceUnitCost(getBalanceUnitCost());
         r.setBalanceUnits(getBalanceUnits());
         r.setCreated(getCreated());
@@ -502,8 +436,6 @@ public class FxItemMV extends ModelView<Item, FxItemMV> {
     public void fromModel(@NotNull Item m) {
         setActive(m.isActive());
         setBalanceCost(m.getBalanceCost());
-        setBalanceOnSale(m.getBalanceOnsale());
-        setBalanceStored(m.getBalanceStored());
         setBalanceUnitCost(m.getBalanceUnitCost());
         setBalanceUnits(m.getBalanceUnits());
         setCreated(m.getCreated());

@@ -135,6 +135,8 @@
             </Menu>
         </MenuBar>
         <ToolBar visible="${controller.unlocked}">
+            <Button contentDisplay="TEXT_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" onAction="#onTestAction" prefHeight="32.0" prefWidth="32.0" text="T"/>
             <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                     minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0"
                     visible="${controller.roleReport}">
@@ -228,8 +230,6 @@
                         <TableColumn fx:id="colUnit" prefWidth="75.0" text="U. Med."/>
                         <TableColumn fx:id="colStock" prefWidth="125.0" text="Total"/>
                         <TableColumn fx:id="colSaved" prefWidth="125.0" text="Guardado"/>
-                        <TableColumn fx:id="colTransit" prefWidth="125.0" text="Tránsito"/>
-                        <TableColumn fx:id="colStore" prefWidth="125.0" text="Almacén"/>
                         <TableColumn fx:id="colSale" prefWidth="125.0" text="Venta"/>
                     </columns>
                 </TableColumn>
