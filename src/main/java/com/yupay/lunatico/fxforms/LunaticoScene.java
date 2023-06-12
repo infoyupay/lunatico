@@ -4,6 +4,8 @@ import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxflows.FxListActiveFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
+import com.yupay.lunatico.fxflows.FxOpeningFlow;
+import com.yupay.lunatico.fxflows.FxSearchFlow;
 import com.yupay.lunatico.fxmview.FxItem;
 import com.yupay.lunatico.fxmview.FxUnit;
 import com.yupay.lunatico.fxmview.FxUserMV;
@@ -342,6 +344,23 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     @FXML
     void onItemTrendAction() {
         FxForms.itemTrend().showAndWait();
+    }
+
+    /**
+     * FXML event handler.
+     */
+    @FXML
+    void onAdmOpening() {
+        FxSearchFlow.searchAllActiveWarehouses()
+                .apply(".")
+                .ifPresent(p -> new FxOpeningFlow()
+                        .withWarehouse(p)
+                        .withAfterSuccess(EasyAlert
+                                .info()
+                                .withTitle("Operación Completada")
+                                .withHeaderText("Se finalizó la apertura diaria del almacén.")
+                                .buttonOkOnly())
+                        .go());
     }
 
     /**

@@ -4,50 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Person card and master view 100% implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxSearchFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/ColumnBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxMovementLnCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxSearchCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxMovementLineMV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxMovementMV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/BigDecimalConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FromListStringConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxCardDialogs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxCellFactories.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEntityFormatters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxSearchCards.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/SearchableTextField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/SmartDateConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/movement_line-card.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/png/icons8-french-press-24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/png/icons8-french-press-48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/search-card.fxml" afterDir="false" />
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Movement card partially implemented.&#10;On std-by to develop Opening balance.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOBalanceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxOpeningFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/lunatico_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/lunatico_eer.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_eer.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/lunatico_eer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_eer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/lunatico_pg.dbm" beforeDir="false" afterPath="$PROJECT_DIR$/model/lunatico_pg.dbm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOItemImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOItemImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOPersonImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOPersonImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListActiveFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListActiveFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxItemCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/MovementCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxMovementCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxItemMV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxmview/FxItemMV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ClearFacility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ClearFacility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/Functionals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/Functionals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEnumCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/FxEnumCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/UppercaseConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/UppercaseConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ValueFactoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ValueFactoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Balance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Balance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/MovementDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/MovementDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/item-card.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/lunatico.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/movement-card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/movement-card.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +100,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20230608_0003",
+    "com.google.cloudcode.ide_session_index": "20230611_0003",
     "com.google.gct.idea.git.username": "dvidal@infoyupay.com",
     "git-widget-placeholder": "munit",
     "jdk.selected.JAVA_MODULE": "19",
@@ -333,7 +297,9 @@
       <workItem from="1686145277637" duration="8560000" />
       <workItem from="1686192189095" duration="5504000" />
       <workItem from="1686236392668" duration="7125000" />
-      <workItem from="1686267198400" duration="1942000" />
+      <workItem from="1686267198400" duration="6151000" />
+      <workItem from="1686500221339" duration="599000" />
+      <workItem from="1686502542635" duration="1677000" />
     </task>
     <task id="LOCAL-00001" summary="Databse model implemented.">
       <created>1681961952437</created>
@@ -461,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685336301096</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Movement card partially implemented.&#10;On std-by to develop Opening balance.">
+      <created>1686279806397</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686279806397</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,7 +481,8 @@
     <MESSAGE value="Type of folio card and master view implemented." />
     <MESSAGE value="Controllers refactored to extend MasterView." />
     <MESSAGE value="Person card and master view 100% implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Person card and master view 100% implemented." />
+    <MESSAGE value="Movement card partially implemented.&#10;On std-by to develop Opening balance." />
+    <option name="LAST_COMMIT_MESSAGE" value="Movement card partially implemented.&#10;On std-by to develop Opening balance." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

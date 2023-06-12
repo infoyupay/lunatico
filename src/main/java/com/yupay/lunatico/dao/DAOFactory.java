@@ -80,4 +80,14 @@ public final class DAOFactory {
     public static @NotNull DAOPersonImpl person() {
         return new DAOPersonImpl();
     }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Balance}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOBalanceImpl balance() {
+        return new DAOBalanceImpl();
+    }
 }

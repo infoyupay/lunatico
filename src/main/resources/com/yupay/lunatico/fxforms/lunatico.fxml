@@ -118,7 +118,7 @@
                 </MenuItem>
             </Menu>
             <Menu text="Gestión" visible="${controller.unlocked}">
-                <MenuItem text="Generar Apertura Diaria" visible="${controller.roleReport}">
+                <MenuItem text="Generar Apertura Diaria" visible="${controller.roleReport}" onAction="#onAdmOpening">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-open-sign-24.png"/>
