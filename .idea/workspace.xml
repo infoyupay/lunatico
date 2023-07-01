@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Warehouse card implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOWarehouseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/yupay/lunatico/fxforms/warehouse-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/dao/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxEditFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxInsertFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxflows/FxListAllFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxForms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxLunatico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxUserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/FxWarehouseCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxforms/LunaticoScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ValueFactoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/fxtools/ValueFactoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupay/lunatico/model/Warehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-    </list>
+    <list default="true" id="9bf24ba7-aaef-4e16-9a2c-ef5d161be662" name="Changes" comment="Workspace updated." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +27,23 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="lunatico" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lunatico" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lunatico" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lunatico" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -309,7 +308,15 @@
       <option name="project" value="LOCAL" />
       <updated>1684270387200</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Workspace updated.">
+      <option name="closed" value="true" />
+      <created>1688247971344</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1688247971344</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +344,8 @@
     <MESSAGE value="User profile enforcing at login time: OK." />
     <MESSAGE value="Added a shared (Static) reference to the application controller for further usage." />
     <MESSAGE value="Warehouse card implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Warehouse card implemented." />
+    <MESSAGE value="Workspace updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Workspace updated." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
