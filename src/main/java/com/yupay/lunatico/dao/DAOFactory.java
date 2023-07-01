@@ -40,4 +40,54 @@ public final class DAOFactory {
     public static @NotNull DAOWarehouseImpl warehouse() {
         return new DAOWarehouseImpl();
     }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Unit}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOUnitImpl unit() {
+        return new DAOUnitImpl();
+    }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Item}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOItemImpl item() {
+        return new DAOItemImpl();
+    }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.TypeFolio}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOTypeFolioImpl typeFolio() {
+        return new DAOTypeFolioImpl();
+    }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Person}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOPersonImpl person() {
+        return new DAOPersonImpl();
+    }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Balance}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOBalanceImpl balance() {
+        return new DAOBalanceImpl();
+    }
 }

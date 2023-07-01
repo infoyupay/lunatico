@@ -29,8 +29,7 @@
                             </ImageView>
                         </graphic>
                     </MenuItem>
-                    <MenuItem text="Usuarios" onAction="#onSysUserAction" visible="${controller.unlockedAndSudoer}"
-                              fx:id="mniSysUser">
+                    <MenuItem text="Usuarios" onAction="#onSysUserAction" visible="${controller.unlockedAndSudoer}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-user-folder-24.png"/>
@@ -64,35 +63,36 @@
             </Menu>
             <Menu text="Mantenimiento" visible="${controller.unlocked}">
                 <MenuItem text="Almacenes" visible="${controller.roleAdmin}"
-                onAction="#onMgmWarehouse">
+                          onAction="#onMgmWarehouse">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-depot-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Artículos" visible="${controller.roleAdmin}">
+                <MenuItem text="Artículos" visible="${controller.roleAdmin}"
+                          onAction="#onMgmItems">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-ingredients-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Personas Relacionadas" visible="${controller.roleReport}">
+                <MenuItem text="Personas Relacionadas" visible="${controller.roleReport}" onAction="#onMgmPerson">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-hug-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Tipo de Folio" visible="${controller.roleAdmin}">
+                <MenuItem text="Tipo de Folio" visible="${controller.roleAdmin}" onAction="#onMgmFolioType">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-receipt-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
-                <MenuItem text="Unidad de Medida" visible="${controller.roleAdmin}">
+                <MenuItem text="Unidad de Medida" visible="${controller.roleAdmin}" onAction="#onMgmUnits">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-measuring-cup-24.png"/>
@@ -118,23 +118,18 @@
                 </MenuItem>
             </Menu>
             <Menu text="Gestión" visible="${controller.unlocked}">
-                <MenuItem text="Generar Apertura Diaria" visible="${controller.roleReport}">
+                <MenuItem text="Instantánea de Almacén" visible="${controller.roleReport}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
-                            <Image url="@png/icons8-open-sign-24.png"/>
-                        </ImageView>
-                    </graphic>
-                </MenuItem>
-                <MenuItem text="Generar Cierre Diario" visible="${controller.roleReport}">
-                    <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                            <Image url="@png/icons8-close-sign-24.png"/>
+                            <Image url="@png/icons8-vintage-camera-24.png"/>
                         </ImageView>
                     </graphic>
                 </MenuItem>
             </Menu>
         </MenuBar>
         <ToolBar visible="${controller.unlocked}">
+            <Button contentDisplay="TEXT_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                    minWidth="-Infinity" onAction="#onTestAction" prefHeight="32.0" prefWidth="32.0" text="T"/>
             <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                     minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0"
                     visible="${controller.roleReport}">
@@ -193,7 +188,7 @@
             </Button>
             <Separator orientation="VERTICAL"/>
             <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0"
-                      text="Por sede:"/>
+                      text="Por sede:" fx:id="chkStore"/>
             <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                       prefHeight="32.0" prefWidth="175.0" fx:id="cboStore"/>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="82.0" layoutY="10.0" maxHeight="-Infinity"
@@ -228,8 +223,6 @@
                         <TableColumn fx:id="colUnit" prefWidth="75.0" text="U. Med."/>
                         <TableColumn fx:id="colStock" prefWidth="125.0" text="Total"/>
                         <TableColumn fx:id="colSaved" prefWidth="125.0" text="Guardado"/>
-                        <TableColumn fx:id="colTransit" prefWidth="125.0" text="Tránsito"/>
-                        <TableColumn fx:id="colStore" prefWidth="125.0" text="Almacén"/>
                         <TableColumn fx:id="colSale" prefWidth="125.0" text="Venta"/>
                     </columns>
                 </TableColumn>

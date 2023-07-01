@@ -29,7 +29,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static LunaticoScene lunaticoScene() {
+    @Contract("-> new")
+    public static @NotNull LunaticoScene lunaticoScene() {
         return loadFxml("lunatico.fxml");
     }
 
@@ -38,7 +39,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxUserView userView() {
+    @Contract("-> new")
+    public static @NotNull FxUserView userView() {
         return loadFxml("user-view.fxml");
     }
 
@@ -47,7 +49,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxUserCard userCard() {
+    @Contract("-> new")
+    public static @NotNull FxUserCard userCard() {
         return loadFxml("user-card.fxml");
     }
 
@@ -56,7 +59,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxPasswordChange passwordChange() {
+    @Contract("-> new")
+    public static @NotNull FxPasswordChange passwordChange() {
         return loadFxml("password-change.fxml");
     }
 
@@ -65,7 +69,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxUserLogin userLogin() {
+    @Contract("-> new")
+    public static @NotNull FxUserLogin userLogin() {
         return loadFxml("user-login.fxml");
     }
 
@@ -74,7 +79,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static MovementCard movementCard() {
+    @Contract("-> new")
+    public static @NotNull FxMovementCard movementCard() {
         return loadFxml("movement-card.fxml");
     }
 
@@ -83,7 +89,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxItemTrend itemTrend() {
+    @Contract("-> new")
+    public static @NotNull FxItemTrend itemTrend() {
         return loadFxml("item-trend.fxml");
     }
 
@@ -92,7 +99,8 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxWarehouseView warehouseView() {
+    @Contract("-> new")
+    public static @NotNull FxWarehouseView warehouseView() {
         return loadFxml("warehouse-view.fxml");
     }
 
@@ -101,8 +109,110 @@ public final class FxForms {
      *
      * @return a new form controller.
      */
-    public static FxWarehouseCard warehouseCard() {
+    @Contract("-> new")
+    public static @NotNull FxWarehouseCard warehouseCard() {
         return loadFxml("warehouse-card.fxml");
+    }
+
+    /**
+     * FxFactory for unit-card.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxUnitCard unitCard() {
+        return loadFxml("unit-card.fxml");
+    }
+
+    /**
+     * FxFactory for unit-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxUnitView unitView() {
+        return loadFxml("unit-view.fxml");
+    }
+
+    /**
+     * FxFactory for item-card.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxItemCard itemCard() {
+        return loadFxml("item-card.fxml");
+    }
+
+    /**
+     * FxFactory for item-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxItemView itemView() {
+        return loadFxml("item-view.fxml");
+    }
+
+    /**
+     * FxFactory for folio_type-card.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxFolioTypeCard folioTypeCard() {
+        return loadFxml("folio_type-card.fxml");
+    }
+
+    /**
+     * FxFactory for folio_type-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxFolioTypeView folioTypeView() {
+        return loadFxml("folio_type-view.fxml");
+    }
+
+    /**
+     * FxFactory for person-card.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxPersonCard personCard() {
+        return loadFxml("person-card.fxml");
+    }
+
+    /**
+     * FxFactory for person-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxPersonView personView() {
+        return loadFxml("person-view.fxml");
+    }
+
+    /**
+     * FxFactory for movement_line-card.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxMovementLnCard movementLineCard() {
+        return loadFxml("movement_line-card.fxml");
+    }
+
+    /**
+     * FxFactory for search-card.fxml
+     *
+     * @param <T> type erasure of searched element.
+     * @return a new search card controller.
+     */
+    @Contract("->new")
+    public static <T> @NotNull FxSearchCard<T> searchCard() {
+        return loadFxml("search-card.fxml");
     }
 
     /**
@@ -112,7 +222,7 @@ public final class FxForms {
      * @param fxml fxml file name as stated in package
      *             {@link com.yupay.lunatico.fxforms}
      */
-    private static <T> T loadFxml(@NotNull String fxml) {
+    private static <T> @NotNull T loadFxml(@NotNull String fxml) {
         try {
             var loader = new FXMLLoader(FxForms.class.getResource(fxml));
             loader.load();

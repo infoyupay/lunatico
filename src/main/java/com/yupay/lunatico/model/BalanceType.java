@@ -8,15 +8,13 @@ package com.yupay.lunatico.model;
  */
 public enum BalanceType {
     /**
-     * The opening balance.
+     * Snapshot balance, usually taken at the end of a given day.
+     * As a feature of this system, nevertheless the snapshot may
+     * be taken at any time, even more than once a day.
      */
-    OPENING,
+    SNAPSHOT,
     /**
-     * Closure balance.
+     * Historical balance used to accumulate all totals.
      */
-    CLOSURE,
-    /**
-     * Helper balance used to accumulate current day totals.
-     */
-    HELPER
+    HISTORY
 }

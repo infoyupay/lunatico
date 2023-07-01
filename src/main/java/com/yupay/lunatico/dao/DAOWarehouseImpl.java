@@ -10,6 +10,12 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0
  */
 public final class DAOWarehouseImpl implements DAO<Warehouse> {
+    /**
+     * Package-private constructor. Use {@link DAOFactory}
+     */
+    DAOWarehouseImpl() {
+    }
+
     @Override
     public @NotNull Class<Warehouse> entity() {
         return Warehouse.class;

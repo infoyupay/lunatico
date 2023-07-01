@@ -3,7 +3,7 @@ package com.yupay.lunatico.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public class Balance {
     /**
      * Date of generation.
      */
-    private LocalDate date;
+    private LocalDateTime shotStamp;
     /**
      * Type of the balance.
      */
@@ -40,14 +40,6 @@ public class Balance {
      * Stock balance's cost (multiply {@link #balanceUnits} * {@link #balanceUnitCost})
      */
     private BigDecimal balanceCost;
-    /**
-     * Balance stock on sale exhibition.
-     */
-    private BigDecimal balanceOnsale;
-    /**
-     * Balance stock stored at warehouse.
-     */
-    private BigDecimal balanceStored;
     /**
      * Warehouse at where the balance refers.
      */
@@ -94,21 +86,23 @@ public class Balance {
     /**
      * Public accessor - getter.
      *
-     * @return value of {@link #date}
+     * @return value of {@link #shotStamp}
      */
     @Basic
-    @Column(name = "date", columnDefinition = "DATE")
-    public LocalDate getDate() {
-        return date;
+    @Column(name = "shot_stamp", nullable = false,
+            updatable = false, insertable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    public LocalDateTime getShotStamp() {
+        return shotStamp;
     }
 
     /**
      * Public accessor - setter.
      *
-     * @param date value to set into {@link #date}
+     * @param date value to set into {@link #shotStamp}
      */
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setShotStamp(LocalDateTime date) {
+        this.shotStamp = date;
     }
 
     /**
@@ -190,46 +184,6 @@ public class Balance {
      */
     public void setBalanceCost(BigDecimal balanceCost) {
         this.balanceCost = balanceCost;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
-     * @return value of {@link #balanceOnsale}
-     */
-    @Basic
-    @Column(name = "balance_onsale", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceOnsale() {
-        return balanceOnsale;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceOnsale value to set into {@link #balanceOnsale}
-     */
-    public void setBalanceOnsale(BigDecimal balanceOnsale) {
-        this.balanceOnsale = balanceOnsale;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
-     * @return value of {@link #balanceStored}
-     */
-    @Basic
-    @Column(name = "balance_stored", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceStored() {
-        return balanceStored;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceStored value to set into {@link #balanceStored}
-     */
-    public void setBalanceStored(BigDecimal balanceStored) {
-        this.balanceStored = balanceStored;
     }
 
     /**

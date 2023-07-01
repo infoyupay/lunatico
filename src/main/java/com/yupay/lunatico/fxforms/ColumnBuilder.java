@@ -1,0 +1,151 @@
+package com.yupay.lunatico.fxforms;
+
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+/**
+ * Convenient builder to easily create table columns.
+ *
+ * @author InfoYupay SACS
+ * @version 1.0
+ */
+public class ColumnBuilder<S, T> implements Supplier<TableColumn<S, T>> {
+    private final @NotNull Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>>
+            valueFactory;
+    /**
+     * Column title.
+     */
+    private String title;
+    /**
+     * Column's prefered width.
+     */
+    private int prefWidth;
+    /**
+     * The factory for custom cells.
+     */
+    private Callback<TableColumn<S, T>, TableCell<S, T>> customCellFactory;
+
+    /**
+     * Constructor with a custom value factory.
+     *
+     * @param valueFactory the custom value factory.
+     */
+    public ColumnBuilder(@NotNull Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>> valueFactory) {
+        this.valueFactory = valueFactory;
+    }
+
+    /**
+     * Static factory to create a column for an object.
+     *
+     * @param getter the function to get an observable.
+     * @param <S>    type erasure of table view model.
+     * @param <T>    type erausre of table column values.
+     * @return the new column builder.
+     */
+    @Contract(value = "_ -> new", pure = true)
+    public static <S, T> @NotNull ColumnBuilder<S, T> forObject(
+            @NotNull Function<S, ObservableValue<T>> getter) {
+        return new ColumnBuilder<>(data -> {
+            var val = data.getValue();
+            return val == null
+                    ? new SimpleObjectProperty<>(null, "fake")
+                    : getter.apply(val);
+        });
+    }
+
+    /**
+     * Creates a custom builder for TableColumn&lt;S, Long&gt; columns.
+     *
+     * @param getter the function to get a long property.
+     * @param <S>    type erasure of the table view model.
+     * @return a new builder.
+     */
+    @Contract(value = "_ -> new", pure = true)
+    public static <S> @NotNull ColumnBuilder<S, Long> forLong(
+            @NotNull Function<S, LongProperty> getter) {
+        return new ColumnBuilder<>(data -> {
+            var val = data.getValue();
+            return val == null
+                    ? new SimpleObjectProperty<>(null, "fake")
+                    : getter.apply(val).asObject();
+        });
+    }
+
+    /**
+     * Fluent setter - with.
+     *
+     * @param title new value to set in {@link #title}
+     * @return this instance.
+     */
+    public final ColumnBuilder<S, T> withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Accessor - getter.
+     *
+     * @return value of {@link #title}
+     */
+    public final String getTitle() {
+        return title;
+    }
+
+    /**
+     * Fluent setter - with.
+     *
+     * @param prefWidth new value to set in {@link #prefWidth}
+     * @return this instance.
+     */
+    public final ColumnBuilder<S, T> withPrefWidth(int prefWidth) {
+        this.prefWidth = prefWidth;
+        return this;
+    }
+
+    /**
+     * Accessor - getter.
+     *
+     * @return value of {@link #prefWidth}
+     */
+    public final int getPrefWidth() {
+        return prefWidth;
+    }
+
+    /**
+     * Fluent setter - with.
+     *
+     * @param customCellFactory new value to set in {@link #customCellFactory}
+     * @return this instance.
+     */
+    public final ColumnBuilder<S, T> withCustomCellFactory(Callback<TableColumn<S, T>, TableCell<S, T>> customCellFactory) {
+        this.customCellFactory = customCellFactory;
+        return this;
+    }
+
+    /**
+     * Accessor - getter.
+     *
+     * @return value of {@link #customCellFactory}
+     */
+    public final Callback<TableColumn<S, T>, TableCell<S, T>> getCustomCellFactory() {
+        return customCellFactory;
+    }
+
+    @Override
+    public TableColumn<S, T> get() {
+        var r = new TableColumn<S, T>(getTitle());
+        r.setCellValueFactory(valueFactory);
+        if (getPrefWidth() > 0) r.setPrefWidth(getPrefWidth());
+        if (getCustomCellFactory() != null) r.setCellFactory(getCustomCellFactory());
+        return r;
+    }
+}

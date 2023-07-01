@@ -26,5 +26,8 @@ module lunatico {
             to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
     opens com.yupay.lunatico.fxmview
             to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
-    opens com.yupay.lunatico.fxtools to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
+    opens com.yupay.lunatico.fxtools
+            to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
+    opens com.yupay.lunatico.fxflows
+            to javafx.base, javafx.controls, javafx.fxml, javafx.graphics;
 }

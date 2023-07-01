@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/20.0.1"
+            fx:controller="com.yupay.lunatico.fxforms.FxSearchCard">
+    <header>
+        <HBox spacing="5.0">
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Filtrar todavía más:"/>
+            <TextField fx:id="txtFilter" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                       HBox.hgrow="ALWAYS"/>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </HBox>
+    </header>
+    <content>
+        <TableView fx:id="tblData" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                   minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+                   onMouseClicked="#onTableClicked"/>
+    </content>
+    <graphic>
+        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@png/icons8-french-press-48.png"/>
+        </ImageView>
+    </graphic>
+    <ButtonType fx:constant="OK"/>
+    <ButtonType fx:constant="CANCEL"/>
+</DialogPane>

@@ -191,4 +191,9 @@ public class FxWarehouseMV extends ModelView<Warehouse, FxWarehouseMV> {
         setName(model.getName());
         setVirtualType(model.getVirtualType());
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

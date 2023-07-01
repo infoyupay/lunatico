@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,6 +44,7 @@ public class ErrorHandler extends Alert implements Consumer<Throwable> {
      * Initializes the stack text area.
      */
     private void initialize() {
+        initModality(Modality.APPLICATION_MODAL);
         stack.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         stack.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         stack.setPrefSize(600.0, 200.0);

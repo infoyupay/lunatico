@@ -1,11 +1,12 @@
 package com.yupay.lunatico.fxforms;
 
-import com.yupay.lunatico.Prototypes;
+import com.yupay.lunatico.fxflows.FxListActiveFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
+import com.yupay.lunatico.fxflows.FxMoveFlow;
 import com.yupay.lunatico.fxmview.FxItem;
-import com.yupay.lunatico.fxmview.FxStore;
 import com.yupay.lunatico.fxmview.FxUnit;
 import com.yupay.lunatico.fxmview.FxUserMV;
+import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -19,8 +20,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.jetbrains.annotations.NotNull;
@@ -169,16 +168,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colTransit;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colStore;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
     private TableColumn<FxItem, BigDecimal> colSale;
     /**
      * FXML control injected from lunatico.fxml
@@ -199,7 +188,12 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private ComboBox<FxStore> cboStore;
+    private ComboBox<FxWarehouseMV> cboStore;
+    /**
+     * FXML control injected from lunatico.fxml
+     */
+    @FXML
+    private CheckBox chkStore;
 
     @Override
     public void handle(@NotNull WindowEvent event) {
@@ -217,32 +211,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void initialize() {
-        //<editor-fold desc="Fool implementation to be removed.">
-        //TODO: REMOVE THIS ENTIRE SECTION AFTER REAL IMPLEMENTATION!!
-        cboStore.setItems(Prototypes.STORES);
-        tblData.setItems(FXCollections.observableList(Prototypes.items()));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colInAdj.setCellValueFactory(new PropertyValueFactory<>("inFix"));
-        colInFreight.setCellValueFactory(new PropertyValueFactory<>("inTransfer"));
-        colInProduction.setCellValueFactory(new PropertyValueFactory<>("inProduction"));
-        colInPurchase.setCellValueFactory(new PropertyValueFactory<>("inPurchase"));
-        colInReturn.setCellValueFactory(new PropertyValueFactory<>("inReturn"));
-        colOutAdj.setCellValueFactory(new PropertyValueFactory<>("outFix"));
-        colOutFreight.setCellValueFactory(new PropertyValueFactory<>("outTransfer"));
-        colOutGift.setCellValueFactory(new PropertyValueFactory<>("outGift"));
-        colOutProduction.setCellValueFactory(new PropertyValueFactory<>("outProduction"));
-        colOutReturn.setCellValueFactory(new PropertyValueFactory<>("outReturn"));
-        colOutSale.setCellValueFactory(new PropertyValueFactory<>("outSale"));
-        colOutWaste.setCellValueFactory(new PropertyValueFactory<>("outWaste"));
-        colSale.setCellValueFactory(new PropertyValueFactory<>("balanceSale"));
-        colSaved.setCellValueFactory(new PropertyValueFactory<>("balanceSaved"));
-        colStock.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        colStore.setCellValueFactory(new PropertyValueFactory<>("balanceStore"));
-        colTransit.setCellValueFactory(new PropertyValueFactory<>("balanceTransit"));
-        colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-        //</editor-fold>
-
         locked.bind(loggedUserProperty().isNull());
         unlocked.bind(loggedUserProperty().isNotNull());
         unlockedAndSudoer.bind(unlocked.and(roleSudoer));
@@ -303,13 +271,63 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
 
     /**
      * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmItems(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.itemView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmUnits(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.unitView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmFolioType(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.folioTypeView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onMgmPerson(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.personView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
      */
     @FXML
     void onCreateMovAction() {
-        var crd = FxForms.movementCard();
-        crd.initOwner(primaryStage);
-        crd.initModality(Modality.APPLICATION_MODAL);
-        crd.showAndWait();
+        new FxMoveFlow().withOwner(primaryStage).showCreator();
+    }
+
+    /**
+     * FXML event handler.
+     */
+    @FXML
+    void onTestAction() {
+        //TODO: remove this!
+
     }
 
     /**
@@ -317,7 +335,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onItemTrendAction() {
-        FxForms.itemTrend().showAndWait();
+        //TODO
     }
 
     /**
@@ -531,6 +549,10 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                     *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
                     wdw.close();
                 }
+                //Clean data
+                cboStore.setValue(null);
+                cboStore.setItems(FXCollections.observableArrayList());
+                chkStore.setSelected(false);
                 return;
             }
             //The sudoer role, only by the sudoer.
@@ -547,7 +569,12 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                     || n.isRoleReporter()
                     || n.isRoleAdmin()
                     || n.isRoleAdminSys());
-
+            //If is at least viewer, will load combo box.
+            if (isRoleViewer()) {
+                FxListActiveFlow.warehouse()
+                        .withForEach(cboStore.getItems()::add)
+                        .go();
+            }
         }
     }
 }

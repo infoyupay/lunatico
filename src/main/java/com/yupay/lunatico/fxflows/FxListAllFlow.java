@@ -4,11 +4,8 @@ import com.yupay.lunatico.dao.DAO;
 import com.yupay.lunatico.dao.DAOFactory;
 import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
-import com.yupay.lunatico.fxmview.FxUserMV;
-import com.yupay.lunatico.fxmview.FxWarehouseMV;
-import com.yupay.lunatico.model.ModelView;
-import com.yupay.lunatico.model.User;
-import com.yupay.lunatico.model.Warehouse;
+import com.yupay.lunatico.fxmview.*;
+import com.yupay.lunatico.model.*;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -56,6 +53,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             }
         };
     }
+
     /**
      * Static factory to create a flow for users.
      *
@@ -72,6 +70,86 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
             @Override
             protected @NotNull DAO<Warehouse> dao() {
                 return DAOFactory.warehouse();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for measurement units.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Unit, FxUnitMV> unit() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxUnitMV toView(@NotNull Unit model) {
+                return new FxUnitMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Unit> dao() {
+                return DAOFactory.unit();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for warehouse items.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Item, FxItemMV> item() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxItemMV toView(@NotNull Item model) {
+                return new FxItemMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Item> dao() {
+                return DAOFactory.item();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for folio type entities.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<TypeFolio, FxFolioTypeMV> folioType() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxFolioTypeMV toView(@NotNull TypeFolio model) {
+                return new FxFolioTypeMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<TypeFolio> dao() {
+                return DAOFactory.typeFolio();
+            }
+        };
+    }
+
+    /**
+     * Static factory to create a flow for Person entities.
+     *
+     * @return a new flow.
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull FxListAllFlow<Person, FxPersonMV> person() {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxPersonMV toView(@NotNull Person model) {
+                return new FxPersonMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<Person> dao() {
+                return DAOFactory.person();
             }
         };
     }
@@ -158,6 +236,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
      * @param after new value to set in {@link #after}
      * @return this instance.
      */
+    @Contract(value = "_ -> this")
     public final FxListAllFlow<T, U> withAfter(Runnable after) {
         this.after = after;
         return this;

@@ -28,14 +28,6 @@ public class Item {
      */
     private ItemType type;
     /**
-     * Current item balance on sale exposition.
-     */
-    private BigDecimal balanceOnsale;
-    /**
-     * Current item balance stored in warehouse.
-     */
-    private BigDecimal balanceStored;
-    /**
      * Current item balance in units (stock).
      */
     private BigDecimal balanceUnits;
@@ -139,46 +131,6 @@ public class Item {
     /**
      * Public accessor - getter.
      *
-     * @return value of {@link #balanceOnsale}
-     */
-    @Basic
-    @Column(name = "balance_onsale", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceOnsale() {
-        return balanceOnsale;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceOnsale value to set into {@link #balanceOnsale}
-     */
-    public void setBalanceOnsale(BigDecimal balanceOnsale) {
-        this.balanceOnsale = balanceOnsale;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
-     * @return value of {@link #balanceStored}
-     */
-    @Basic
-    @Column(name = "balance_stored", nullable = false, precision = 14, scale = 8)
-    public BigDecimal getBalanceStored() {
-        return balanceStored;
-    }
-
-    /**
-     * Public accessor - setter.
-     *
-     * @param balanceStored value to set into {@link #balanceStored}
-     */
-    public void setBalanceStored(BigDecimal balanceStored) {
-        this.balanceStored = balanceStored;
-    }
-
-    /**
-     * Public accessor - getter.
-     *
      * @return value of {@link #balanceUnits}
      */
     @Basic
@@ -263,6 +215,7 @@ public class Item {
      */
     @Basic
     @Column(name = "created", nullable = false,
+            updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     public LocalDateTime getCreated() {
         return created;

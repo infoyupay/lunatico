@@ -1,149 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonType?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-
-<DialogPane fx:id="top" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yupay.lunatico.fxforms.MovementCard">
+<?import com.yupay.lunatico.fxflows.FxSearchFlow?>
+<?import com.yupay.lunatico.fxtools.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/19"
+            fx:controller="com.yupay.lunatico.fxforms.FxMovementCard">
     <content>
         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" spacing="5.0">
-         <children>
             <HBox spacing="5.0" VBox.vgrow="NEVER">
-               <children>
-                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Número Único:" />
-                  <Label fx:id="lblID" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" style="-fx-border-color: TRANSPARENT TRANSPARENT BLACK TRANSPARENT;" HBox.hgrow="ALWAYS" />
-               </children>
+                <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Número Único:"/>
+                <Label fx:id="lblID" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0"
+                       style="-fx-border-color: TRANSPARENT TRANSPARENT BLACK TRANSPARENT;"
+                       HBox.hgrow="ALWAYS"/>
             </HBox>
             <GridPane hgap="5.0" vgap="5.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="NEVER" />
-                <RowConstraints minHeight="10.0" vgrow="NEVER" />
-                <RowConstraints minHeight="10.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="10.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="10.0" vgrow="NEVER" />
-                  <RowConstraints minHeight="10.0" vgrow="NEVER" />
-              </rowConstraints>
-               <children>
-                  <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Tipo:" />
-                  <ComboBox fx:id="cboType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" />
-                  <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Almacén:" GridPane.columnIndex="2" />
-                  <ComboBox fx:id="cboStore" editable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="3" />
-                  <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Fecha de:" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Operación" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="dtpOpDate" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Contabilización" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label fx:id="lblRecDate" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" style="-fx-border-color: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Tercero:" GridPane.rowIndex="3" />
-                  <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
-                  <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Sustento:" GridPane.rowIndex="4" GridPane.rowSpan="2" />
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Tipo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="cboFolioType" editable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Serie" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" text="Número" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-               </children>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                    <RowConstraints minHeight="10.0" vgrow="NEVER"/>
+                </rowConstraints>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Tipo:"/>
+                <ComboBox fx:id="cboType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                          minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1">
+                    <items>
+                        <FxEnumCollections fx:factory="movementTypes"/>
+                    </items>
+                </ComboBox>
+                <Label alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Almacén:" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="cboStore" editable="true" maxHeight="-Infinity"
+                          maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                          GridPane.columnIndex="3"/>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Fecha de:" GridPane.rowIndex="1" GridPane.rowSpan="2"/>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Operación" GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
+                <DatePicker fx:id="dtpOpDate" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                            minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1"
+                            GridPane.rowIndex="2">
+                    <converter>
+                        <SmartDateConverter/>
+                    </converter>
+                </DatePicker>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Contabilización" GridPane.columnIndex="2"
+                       GridPane.rowIndex="1"/>
+                <Label fx:id="lblRecDate" alignment="CENTER" maxHeight="-Infinity"
+                       maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                       style="-fx-border-color: BLACK;" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Tercero:" GridPane.rowIndex="3"/>
+                <SearchableTextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                                     prefHeight="32.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647"
+                                     GridPane.rowIndex="3" fx:id="txtPerson">
+                    <searchExecutor>
+                        <FxSearchFlow fx:factory="searchPersonActive"/>
+                    </searchExecutor>
+                    <cardSupplier>
+                        <FxCardDialogs fx:factory="forPerson"/>
+                    </cardSupplier>
+                    <stringMaker>
+                        <FxEntityFormatters fx:factory="forPerson"/>
+                    </stringMaker>
+                </SearchableTextField>
+                <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                       prefHeight="32.0" text="Sustento:" GridPane.rowIndex="4" GridPane.rowSpan="2"/>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Tipo" GridPane.columnIndex="1"
+                       GridPane.rowIndex="4"/>
+                <ComboBox fx:id="cboFolioType" editable="true" maxHeight="-Infinity"
+                          maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
+                          GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Serie" GridPane.columnIndex="2"
+                       GridPane.rowIndex="4"/>
+                <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                           prefHeight="32.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                    <textFormatter>
+                        <UppercaseConverter.FolioTextFormatter fx:id="fmtFolioSerie"/>
+                    </textFormatter>
+                </TextField>
+                <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0" text="Número" GridPane.columnIndex="3"
+                       GridPane.rowIndex="4"/>
+                <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                           prefHeight="32.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                    <textFormatter>
+                        <UppercaseConverter.FolioTextFormatter fx:id="fmtFolioNumber"/>
+                    </textFormatter>
+                </TextField>
             </GridPane>
             <HBox>
-               <children>
-                  <TableView fx:id="tblDetail" editable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="175.0" HBox.hgrow="ALWAYS">
+                <TableView fx:id="tblDetail" maxHeight="-Infinity" minHeight="-Infinity"
+                           prefHeight="175.0" HBox.hgrow="ALWAYS" onMouseClicked="#onTableClicked"
+                items="${controller.detailData}"  >
                     <columns>
-                        <TableColumn fx:id="colDtId" editable="false" prefWidth="40.0" text="#" />
-                      <TableColumn prefWidth="75.0" text="Producto">
-                           <columns>
-                              <TableColumn fx:id="colDtItemCode" prefWidth="100.0" sortable="false" text="Código" />
-                              <TableColumn fx:id="colDtItemName" prefWidth="150.0" sortable="false" text="Nombre" />
-                           </columns>
+                        <TableColumn fx:id="colDtId" editable="false" prefWidth="40.0" text="#"
+                                     style="-fx-alignment: CENTER"/>
+                        <TableColumn prefWidth="75.0" text="Producto">
+                            <columns>
+                                <TableColumn fx:id="colDtItemCode" prefWidth="100.0" sortable="false"
+                                             editable="false" text="Código" style="-fx-alignment: CENTER">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="itemShowingId"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colDtItemName" prefWidth="150.0" sortable="false"
+                                             text="Nombre" editable="false">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="itemShowingName"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="75.0" text="Cantidad">
-                           <columns>
-                              <TableColumn fx:id="colDtQty" prefWidth="100.0" sortable="false" text="Unidades" />
-                              <TableColumn fx:id="colDtUnit" editable="false" prefWidth="75.0" sortable="false" text="Medida" />
-                              <TableColumn fx:id="colDtUnitPrice" editable="false" prefWidth="150.0" sortable="false" text="Costo Unitario" />
-                           </columns>
+                            <columns>
+                                <TableColumn fx:id="colDtQty" prefWidth="150.0" sortable="false"
+                                             text="Unidades" editable="false" style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colDtUnit" editable="false" prefWidth="125.0"
+                                             sortable="false" text="Medida">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="itemShowingUnit"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
                         </TableColumn>
-                        <TableColumn fx:id="colDtRemark" prefWidth="200.0" sortable="false" text="Comentarios" />
+                        <TableColumn fx:id="colDtPriceRef" prefWidth="150.0" sortable="false"
+                                     text="Precio Ref." editable="false" style="-fx-alignment: CENTER_RIGHT">
+                            <cellFactory>
+                                <FxCellFactories fx:factory="decimalQuantity"/>
+                            </cellFactory>
+                        </TableColumn>
                     </columns>
-                  </TableView>
-                  <ToolBar orientation="VERTICAL" HBox.hgrow="NEVER">
-                    <items>
-                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onCreateAction" prefHeight="32.0" prefWidth="32.0">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" />
-                            </graphic>
-                            <tooltip>
-                                <Tooltip maxWidth="360.0" text="Añadir una nueva fila." wrapText="true">
-                                    <graphic>
-                                        <ImageView fitHeight="48.0" fitWidth="48.0" />
-                                    </graphic>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onDeleteAction" prefHeight="32.0" prefWidth="32.0">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" />
-                            </graphic>
-                            <tooltip>
-                                <Tooltip maxWidth="360.0" text="Eliminar filas seleccionadas." wrapText="true">
-                                    <graphic>
-                                        <ImageView fitHeight="48.0" fitWidth="48.0" />
-                                    </graphic>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onCleanAction" prefHeight="32.0" prefWidth="32.0">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" />
-                            </graphic>
-                            <tooltip>
-                                <Tooltip maxWidth="360.0" text="Eliminar todas las filas." wrapText="true">
-                                    <graphic>
-                                        <ImageView fitHeight="48.0" fitWidth="48.0" />
-                                    </graphic>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                    </items>
-                  </ToolBar>
-               </children>
+                </TableView>
+                <ToolBar orientation="VERTICAL" HBox.hgrow="NEVER">
+                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
+                            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" onAction="#onCreateAction" prefHeight="32.0"
+                            prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-add-row-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Añadir una nueva fila." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-add-row-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
+                            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" onAction="#onDeleteAction" prefHeight="32.0"
+                            prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-delete-row-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Eliminar filas seleccionadas." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-delete-row-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
+                            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                            minWidth="-Infinity" onAction="#onCleanAction" prefHeight="32.0"
+                            prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-broom-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Eliminar todas las filas." wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-broom-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                </ToolBar>
             </HBox>
-            <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" text="Notas" VBox.vgrow="NEVER">
-               <content>
-                  <TextArea />
-               </content>
+            <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity"
+                        prefHeight="100.0" text="Notas" VBox.vgrow="NEVER">
+                <TextArea>
+                    <textFormatter>
+                        <UppercaseConverter.NotesTextFormatter fx:id="fmtNotes"/>
+                    </textFormatter>
+                </TextArea>
             </TitledPane>
             <HBox layoutX="21.0" layoutY="21.0" spacing="5.0">
-               <children>
-                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Usuario informante:" />
-                  <Label fx:id="lblUser" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0" style="-fx-border-color: TRANSPARENT TRANSPARENT BLACK TRANSPARENT;" HBox.hgrow="ALWAYS" />
-               </children>
+                <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                       text="Usuario informante:"/>
+                <Label fx:id="lblUser" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                       minHeight="-Infinity" prefHeight="32.0"
+                       style="-fx-border-color: TRANSPARENT TRANSPARENT BLACK TRANSPARENT;"
+                       HBox.hgrow="ALWAYS"/>
             </HBox>
-         </children></VBox>
+        </VBox>
     </content>
-    <buttonTypes>
-        <ButtonType fx:constant="OK" />
-        <ButtonType fx:constant="CANCEL" />
-    </buttonTypes>
+    <ButtonType fx:constant="OK"/>
+    <ButtonType fx:constant="CANCEL"/>
 </DialogPane>
