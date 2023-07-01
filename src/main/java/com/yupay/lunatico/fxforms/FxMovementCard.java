@@ -9,6 +9,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -91,6 +92,11 @@ public class FxMovementCard extends Dialog<FxMovementMV>
      * FXML control injected from movement-card.fxml
      */
     @FXML
+    private TableColumn<FxMovementLineMV, BigDecimal> colDtPriceRef;
+    /**
+     * FXML control injected from movement-card.fxml
+     */
+    @FXML
     private DatePicker dtpOpDate;
     /**
      * FXML control injected from movement-card.fxml
@@ -146,26 +152,28 @@ public class FxMovementCard extends Dialog<FxMovementMV>
         setDialogPane(top);
         setTitle("Kárdex de Movimiento");
         setResultConverter(b -> b == ButtonType.OK ? getValue() : null);
-        setOnShown(e -> onShown());
 
-        tblDetail.setItems(detailData);
         tblDetail.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         new ValueFactoryManager<FxMovementLineMV>()
                 .addInt(colDtId, FxMovementLineMV::lineProperty)
                 .add(colDtItemCode, FxMovementLineMV::itemProperty)
                 .add(colDtItemName, FxMovementLineMV::itemProperty)
                 .add(colDtQty, FxMovementLineMV::quantityProperty)
+                .add(colDtPriceRef, FxMovementLineMV::priceRefProperty)
                 .add(colDtUnit, FxMovementLineMV::itemProperty)
                 .provide();
 
         cboStore.setConverter(FromListStringConverter.forWarehouse(cboStore));
         cboFolioType.setConverter(FromListStringConverter.forFolioType(cboFolioType));
+        loadCombos();
+
+        valueProperty().addListener(new ValueChanged());
     }
 
     /**
      * Event handler to be invoked when showing this dialog.
      */
-    private void onShown() {
+    private void loadCombos() {
         FxListActiveFlow.warehouse()
                 .withBefore(cboStore.getItems()::clear)
                 .withForEach(cboStore.getItems()::add)
@@ -195,7 +203,7 @@ public class FxMovementCard extends Dialog<FxMovementMV>
                 .creator(null)
                 .filter(x -> detailData
                         .stream()
-                        .anyMatch(p -> Objects.equals(p.getItem(), x.getItem())))
+                        .noneMatch(p -> Objects.equals(p.getItem(), x.getItem())))
                 .ifPresent(x -> {
                     detailData.add(x);
                     flushLineNumber();
@@ -229,8 +237,17 @@ public class FxMovementCard extends Dialog<FxMovementMV>
             if (getFormMode() != EditorMode.CREATOR) {
                 opt.ifPresent(x -> FxForms.movementLineCard().viewer(null, x));
             } else {
-                opt.flatMap(x -> FxForms.movementLineCard().editor(null, x))
-                        .ifPresent(Functionals.replace(detailData));
+                opt.flatMap(x -> FxForms.movementLineCard().editor(null, x.deepCopy()))
+                        .ifPresent(dt -> {
+                            for (int i = 0, sz = detailData.getSize();
+                                 i < sz; i++) {
+                                var x = detailData.get(i);
+                                if (x.getLine() == dt.getLine()) {
+                                    System.out.println(x.getLine());
+                                    detailData.set(i, dt);
+                                }
+                            }
+                        });
             }
             event.consume();
         }
@@ -290,6 +307,7 @@ public class FxMovementCard extends Dialog<FxMovementMV>
      *
      * @return property {@link #detailData}.
      */
+    @SuppressWarnings("unused")
     public final ListProperty<FxMovementLineMV> detailDataProperty() {
         return detailData;
     }
@@ -329,10 +347,16 @@ public class FxMovementCard extends Dialog<FxMovementMV>
         return this;
     }
 
+    /**
+     * Bindings keeper for the card value.
+     *
+     * @author InfoYupay SACS
+     * @version 1.0
+     */
     private class ValueChanged implements CardValueListener<FxMovementMV> {
         @Override
         public void bind(@NotNull FxMovementMV value) {
-            detailData.bindBidirectional(value.detailProperty());
+            detailData.setValue(value.getDetail());
             cboFolioType.valueProperty().bindBidirectional(value.folioTypeProperty());
             cboStore.valueProperty().bindBidirectional(value.warehouseProperty());
             cboType.valueProperty().bindBidirectional(value.typeProperty());
@@ -360,7 +384,7 @@ public class FxMovementCard extends Dialog<FxMovementMV>
 
         @Override
         public void unbind(@NotNull FxMovementMV value) {
-            detailData.unbindBidirectional(value.detailProperty());
+            detailData.setValue(FXCollections.emptyObservableList());
             cboFolioType.valueProperty().unbindBidirectional(value.folioTypeProperty());
             cboStore.valueProperty().unbindBidirectional(value.warehouseProperty());
             cboType.valueProperty().unbindBidirectional(value.typeProperty());

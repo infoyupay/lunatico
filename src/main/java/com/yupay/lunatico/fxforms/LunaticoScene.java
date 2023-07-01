@@ -1,11 +1,8 @@
 package com.yupay.lunatico.fxforms;
 
-import com.yupay.lunatico.dao.DAOFactory;
-import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxflows.FxListActiveFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
-import com.yupay.lunatico.fxflows.FxOpeningFlow;
-import com.yupay.lunatico.fxflows.FxSearchFlow;
+import com.yupay.lunatico.fxflows.FxMoveFlow;
 import com.yupay.lunatico.fxmview.FxItem;
 import com.yupay.lunatico.fxmview.FxUnit;
 import com.yupay.lunatico.fxmview.FxUserMV;
@@ -321,7 +318,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onCreateMovAction() {
-        FxForms.movementCard().creator(primaryStage);
+        new FxMoveFlow().withOwner(primaryStage).showCreator();
     }
 
     /**
@@ -330,12 +327,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     @FXML
     void onTestAction() {
         //TODO: remove this!
-        try (var em = DataSource.em()) {
-            DAOFactory.person()
-                    .search("206044", true, em)
-                    .map(e -> e.getDoiNum() + e.getName())
-                    .forEach(System.out::println);
-        }
+
     }
 
     /**
@@ -343,24 +335,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onItemTrendAction() {
-        FxForms.itemTrend().showAndWait();
-    }
-
-    /**
-     * FXML event handler.
-     */
-    @FXML
-    void onAdmOpening() {
-        FxSearchFlow.searchAllActiveWarehouses()
-                .apply(".")
-                .ifPresent(p -> new FxOpeningFlow()
-                        .withWarehouse(p)
-                        .withAfterSuccess(EasyAlert
-                                .info()
-                                .withTitle("Operación Completada")
-                                .withHeaderText("Se finalizó la apertura diaria del almacén.")
-                                .buttonOkOnly())
-                        .go());
+        //TODO
     }
 
     /**

@@ -12,6 +12,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 
+/**
+ * JavaFX controller for the Movement Detail Line card.
+ *
+ * @author InfoYupay SACS
+ * @version 1.0
+ */
 public class FxMovementLnCard extends Dialog<FxMovementLineMV>
         implements CardDialog<FxMovementLineMV> {
 
@@ -25,15 +31,35 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
      */
     private final ObjectProperty<EditorMode> formMode =
             new SimpleObjectProperty<>(this, "formMode");
+    /**
+     * FXML control injected from movement_line-card.fxml
+     */
     @FXML
     private Label lblLine;
+    /**
+     * FXML control injected from movement_line-card.fxml
+     */
     @FXML
     private DialogPane top;
+    /**
+     * FXML control injected from movement_line-card.fxml
+     */
     @FXML
     private SearchableTextField<Item, FxItemMV> txtItem;
+    /**
+     * FXML control injected from movement_line-card.fxml
+     */
     @FXML
     private TextFormatter<BigDecimal> fmtQuantity;
+    /**
+     * FXML control injected from movement_line-card.fxml
+     */
+    @FXML
+    private TextFormatter<BigDecimal> fmtPriceRef;
 
+    /**
+     * FXML initializer.
+     */
     @FXML
     void initialize() {
         setDialogPane(top);
@@ -110,12 +136,13 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
             lblLine.textProperty().bind(value.lineProperty().asString());
             txtItem.valueProperty().bindBidirectional(value.itemProperty());
             fmtQuantity.valueProperty().bindBidirectional(value.quantityProperty());
+            fmtPriceRef.valueProperty().bindBidirectional(value.priceRefProperty());
         }
 
         @Override
         public void clear() {
             new ClearFacility()
-                    .add(lblLine, txtItem, fmtQuantity)
+                    .add(lblLine, txtItem, fmtQuantity, fmtPriceRef)
                     .clear();
         }
 
@@ -124,6 +151,7 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
             lblLine.textProperty().unbind();
             txtItem.valueProperty().unbindBidirectional(value.itemProperty());
             fmtQuantity.valueProperty().unbindBidirectional(value.quantityProperty());
+            fmtPriceRef.valueProperty().unbindBidirectional(value.priceRefProperty());
         }
     }
 }

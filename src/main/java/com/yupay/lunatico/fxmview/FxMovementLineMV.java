@@ -100,6 +100,11 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      */
     private final ObjectProperty<BigDecimal> quantity =
             new SimpleObjectProperty<>(this, "quantity", new BigDecimal("0.00000000"));
+    /**
+     * Referential unit price when set by user.
+     */
+    private final ObjectProperty<BigDecimal> priceRef =
+            new SimpleObjectProperty<>(this, "priceRef", null);
 
     /**
      * Constructor to copy information from a model entity.
@@ -575,6 +580,33 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
         return balanceCost;
     }
 
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #priceRef}.get();
+     */
+    public final BigDecimal getPriceRef() {
+        return priceRef.get();
+    }
+
+    /**
+     * FX Accessor - setter.
+     *
+     * @param priceRef value to assign into {@link #priceRef}.
+     */
+    public final void setPriceRef(BigDecimal priceRef) {
+        this.priceRef.set(priceRef);
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #priceRef}.
+     */
+    public final ObjectProperty<BigDecimal> priceRefProperty() {
+        return priceRef;
+    }
+
     @Override
     public boolean equals(Object o) {
         return this == o || o instanceof FxMovementLineMV that &&
@@ -606,6 +638,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
         r.setOutCost(getOutCost());
         r.setOutPrice(getOutPrice());
         r.setOutQuantity(getOutQuantity());
+        r.setPriceRef(getPriceRef());
         r.setQuantity(getQuantity());
         return r;
     }
@@ -634,6 +667,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
         m.setOutCost(getOutCost());
         m.setOutPrice(getOutPrice());
         m.setOutQuantity(getOutQuantity());
+        m.setPriceRef(getPriceRef());
         m.setQuantity(getQuantity());
         return m;
     }
@@ -660,6 +694,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
         setOutCost(m.getOutCost());
         setOutPrice(m.getOutPrice());
         setOutQuantity(m.getOutQuantity());
+        setPriceRef(m.getPriceRef());
         setQuantity(m.getQuantity());
     }
 }

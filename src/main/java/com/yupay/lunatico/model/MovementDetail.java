@@ -25,55 +25,59 @@ public class MovementDetail {
     /**
      * Moved quantity.
      */
-    private BigDecimal quantity;
+    private BigDecimal quantity = BigDecimal.ZERO;
     /**
      * Quantity balance before movement.
      */
-    private BigDecimal beforeQuantity;
+    private BigDecimal beforeQuantity = BigDecimal.ZERO;
     /**
      * Unitary pricing before movement.
      */
-    private BigDecimal beforePrice;
+    private BigDecimal beforePrice = BigDecimal.ZERO;
     /**
      * Line cost before movement.
      */
-    private BigDecimal beforeCost;
+    private BigDecimal beforeCost = BigDecimal.ZERO;
     /**
      * Input quantity.
      */
-    private BigDecimal inQuantity;
+    private BigDecimal inQuantity = BigDecimal.ZERO;
     /**
      * Input unit pricing.
      */
-    private BigDecimal inPrice;
+    private BigDecimal inPrice = BigDecimal.ZERO;
     /**
      * Input total cost.
      */
-    private BigDecimal inCost;
+    private BigDecimal inCost = BigDecimal.ZERO;
     /**
      * Output quantity.
      */
-    private BigDecimal outQuantity;
+    private BigDecimal outQuantity = BigDecimal.ZERO;
     /**
      * Output unitary pricing.
      */
-    private BigDecimal outPrice;
+    private BigDecimal outPrice = BigDecimal.ZERO;
     /**
      * Output total cost.
      */
-    private BigDecimal outCost;
+    private BigDecimal outCost = BigDecimal.ZERO;
     /**
      * Items quantity balance after movement.
      */
-    private BigDecimal balanceQuantity;
+    private BigDecimal balanceQuantity = BigDecimal.ZERO;
     /**
      * Balance unit pricing after movement.
      */
-    private BigDecimal balancePrice;
+    private BigDecimal balancePrice = BigDecimal.ZERO;
     /**
      * Balance cost amount.
      */
-    private BigDecimal balanceCost;
+    private BigDecimal balanceCost = BigDecimal.ZERO;
+    /**
+     * Referential unit price, when set by user.
+     */
+    private BigDecimal priceRef;
     /**
      * Owner movement.
      */
@@ -427,6 +431,26 @@ public class MovementDetail {
      */
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    /**
+     * Public accessor - getter.
+     *
+     * @return value of {@link #priceRef}
+     */
+    @Basic
+    @Column(name = "price_ref", precision = 14, scale = 8)
+    public BigDecimal getPriceRef() {
+        return priceRef;
+    }
+
+    /**
+     * Public accessor - setter.
+     *
+     * @param priceRef value to set into {@link #priceRef}
+     */
+    public void setPriceRef(BigDecimal priceRef) {
+        this.priceRef = priceRef;
     }
 
     @Override

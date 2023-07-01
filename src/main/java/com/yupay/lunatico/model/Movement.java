@@ -98,6 +98,7 @@ public class Movement {
      */
     @Basic
     @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     public MovementType getType() {
         return type;
     }
@@ -139,7 +140,8 @@ public class Movement {
      */
     @Basic
     @Column(name = "own_date", nullable = false,
-            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+            insertable = false, updatable = false)
     public LocalDateTime getOwnDate() {
         return ownDate;
     }

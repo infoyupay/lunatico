@@ -164,9 +164,9 @@ CREATE TABLE public.item (
 	balance_unit_cost decimal(14,8) NOT NULL,
 	balance_cost decimal(14,8) NOT NULL,
 	notes text,
-	owner varchar NOT NULL,
 	created timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	active boolean NOT NULL DEFAULT TRUE,
+	owner varchar NOT NULL,
 	CONSTRAINT item_pk PRIMARY KEY (id)
 );
 -- ddl-end --
@@ -181,7 +181,7 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- object: public.type_balance | type: TYPE --
 -- DROP TYPE IF EXISTS public.type_balance CASCADE;
 CREATE TYPE public.type_balance AS
-ENUM ('OPENING','CLOSURE','HELPER');
+ENUM ('HISTORY','SNAPSHOT');
 -- ddl-end --
 
 -- object: public.sq_balance_id | type: SEQUENCE --
@@ -201,7 +201,7 @@ CREATE SEQUENCE public.sq_balance_id
 -- DROP TABLE IF EXISTS public.balance CASCADE;
 CREATE TABLE public.balance (
 	id bigint NOT NULL DEFAULT nextval('public.sq_balance_id'::regclass),
-	date date,
+	shot_stamp timestamp(3) NOT NULL DEFAULT current_timestamp,
 	type public.type_balance NOT NULL,
 	balance_units decimal(14,8) NOT NULL,
 	balance_unit_cost decimal(14,8) NOT NULL,
@@ -316,8 +316,8 @@ CREATE TABLE public.balance_detail (
 	id bigint NOT NULL DEFAULT nextval('public.sq_balance_detail_id'::regclass),
 	balance bigint NOT NULL,
 	summary_type public.type_movement NOT NULL,
-	quantity decimal(14,8) NOT NULL,
-	cost decimal(14,8) NOT NULL,
+	quantity decimal(28,8) NOT NULL,
+	cost decimal(28,8) NOT NULL,
 	CONSTRAINT balance_detail_pk PRIMARY KEY (id)
 );
 -- ddl-end --
@@ -389,6 +389,7 @@ CREATE TABLE public.movement_detail (
 	balance_quantity decimal(14,8) NOT NULL,
 	balance_price decimal(14,8) NOT NULL,
 	balance_cost decimal(14,8) NOT NULL,
+	price_ref decimal(14,8),
 	CONSTRAINT movement_detail_pk PRIMARY KEY (id)
 );
 -- ddl-end --

@@ -456,6 +456,7 @@ public class FxMovementMV extends ModelView<Movement, FxMovementMV> {
         if (getDetail() != null) {
             getDetail().stream()
                     .map(FxMovementLineMV::deepCopy)
+                    .peek(m -> m.setMovement(r))
                     .forEach(r.getDetail()::add);
         }
         return r;
@@ -486,6 +487,7 @@ public class FxMovementMV extends ModelView<Movement, FxMovementMV> {
         if (getDetail() != null) {
             var lsDetail = getDetail().stream()
                     .map(FxMovementLineMV::toModel)
+                    .peek(m -> m.setMovement(r))
                     .toList();
             r.setDetail(lsDetail);
         }
@@ -516,6 +518,7 @@ public class FxMovementMV extends ModelView<Movement, FxMovementMV> {
         if (m.getDetail() != null) {
             m.getDetail().stream()
                     .map(FxMovementLineMV::new)
+                    .peek(x -> x.setMovement(this))
                     .forEach(detail::add);
         }
     }

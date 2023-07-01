@@ -5,9 +5,8 @@ import com.yupay.lunatico.model.BalanceType;
 import com.yupay.lunatico.model.Item;
 import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
 
 /**
  * DAO implementation for Balances.
@@ -29,32 +28,32 @@ public final class DAOBalanceImpl implements DAO<Balance> {
     }
 
     /**
-     * Searches and fetches the last balance (ordered by date)
-     * for a given item, type and warehouse.
+     * Fetches the historical balance for given item
+     * at a given warehouse.
      *
-     * @param em        entity manager object.
-     * @param item      the item to find.
-     * @param warehouse the warehouse to find.
-     * @param type      the type of balance to find.
-     * @return an optional with found element. May be empty.
+     * @param em        the entity manager object.
+     * @param warehouse the warehouse at where the item is stored.
+     * @param item      the item whose balance should be fetched.
+     * @return the balance.
      */
-    public @NotNull Optional<Balance> fetchLastBalance(
+    public @NotNull Balance fetchHistoricBalance(
             @NotNull EntityManager em,
-            @NotNull Item item,
             @NotNull Warehouse warehouse,
-            @NotNull BalanceType type) {
+            @NotNull Item item) {
         return em.createQuery(
-                        "SELECT B FROM Balance B " +
-                                "WHERE B.type = ?1 " +
-                                "AND B.item = ?2 " +
-                                "AND B.warehouse = ?3 " +
-                                "ORDER BY B.date DESC",
-                        entity())
-                .setMaxResults(1)
-                .setParameter(1, type)
-                .setParameter(2, item)
-                .setParameter(3, warehouse)
+                        "SELECT B FROM Balance B WHERE " +
+                                "B.item = ?1 AND " +
+                                "B.warehouse = ?2 AND " +
+                                "B.type = ?3",
+                        Balance.class)
+                .setParameter(1, item)
+                .setParameter(2, warehouse)
+                .setParameter(3, BalanceType.HISTORY)
                 .getResultStream()
-                .findAny();
+                .findAny()
+                .orElseThrow(() -> new PersistenceException(
+                        "BROKEN SYSTEM STATE, SINCE ALL ITEMS MUST HAVE " +
+                                "A VALID HISTORIC BALANCE FOR ANY GIVEN " +
+                                "WAREHOUSE OR ITEM AT ANY TIME."));
     }
 }

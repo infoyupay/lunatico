@@ -3,7 +3,7 @@ package com.yupay.lunatico.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public class Balance {
     /**
      * Date of generation.
      */
-    private LocalDate date;
+    private LocalDateTime shotStamp;
     /**
      * Type of the balance.
      */
@@ -86,21 +86,23 @@ public class Balance {
     /**
      * Public accessor - getter.
      *
-     * @return value of {@link #date}
+     * @return value of {@link #shotStamp}
      */
     @Basic
-    @Column(name = "date", columnDefinition = "DATE")
-    public LocalDate getDate() {
-        return date;
+    @Column(name = "shot_stamp", nullable = false,
+            updatable = false, insertable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    public LocalDateTime getShotStamp() {
+        return shotStamp;
     }
 
     /**
      * Public accessor - setter.
      *
-     * @param date value to set into {@link #date}
+     * @param date value to set into {@link #shotStamp}
      */
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setShotStamp(LocalDateTime date) {
+        this.shotStamp = date;
     }
 
     /**

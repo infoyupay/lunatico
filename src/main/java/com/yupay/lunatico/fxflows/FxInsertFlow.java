@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.function.Consumer;
 
@@ -85,9 +86,58 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
                 return FxForms.itemCard();
             }
 
+            @Contract(value = " -> new", pure = true)
             @Override
-            protected @NotNull DAO<Item> dao() {
+            protected @NotNull @Unmodifiable DAO<Item> dao() {
                 return DAOFactory.item();
+            }
+
+            @Override
+            public void accept(@NotNull FxItemMV u) {
+                EntityTransaction et = null;
+                try (var em = DataSource.em()) {
+                    var mdl = u.toModel();
+                    et = em.getTransaction();
+                    et.begin();
+
+                    //Standard insertion.
+                    dao().insertOne(em, mdl);
+
+                    /*#######################################################################################
+                     # WARNING! DON'T TOUCH THIS CODE IF YOU DON'T UNDERSTAND WHY IT'S HERE.                #
+                     # PLEASE READ ME FIRST!!! READ ME FIRST!!! READ MI FIRST!!! IT'S AN ORDER              #
+                     # Let me explain why it's here. When any given item is created, it's provided          #
+                     # with a historical balance for each existing warehouse, since after every             #
+                     # move (a sale, a purchase, etc) such historical balance should be accumulated.        #
+                     # Since we have plenty room to store even balances with amount 0, we prioritize        #
+                     # eficiency at the moment of the transaction. This means that when an item is          #
+                     # created, all posible historical balances will be also created, even if afterwards    #
+                     # said item won't have movements at a given warehouse. This allows us to simply        #
+                     # fetch and modify the historical balance without having to check the existence of one #
+                     # and creating one if none exists. That's why the system would be inconsistent if      #
+                     # the following two lines are removed.                                                 #
+                     #######################################################################################*/
+
+                    //Populate HISTORICAL balances
+                    var daoBalance = DAOFactory.balance();
+                    EntitiesFactory
+                            .historicalBalances(mdl, DAOFactory.warehouse().listAll(em))
+                            .forEach(b -> daoBalance.insertOne(em, b));
+
+                    //Commit transaction.
+                    et.commit();
+
+                    if (getOnSuccess() != null) {
+                        getOnSuccess().accept(new FxItemMV(mdl));
+                    }
+                } catch (RuntimeException e) {
+                    DataSource.checkAndRollback(et);
+                    new ErrorHandler()
+                            .withBriefing(
+                                    "Ocurrió un error mientras intentabas insertar " +
+                                            "un nuevo artículo a la base de datos.")
+                            .accept(e);
+                }
             }
         };
     }
@@ -125,11 +175,60 @@ public abstract class FxInsertFlow<T, U extends ModelView<T, U>>
                 return FxForms.warehouseCard();
             }
 
+            @Contract(value = " -> new", pure = true)
             @Override
-            protected @NotNull DAO<Warehouse> dao() {
+            protected @NotNull @Unmodifiable DAO<Warehouse> dao() {
                 return DAOFactory.warehouse();
             }
 
+            @Override
+            public void accept(@NotNull FxWarehouseMV u) {
+                EntityTransaction et = null;
+                try (var em = DataSource.em()) {
+                    var mdl = u.toModel();
+                    et = em.getTransaction();
+                    et.begin();
+
+                    //Standard insertion.
+                    dao().insertOne(em, mdl);
+
+                    /*#######################################################################################
+                     # WARNING! DON'T TOUCH THIS CODE IF YOU DON'T UNDERSTAND WHY IT'S HERE.                #
+                     # PLEASE READ ME FIRST!!! READ ME FIRST!!! READ MI FIRST!!! IT'S AN ORDER              #
+                     # Let me explain why it's here. When any given item is created, it's provided          #
+                     # with a historical balance for each existing warehouse, since after every             #
+                     # move (a sale, a purchase, etc) such historical balance should be accumulated.        #
+                     # Since we have plenty room to store even balances with amount 0, we prioritize        #
+                     # eficiency at the moment of the transaction. This means that when an item is          #
+                     # created, all posible historical balances will be also created, even if afterwards    #
+                     # said item won't have movements at a given warehouse. This allows us to simply        #
+                     # fetch and modify the historical balance without having to check the existence of one #
+                     # and creating one if none exists. That's why the system would be inconsistent if      #
+                     # the following two lines are removed.                                                 #
+                     # Imagine you create a new warehouse after having created some items, then said old    #
+                     # items would remain inconsistent of no historical balance entries were created.       #
+                     #######################################################################################*/
+                    //Populate HISTORICAL balances for each available item.
+                    var daoBalance = DAOFactory.balance();
+                    EntitiesFactory
+                            .historicalBalancesForWarehouse(DAOFactory.item().listAll(em), mdl)
+                            .forEach(b -> daoBalance.insertOne(em, b));
+
+                    //Commit transaction.
+                    et.commit();
+
+                    if (getOnSuccess() != null) {
+                        getOnSuccess().accept(new FxWarehouseMV(mdl));
+                    }
+                } catch (RuntimeException e) {
+                    DataSource.checkAndRollback(et);
+                    new ErrorHandler()
+                            .withBriefing(
+                                    "Ocurrió un error mientras intentabas insertar " +
+                                            "un nuevo artículo a la base de datos.")
+                            .accept(e);
+                }
+            }
         };
     }
 
