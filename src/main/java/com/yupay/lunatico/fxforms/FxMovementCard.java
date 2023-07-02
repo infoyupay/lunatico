@@ -243,7 +243,6 @@ public class FxMovementCard extends Dialog<FxMovementMV>
                                  i < sz; i++) {
                                 var x = detailData.get(i);
                                 if (x.getLine() == dt.getLine()) {
-                                    System.out.println(x.getLine());
                                     detailData.set(i, dt);
                                 }
                             }

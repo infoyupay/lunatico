@@ -208,6 +208,7 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
      *
      * @return property {@link #warehouse}.
      */
+    @SuppressWarnings("unused")
     public final LongProperty warehouseProperty() {
         return warehouse;
     }

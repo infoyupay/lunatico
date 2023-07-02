@@ -55,7 +55,6 @@ public class BigDecimalConverter extends StringConverter<BigDecimal> {
                 if (abs) r = r.abs();
                 return r;
             } catch (ParseException e) {
-                e.printStackTrace();
                 return null;
             }
         }
