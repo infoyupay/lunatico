@@ -418,4 +418,26 @@ ALTER TABLE public.movement_detail ADD CONSTRAINT uq_detail UNIQUE (movement,ite
 ALTER TABLE public.movement_detail ADD CONSTRAINT uq_detail_line UNIQUE (movement,line);
 -- ddl-end --
 
+-- object: public.ov_balance | type: VIEW --
+-- DROP VIEW IF EXISTS public.ov_balance CASCADE;
+CREATE VIEW public.ov_balance
+AS 
+
+SELECT
+   i.id,
+   i.name,
+   i.type,
+   u.symbol,
+   b.warehouse,
+   b.balance_units,
+   b.balance_unit_cost,
+   b.balance_cost
+FROM
+   item i INNER JOIN balance b
+		ON i.id = b.item
+	INNER JOIN unit u ON u.id = i.unit
+WHERE
+   b.type = 'HISTORY' AND i.active;
+-- ddl-end --
+
 

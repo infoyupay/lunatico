@@ -1,12 +1,14 @@
 package com.yupay.lunatico.fxforms;
 
 import com.yupay.lunatico.fxflows.FxListActiveFlow;
+import com.yupay.lunatico.fxflows.FxListAllFlow;
 import com.yupay.lunatico.fxflows.FxLoginFlow;
 import com.yupay.lunatico.fxflows.FxMoveFlow;
-import com.yupay.lunatico.fxmview.FxItem;
-import com.yupay.lunatico.fxmview.FxUnit;
+import com.yupay.lunatico.fxmview.FxOvBalanceMV;
 import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
+import com.yupay.lunatico.fxtools.ValueFactoryManager;
+import com.yupay.lunatico.model.ItemType;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -14,7 +16,7 @@ import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,6 +30,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 /**
  * The main scene controller with UI defined in lunatico.fxml.
@@ -81,6 +85,11 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     private final ReadOnlyBooleanWrapper unlockedAndSudoer =
             new ReadOnlyBooleanWrapper(this, "unlockedAndSudoer", false);
     /**
+     * The data to show in table view.
+     */
+    private final ObservableList<FxOvBalanceMV> balanceData =
+            observableArrayList();
+    /**
      * The primary stage window.
      */
     private Stage primaryStage;
@@ -88,97 +97,42 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, String> colDescription;
+    private TableColumn<FxOvBalanceMV, String> colDescription;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, Long> colID;
+    private TableColumn<FxOvBalanceMV, ItemType> colType;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colInAdj;
+    private TableColumn<FxOvBalanceMV, Long> colID;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colInFreight;
+    private TableColumn<FxOvBalanceMV, BigDecimal> colQuantity;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colInProduction;
+    private TableColumn<FxOvBalanceMV, String> colUnit;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colInPurchase;
+    private TableColumn<FxOvBalanceMV, BigDecimal> colUnitPrice;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colInReturn;
+    private TableColumn<FxOvBalanceMV, BigDecimal> colCost;
     /**
      * FXML control injected from lunatico.fxml
      */
     @FXML
-    private TableColumn<FxItem, BigDecimal> colOutAdj;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutFreight;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutProduction;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutReturn;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutSale;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutWaste;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colStock;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, FxUnit> colUnit;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colSaved;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colSale;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableColumn<FxItem, BigDecimal> colOutGift;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private TableView<FxItem> tblData;
+    private TableView<FxOvBalanceMV> tblData;
     /**
      * FXML control injected from lunatico.fxml
      */
@@ -189,11 +143,6 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     private ComboBox<FxWarehouseMV> cboStore;
-    /**
-     * FXML control injected from lunatico.fxml
-     */
-    @FXML
-    private CheckBox chkStore;
 
     @Override
     public void handle(@NotNull WindowEvent event) {
@@ -215,7 +164,18 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
         unlocked.bind(loggedUserProperty().isNotNull());
         unlockedAndSudoer.bind(unlocked.and(roleSudoer));
 
+        new ValueFactoryManager<FxOvBalanceMV>()
+                .addLong(colID, FxOvBalanceMV::itemIdProperty)
+                .add(colCost, FxOvBalanceMV::balanceCostProperty)
+                .add(colDescription, FxOvBalanceMV::nameProperty)
+                .add(colQuantity, FxOvBalanceMV::balanceUnitsProperty)
+                .add(colUnit, FxOvBalanceMV::symbolProperty)
+                .add(colUnitPrice, FxOvBalanceMV::balanceUnitCostProperty)
+                .add(colType, FxOvBalanceMV::typeProperty)
+                .provide();
+
         loggedUserProperty().addListener(new UserChanged());
+        tblData.setItems(balanceData);
     }
 
     /**
@@ -351,6 +311,27 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                         "Si alguna operación está en curso nunca sabremos el resultado.")
                 .buttonYesNoCancel()
                 .showAndExpect(ButtonType.YES, Platform::exit);
+    }
+
+    /**
+     * FXML event handler.
+     */
+    @FXML
+    void onSyncAction() {
+        var ware = cboStore.getSelectionModel().getSelectedItem();
+        if (ware == null) {
+            EasyAlert.error()
+                    .withTitle("Error")
+                    .withHeaderText("Selecciona un almacén primero.")
+                    .withContentText("Para poder mostrar el estado actual, debes elegir el almacén.")
+                    .buttonOkOnly()
+                    .showAndWait();
+        } else {
+            FxListAllFlow.balanceOverview(ware)
+                    .withBefore(balanceData::clear)
+                    .withForEach(balanceData::add)
+                    .go();
+        }
     }
 
     /**
@@ -514,6 +495,16 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     }
 
     /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #balanceData}.get();
+     */
+    public final ObservableList<FxOvBalanceMV> getBalanceData() {
+        return balanceData;
+    }
+
+
+    /**
      * Synchronizes roles when user changes.
      *
      * @author InfoYupay SACS
@@ -550,9 +541,9 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
                     wdw.close();
                 }
                 //Clean data
+                balanceData.clear();
                 cboStore.setValue(null);
-                cboStore.setItems(FXCollections.observableArrayList());
-                chkStore.setSelected(false);
+                cboStore.setItems(observableArrayList());
                 return;
             }
             //The sudoer role, only by the sudoer.

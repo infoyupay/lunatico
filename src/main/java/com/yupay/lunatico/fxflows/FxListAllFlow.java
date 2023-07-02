@@ -6,10 +6,12 @@ import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.ErrorHandler;
 import com.yupay.lunatico.fxmview.*;
 import com.yupay.lunatico.model.*;
+import jakarta.persistence.EntityManager;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  * The flow to list all items (without filter) from database.
@@ -155,6 +157,33 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
     }
 
     /**
+     * Static factory to create a flow for Balance overviews at a warehouse.
+     *
+     * @param warehouse place at where the balance is requested.
+     * @return a new flow.
+     */
+    @Contract(value = " _-> new", pure = true)
+    public static @NotNull FxListAllFlow<OvBalance, FxOvBalanceMV> balanceOverview(
+            @NotNull FxWarehouseMV warehouse) {
+        return new FxListAllFlow<>() {
+            @Override
+            protected @NotNull FxOvBalanceMV toView(@NotNull OvBalance model) {
+                return new FxOvBalanceMV(model);
+            }
+
+            @Override
+            protected @NotNull DAO<OvBalance> dao() {
+                return DAOFactory.balanceOverview();
+            }
+
+            @Override
+            protected Stream<OvBalance> runQuery(@NotNull EntityManager em) {
+                return DAOFactory.balanceOverview().listAtWarehouse(em, warehouse.toModel());
+            }
+        };
+    }
+
+    /**
      * Function to convert a model entity into a model view entity.
      *
      * @param model the model entity to convert.
@@ -176,7 +205,7 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
     public void go() {
         if (getBefore() != null) getBefore().run();
         try (var em = DataSource.em();
-             var str = dao().listAll(em)
+             var str = runQuery(em)
                      .map(this::toView)) {
             if (getForEach() != null) str.forEach(getForEach());
 
@@ -188,6 +217,18 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
         } finally {
             if (getAfter() != null) getAfter().run();
         }
+    }
+
+    /**
+     * Runs the query in the DAO layer. This is
+     * a protected method, so if a custom list flow
+     * requires a custom query, it should be overwritten.
+     *
+     * @param em the entity manager object.
+     * @return list all result.
+     */
+    protected Stream<T> runQuery(@NotNull EntityManager em) {
+        return dao().listAll(em);
     }
 
     /**

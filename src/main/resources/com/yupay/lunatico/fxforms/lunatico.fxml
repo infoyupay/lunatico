@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.yupay.lunatico.fxtools.FxCellFactories?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.VBox?>
@@ -148,24 +149,6 @@
                     </Tooltip>
                 </tooltip>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity"
-                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
-                    visible="${controller.roleAdmin}">
-                <graphic>
-                    <ImageView fitHeight="24.0" fitWidth="24.0">
-                        <Image url="@png/icons8-delete-file-24.png"/>
-                    </ImageView>
-                </graphic>
-                <tooltip>
-                    <Tooltip maxWidth="360.0" text="Revertir un movimiento." wrapText="true">
-                        <graphic>
-                            <ImageView fitHeight="48.0" fitWidth="48.0">
-                                <Image url="@png/icons8-delete-file-48.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Tooltip>
-                </tooltip>
-            </Button>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="46.0" layoutY="10.0" maxHeight="-Infinity"
                     maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
                     visible="${controller.roleReport}">
@@ -187,12 +170,12 @@
                 </tooltip>
             </Button>
             <Separator orientation="VERTICAL"/>
-            <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0"
-                      text="Por sede:" fx:id="chkStore"/>
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Elegir sede:"/>
             <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                       prefHeight="32.0" prefWidth="175.0" fx:id="cboStore"/>
             <Button contentDisplay="GRAPHIC_ONLY" layoutX="82.0" layoutY="10.0" maxHeight="-Infinity"
-                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
+                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0"
+                    onAction="#onSyncAction">
                 <graphic>
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <Image url="@png/icons8-synchronize-24.png"/>
@@ -216,34 +199,27 @@
                     <columns>
                         <TableColumn fx:id="colID" prefWidth="100.0" text="Código"/>
                         <TableColumn fx:id="colDescription" prefWidth="200.0" text="Descripción"/>
+                        <TableColumn fx:id="colType" prefWidth="125.0" text="Tipo"/>
                     </columns>
                 </TableColumn>
                 <TableColumn prefWidth="150.0" text="Saldo">
                     <columns>
-                        <TableColumn fx:id="colUnit" prefWidth="75.0" text="U. Med."/>
-                        <TableColumn fx:id="colStock" prefWidth="125.0" text="Total"/>
-                        <TableColumn fx:id="colSaved" prefWidth="125.0" text="Guardado"/>
-                        <TableColumn fx:id="colSale" prefWidth="125.0" text="Venta"/>
-                    </columns>
-                </TableColumn>
-                <TableColumn prefWidth="75.0" text="Entradas">
-                    <columns>
-                        <TableColumn fx:id="colInPurchase" prefWidth="125.0" text="Compras"/>
-                        <TableColumn fx:id="colInAdj" prefWidth="125.0" text="Ajustes"/>
-                        <TableColumn fx:id="colInReturn" prefWidth="125.0" text="Devolución C"/>
-                        <TableColumn fx:id="colInProduction" prefWidth="125.0" text="Producción"/>
-                        <TableColumn fx:id="colInFreight" prefWidth="125.0" text="Traslado"/>
-                    </columns>
-                </TableColumn>
-                <TableColumn prefWidth="75.0" text="Salidas">
-                    <columns>
-                        <TableColumn fx:id="colOutSale" prefWidth="125.0" text="Venta"/>
-                        <TableColumn fx:id="colOutWaste" prefWidth="125.0" text="Merma"/>
-                        <TableColumn fx:id="colOutAdj" prefWidth="125.0" text="Ajustes"/>
-                        <TableColumn fx:id="colOutReturn" prefWidth="125.0" text="Devolución P"/>
-                        <TableColumn fx:id="colOutProduction" prefWidth="125.0" text="Producción"/>
-                        <TableColumn fx:id="colOutFreight" prefWidth="125.0" text="Traslado"/>
-                        <TableColumn fx:id="colOutGift" prefWidth="125.0" text="Regalo"/>
+                        <TableColumn fx:id="colQuantity" prefWidth="150.0" text="Cantidad">
+                            <cellFactory>
+                                <FxCellFactories fx:factory="decimalQuantity"/>
+                            </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colUnit" prefWidth="150.0" text="Unidad"/>
+                        <TableColumn fx:id="colUnitPrice" prefWidth="150.0" text="P. Unitario">
+                            <cellFactory>
+                                <FxCellFactories fx:factory="decimalQuantity"/>
+                            </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colCost" prefWidth="150.0" text="Costo">
+                            <cellFactory>
+                                <FxCellFactories fx:factory="decimalQuantity"/>
+                            </cellFactory>
+                        </TableColumn>
                     </columns>
                 </TableColumn>
             </columns>

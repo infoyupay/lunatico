@@ -21,13 +21,14 @@
         <class>com.yupay.lunatico.model.TypeFolio</class>
         <class>com.yupay.lunatico.model.Unit</class>
         <class>com.yupay.lunatico.model.Warehouse</class>
+        <class>com.yupay.lunatico.model.OvBalance</class>
 
         <!--Entites-->
 
 
         <properties>
             <property name="eclipselink.jdbc.url"
-                      value="jdbc:postgresql://localhost:5432/lunatico_db?stringtype=unspecified&amp;ApplicationName=lunatico"/>
+                      value="jdbc:postgresql://localhost:5432/lunatico_db"/>
             <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="eclipselink.jdbc.user" value="postgres"/>
         </properties>

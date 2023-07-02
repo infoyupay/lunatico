@@ -3,12 +3,12 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="372,580" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="0,580" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
-	 layers="Default layer"
+	 layers="Default layer,ov"
 	 active-layers="0"
-	 layer-name-colors="#000000"
-	 layer-rect-colors="#b4b4b4"
+	 layer-name-colors="#000000,#000000"
+	 layer-rect-colors="#b4b4b4,#ae5eff"
 	 show-layer-names="false" show-layer-rects="false">
 <database name="lunatico_db" is-template="false" allow-conns="true">
 </database>
@@ -495,7 +495,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="movement_detail" layers="0" collapse-mode="2" max-obj-count="21" z-value="0">
 	<schema name="public"/>
-	<position x="420" y="680"/>
+	<position x="420" y="640"/>
 	<column name="id" not-null="true" sequence="public.sq_movement_detail_id">
 		<type name="bigint" length="0"/>
 	</column>
@@ -603,5 +603,45 @@ Using pgModeler 1.0.2
 
 Copyleft 2023, Lima - Peru]]> </comment>
 </textbox>
+
+<view name="ov_balance" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+	<schema name="public"/>
+	<position x="20" y="660"/>
+	<reference>
+		<expression> <![CDATA[item i INNER JOIN balance b
+		ON i.id = b.item
+	INNER JOIN unit u ON u.id = i.unit]]> </expression>
+	</reference>
+	<reference table="public.balance" column="id" alias="b" column-alias="id"/>
+	<reference table="public.item" column="id" alias="i" column-alias="item_id"/>
+	<reference table="public.item" column="name" alias="i"/>
+	<reference table="public.item" column="type" alias="i"/>
+	<reference table="public.unit" column="symbol" alias="u"/>
+	<reference table="public.balance" column="warehouse" alias="b"/>
+	<reference table="public.balance" column="balance_units" alias="b"/>
+	<reference table="public.balance" column="balance_unit_cost" alias="b"/>
+	<reference table="public.balance" column="balance_cost" alias="b"/>
+	<reference>
+		<expression> <![CDATA[b.type = 'HISTORY' AND i.active]]> </expression>
+	</reference>
+	<expression type="select-exp">1,2,3,4,5,6,7,8,9</expression>
+	<expression type="from-exp">0</expression>
+	<expression type="simple-exp">10</expression>
+</view>
+
+<relationship name="rel_ov_balance_item" type="reltv" layers="1"
+	 src-table="public.ov_balance"
+	 dst-table="public.item"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ov_balance_unit" type="reltv" layers="1"
+	 src-table="public.ov_balance"
+	 dst-table="public.unit"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ov_balance_balance" type="reltv" layers="1"
+	 src-table="public.ov_balance"
+	 dst-table="public.balance"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>
