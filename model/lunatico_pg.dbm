@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="0,580" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="859,220" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer,ov"
 	 active-layers="0"
@@ -606,12 +606,7 @@ Copyleft 2023, Lima - Peru]]> </comment>
 
 <view name="ov_balance" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
-	<position x="20" y="660"/>
-	<reference>
-		<expression> <![CDATA[item i INNER JOIN balance b
-		ON i.id = b.item
-	INNER JOIN unit u ON u.id = i.unit]]> </expression>
-	</reference>
+	<position x="1760" y="100"/>
 	<reference table="public.balance" column="id" alias="b" column-alias="id"/>
 	<reference table="public.item" column="id" alias="i" column-alias="item_id"/>
 	<reference table="public.item" column="name" alias="i"/>
@@ -622,12 +617,22 @@ Copyleft 2023, Lima - Peru]]> </comment>
 	<reference table="public.balance" column="balance_unit_cost" alias="b"/>
 	<reference table="public.balance" column="balance_cost" alias="b"/>
 	<reference>
+		<expression> <![CDATA[item i INNER JOIN balance b
+		ON i.id = b.item
+	INNER JOIN unit u ON u.id = i.unit]]> </expression>
+	</reference>
+	<reference>
 		<expression> <![CDATA[b.type = 'HISTORY' AND i.active]]> </expression>
 	</reference>
-	<expression type="select-exp">1,2,3,4,5,6,7,8,9</expression>
-	<expression type="from-exp">0</expression>
+	<expression type="select-exp">0,1,2,3,4,5,6,7,8</expression>
+	<expression type="from-exp">9</expression>
 	<expression type="simple-exp">10</expression>
 </view>
+
+<relationship name="rel_ov_balance_balance" type="reltv" layers="1"
+	 src-table="public.ov_balance"
+	 dst-table="public.balance"
+	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_ov_balance_item" type="reltv" layers="1"
 	 src-table="public.ov_balance"
@@ -639,9 +644,59 @@ Copyleft 2023, Lima - Peru]]> </comment>
 	 dst-table="public.unit"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_ov_balance_balance" type="reltv" layers="1"
-	 src-table="public.ov_balance"
-	 dst-table="public.balance"
+<view name="kardex_detail" layers="0" collapse-mode="2" max-obj-count="27" z-value="0">
+	<schema name="public"/>
+	<position x="1760" y="400"/>
+	<reference table="public.movement_detail" column="id" alias="md" column-alias="id"/>
+	<reference table="public.movement" column="id" alias="m" column-alias="movement"/>
+	<reference table="public.item" column="id" alias="i" column-alias="item"/>
+	<reference table="public.movement" column="doc_date" alias="m"/>
+	<reference table="public.movement" column="type" alias="m"/>
+	<reference table="public.movement" column="warehouse" alias="m"/>
+	<reference table="public.movement" column="folio_type" alias="m"/>
+	<reference table="public.type_folio" column="name" alias="f" column-alias="folio_type_name"/>
+	<reference table="public.movement" column="folio_serie" alias="m"/>
+	<reference table="public.movement" column="folio_number" alias="m"/>
+	<reference table="public.movement_detail" column="before_quantity" alias="md"/>
+	<reference table="public.movement_detail" column="before_price" alias="md"/>
+	<reference table="public.movement_detail" column="before_cost" alias="md"/>
+	<reference table="public.movement_detail" column="in_quantity" alias="md"/>
+	<reference table="public.movement_detail" column="in_price" alias="md"/>
+	<reference table="public.movement_detail" column="in_cost" alias="md"/>
+	<reference table="public.movement_detail" column="out_quantity" alias="md"/>
+	<reference table="public.movement_detail" column="out_price" alias="md"/>
+	<reference table="public.movement_detail" column="out_cost" alias="md"/>
+	<reference table="public.movement_detail" column="balance_quantity" alias="md"/>
+	<reference table="public.movement_detail" column="balance_price" alias="md"/>
+	<reference table="public.movement_detail" column="balance_cost" alias="md"/>
+	<reference>
+		<expression> <![CDATA[movement m
+        INNER JOIN movement_detail md ON m.id = md.movement
+        INNER JOIN item i ON md.item = i.id
+        LEFT JOIN type_folio f ON f.id = m.folio_type]]> </expression>
+	</reference>
+	<expression type="select-exp">0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21</expression>
+	<expression type="from-exp">22</expression>
+</view>
+
+<relationship name="rel_kardex_detail_type_folio" type="reltv" layers="1"
+	 src-table="public.kardex_detail"
+	 dst-table="public.type_folio"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_kardex_detail_movement_detail" type="reltv" layers="1"
+	 src-table="public.kardex_detail"
+	 dst-table="public.movement_detail"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_kardex_detail_movement" type="reltv" layers="1"
+	 src-table="public.kardex_detail"
+	 dst-table="public.movement"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_kardex_detail_item" type="reltv" layers="1"
+	 src-table="public.kardex_detail"
+	 dst-table="public.item"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

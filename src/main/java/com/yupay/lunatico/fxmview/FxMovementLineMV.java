@@ -689,7 +689,9 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
         }
         setLine(m.getLine());
         if (m.getMovement() != null) {
-            setMovement(new FxMovementMV(m.getMovement()));
+            var mv = new FxMovementMV();
+            mv.setId(m.getMovement().getId());
+            setMovement(mv);
         }
         setOutCost(m.getOutCost());
         setOutPrice(m.getOutPrice());

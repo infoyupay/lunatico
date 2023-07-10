@@ -5,10 +5,7 @@ import com.yupay.lunatico.fxmview.*;
 import com.yupay.lunatico.fxtools.*;
 import com.yupay.lunatico.model.MovementType;
 import com.yupay.lunatico.model.Person;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,6 +45,16 @@ public class FxMovementCard extends Dialog<FxMovementMV>
      */
     private final ObjectProperty<EditorMode> formMode =
             new SimpleObjectProperty<>(this, "formMode");
+    /**
+     * Holds true when form editor mode is equal to VIEWER.
+     */
+    private final ReadOnlyBooleanWrapper viewer =
+            new ReadOnlyBooleanWrapper(this, "viewer");
+    /**
+     * Holds true when form editor mode is equals to VIEWER.
+     */
+    private final ReadOnlyBooleanWrapper notViewer =
+            new ReadOnlyBooleanWrapper(this, "notViewer");
     /**
      * FXML control injected from movement-card.fxml
      */
@@ -145,6 +152,15 @@ public class FxMovementCard extends Dialog<FxMovementMV>
     private TextFormatter<String> fmtNotes;
 
     /**
+     * Default constructor, shall initialize
+     * form editor mode bindings.
+     */
+    public FxMovementCard() {
+        viewer.bind(formModeProperty().isEqualTo(EditorMode.VIEWER));
+        notViewer.bind(formModeProperty().isNotEqualTo(EditorMode.VIEWER));
+    }
+
+    /**
      * FXML initializer.
      */
     @FXML
@@ -168,6 +184,7 @@ public class FxMovementCard extends Dialog<FxMovementMV>
         loadCombos();
 
         valueProperty().addListener(new ValueChanged());
+        top.lookupButton(ButtonType.OK).disableProperty().bind(viewer);
     }
 
     /**
@@ -331,6 +348,45 @@ public class FxMovementCard extends Dialog<FxMovementMV>
     public void setFormMode(@NotNull EditorMode editorMode) {
         this.formMode.set(editorMode);
     }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #viewer}.get();
+     */
+    public final boolean isViewer() {
+        return viewer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #viewer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty viewerProperty() {
+        return viewer.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #notViewer}.get();
+     */
+    public final boolean isNotViewer() {
+        return notViewer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #notViewer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty notViewerProperty() {
+        return notViewer.getReadOnlyProperty();
+    }
+
 
     /**
      * FX Accessor - property.

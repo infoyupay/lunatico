@@ -206,7 +206,9 @@ public abstract class FxListAllFlow<T, U extends ModelView<T, U>> {
         if (getBefore() != null) getBefore().run();
         try (var em = DataSource.em();
              var str = runQuery(em)
+                     .peek(em::refresh)
                      .map(this::toView)) {
+
             if (getForEach() != null) str.forEach(getForEach());
 
         } catch (Exception e) {

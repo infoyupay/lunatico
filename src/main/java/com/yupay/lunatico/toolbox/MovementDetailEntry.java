@@ -42,10 +42,10 @@ public record MovementDetailEntry(
             @NotNull EntityManager em,
             @NotNull DAOBalanceImpl dao) {
         var itm = em.find(Item.class,
-                detail.getItem().getId(),
-                LockModeType.PESSIMISTIC_WRITE);
+                detail.getItem().getId());
+        var balance = dao.fetchHistoricBalance(em,warehouse,itm);
         return new MovementDetailEntry(detail,
-                dao.fetchHistoricBalance(em, warehouse, itm),
+                balance,
                 itm);
     }
 

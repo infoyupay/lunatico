@@ -85,6 +85,16 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for kardex-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxKardexView kardexView() {
+        return loadFxml("kardex-view.fxml");
+    }
+
+    /**
      * FxFactory for movement-card.fxml
      *
      * @return a new form controller.

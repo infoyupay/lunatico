@@ -43,9 +43,6 @@ public class FxMoveFlow {
     private @NotNull FxMovementCard getDialog() {
         if (dialog == null) {
             dialog = FxForms.movementCard();
-            if (owner != null) {
-                dialog.initOwner(owner);
-            }
             dialog.initModality(Modality.NONE);
             dialog.resultProperty().addListener((x, o, n) -> {
                 if (n != null) accept(n);
@@ -92,7 +89,7 @@ public class FxMoveFlow {
             if (mdl.getType().shouldSubtract()) {
                 //First, check valid stocks.
                 var invalidStocks = stockMap.stream()
-                        .filter(MovementDetailEntry::canSubstract)
+                        .filter(i -> !i.canSubstract())
                         .map(MovementDetailEntry::toString)
                         .toList();
                 //If any movement quantity exceeds avialable stock,
@@ -105,23 +102,31 @@ public class FxMoveFlow {
                                             "\nCheck available stock first.")));
                 }
             }
-
+            /*##############################################################*
+             # VERY IMPORTANT! READ BEFORE MODIFY!!!                        #
+             # The order of em.perisist and the stockMap.forEach            #
+             # is important due the cascade of the updates. If you          #
+             # update stock first, when persisting mdl the CASCADE policy   #
+             # will reverse the em.persist results.                         #
+             ###############################################################*/
+            em.persist(mdl);
             //If data is valid, perform.
             stockMap.forEach(new MovementDetailProcessor()
                     .andThen(entry -> {
                         em.merge(entry.item());
                         em.merge(entry.balance());
                     }));
-            em.persist(mdl);
 
             //Commit
             et.commit();
+
+            t.setId(mdl.getId());
 
             EasyAlert.info()
                     .withTitle("Operación Completada")
                     .withHeaderText("Se ha creado exitosamente el movimiento de "
                             + t.getType() + " en la base de datos.")
-                    .withContentText("Se ha generado el número de transacción " + t.getId())
+                    .withContentText("Se ha generado el número de transacción " + mdl.getId())
                     .buttonOkOnly()
                     .showAndWait();
         } catch (RuntimeException e) {

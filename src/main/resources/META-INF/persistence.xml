@@ -11,6 +11,8 @@
         <class>com.yupay.lunatico.model.ItemType</class>
         <class>com.yupay.lunatico.model.MovementType</class>
         <class>com.yupay.lunatico.model.VirtualWarehouseType</class>
+
+        <!--Entites-->
         <class>com.yupay.lunatico.model.Balance</class>
         <class>com.yupay.lunatico.model.BalanceDetail</class>
         <class>com.yupay.lunatico.model.Item</class>
@@ -22,15 +24,7 @@
         <class>com.yupay.lunatico.model.Unit</class>
         <class>com.yupay.lunatico.model.Warehouse</class>
         <class>com.yupay.lunatico.model.OvBalance</class>
+        <class>com.yupay.lunatico.model.KardexDetail</class>
 
-        <!--Entites-->
-
-
-        <properties>
-            <property name="eclipselink.jdbc.url"
-                      value="jdbc:postgresql://localhost:5432/lunatico_db"/>
-            <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="eclipselink.jdbc.user" value="postgres"/>
-        </properties>
     </persistence-unit>
 </persistence>

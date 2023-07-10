@@ -5,6 +5,8 @@ import com.yupay.lunatico.fxmview.FxMovementLineMV;
 import com.yupay.lunatico.fxtools.*;
 import com.yupay.lunatico.model.Item;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -32,6 +34,16 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
     private final ObjectProperty<EditorMode> formMode =
             new SimpleObjectProperty<>(this, "formMode");
     /**
+     * Read-only flag that holds true if editor mode is equals to VIEWER.
+     */
+    private final ReadOnlyBooleanWrapper viewer =
+            new ReadOnlyBooleanWrapper(this, "viewer");
+    /**
+     * Read-only flag that holds true if editor mode is different from VIEWER.
+     */
+    private final ReadOnlyBooleanWrapper notViewer =
+            new ReadOnlyBooleanWrapper(this, "notViewer");
+    /**
      * FXML control injected from movement_line-card.fxml
      */
     @FXML
@@ -56,6 +68,14 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
      */
     @FXML
     private TextFormatter<BigDecimal> fmtPriceRef;
+
+    /**
+     * Default constructor that initializes some bindigns.
+     */
+    public FxMovementLnCard() {
+        notViewer.bind(formModeProperty().isNotEqualTo(EditorMode.VIEWER));
+        viewer.bind(formModeProperty().isEqualTo(EditorMode.VIEWER));
+    }
 
     /**
      * FXML initializer.
@@ -118,6 +138,45 @@ public class FxMovementLnCard extends Dialog<FxMovementLineMV>
     public final ObjectProperty<EditorMode> formModeProperty() {
         return formMode;
     }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #viewer}.get();
+     */
+    public final boolean isViewer() {
+        return viewer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #viewer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty viewerProperty() {
+        return viewer.getReadOnlyProperty();
+    }
+
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #notViewer}.get();
+     */
+    public final boolean getNotViewer() {
+        return notViewer.get();
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #notViewer}.
+     */
+    @SuppressWarnings("unused")
+    public final ReadOnlyBooleanProperty notViewerProperty() {
+        return notViewer.getReadOnlyProperty();
+    }
+
 
     @Override
     public @NotNull Dialog<FxMovementLineMV> getRoot() {

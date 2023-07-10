@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class FxCellFactories {
@@ -89,5 +90,17 @@ public class FxCellFactories {
     public static <S> @NotNull Callback<TableColumn<S, BigDecimal>, TableCell<S, BigDecimal>>
     decimalQuantity() {
         return TextFieldTableCell.forTableColumn(new BigDecimalConverter(8, false));
+    }
+
+    /**
+     * Creates a cell factory to show local date values in format dd/MM/yyyy.
+     *
+     * @param <S> type erasure of table view model.
+     * @return the new callback to use as factory.
+     */
+    @Contract("->new")
+    public static <S> @NotNull Callback<TableColumn<S, LocalDate>, TableCell<S, LocalDate>>
+    forLocalDate() {
+        return TextFieldTableCell.forTableColumn(new SmartDateConverter());
     }
 }

@@ -34,7 +34,8 @@
                 <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                        prefHeight="32.0" text="Tipo:"/>
                 <ComboBox fx:id="cboType" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
-                          minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1">
+                          minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1"
+                          disable="${controller.viewer}">
                     <items>
                         <FxEnumCollections fx:factory="movementTypes"/>
                     </items>
@@ -43,7 +44,7 @@
                        minHeight="-Infinity" prefHeight="32.0" text="Almacén:" GridPane.columnIndex="2"/>
                 <ComboBox fx:id="cboStore" editable="true" maxHeight="-Infinity"
                           maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
-                          GridPane.columnIndex="3"/>
+                          GridPane.columnIndex="3" disable="${controller.viewer}"/>
                 <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                        prefHeight="32.0" text="Fecha de:" GridPane.rowIndex="1" GridPane.rowSpan="2"/>
                 <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
@@ -51,7 +52,7 @@
                        GridPane.rowIndex="1"/>
                 <DatePicker fx:id="dtpOpDate" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
                             minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1"
-                            GridPane.rowIndex="2">
+                            GridPane.rowIndex="2" disable="${controller.viewer}">
                     <converter>
                         <SmartDateConverter/>
                     </converter>
@@ -66,7 +67,7 @@
                        prefHeight="32.0" text="Tercero:" GridPane.rowIndex="3"/>
                 <SearchableTextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                                      prefHeight="32.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647"
-                                     GridPane.rowIndex="3" fx:id="txtPerson">
+                                     GridPane.rowIndex="3" fx:id="txtPerson" disable="${controller.viewer}">
                     <searchExecutor>
                         <FxSearchFlow fx:factory="searchPersonActive"/>
                     </searchExecutor>
@@ -84,12 +85,13 @@
                        GridPane.rowIndex="4"/>
                 <ComboBox fx:id="cboFolioType" editable="true" maxHeight="-Infinity"
                           maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="32.0"
-                          GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                          GridPane.columnIndex="1" GridPane.rowIndex="5" disable="${controller.viewer}"/>
                 <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
                        minHeight="-Infinity" prefHeight="32.0" text="Serie" GridPane.columnIndex="2"
                        GridPane.rowIndex="4"/>
                 <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           prefHeight="32.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           prefHeight="32.0" GridPane.columnIndex="2" GridPane.rowIndex="5"
+                           editable="${controller.notViewer}">
                     <textFormatter>
                         <UppercaseConverter.FolioTextFormatter fx:id="fmtFolioSerie"/>
                     </textFormatter>
@@ -98,7 +100,8 @@
                        minHeight="-Infinity" prefHeight="32.0" text="Número" GridPane.columnIndex="3"
                        GridPane.rowIndex="4"/>
                 <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           prefHeight="32.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                           prefHeight="32.0" GridPane.columnIndex="3" GridPane.rowIndex="5"
+                           editable="${controller.notViewer}">
                     <textFormatter>
                         <UppercaseConverter.FolioTextFormatter fx:id="fmtFolioNumber"/>
                     </textFormatter>
@@ -107,7 +110,7 @@
             <HBox>
                 <TableView fx:id="tblDetail" maxHeight="-Infinity" minHeight="-Infinity"
                            prefHeight="175.0" HBox.hgrow="ALWAYS" onMouseClicked="#onTableClicked"
-                items="${controller.detailData}"  >
+                           items="${controller.detailData}">
                     <columns>
                         <TableColumn fx:id="colDtId" editable="false" prefWidth="40.0" text="#"
                                      style="-fx-alignment: CENTER"/>
@@ -155,7 +158,7 @@
                     <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
                             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                             minWidth="-Infinity" onAction="#onCreateAction" prefHeight="32.0"
-                            prefWidth="32.0">
+                            prefWidth="32.0" disable="${controller.viewer}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-add-row-24.png"/>
@@ -174,7 +177,7 @@
                     <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
                             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                             minWidth="-Infinity" onAction="#onDeleteAction" prefHeight="32.0"
-                            prefWidth="32.0">
+                            prefWidth="32.0" disable="${controller.viewer}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-delete-row-24.png"/>
@@ -193,7 +196,7 @@
                     <Button contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0"
                             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                             minWidth="-Infinity" onAction="#onCleanAction" prefHeight="32.0"
-                            prefWidth="32.0">
+                            prefWidth="32.0" disable="${controller.viewer}">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-broom-24.png"/>
@@ -213,7 +216,7 @@
             </HBox>
             <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" minHeight="-Infinity"
                         prefHeight="100.0" text="Notas" VBox.vgrow="NEVER">
-                <TextArea>
+                <TextArea editable="${controller.notViewer}">
                     <textFormatter>
                         <UppercaseConverter.NotesTextFormatter fx:id="fmtNotes"/>
                     </textFormatter>

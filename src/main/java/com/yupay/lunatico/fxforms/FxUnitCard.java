@@ -76,6 +76,7 @@ public class FxUnitCard extends Dialog<FxUnitMV>
         valueProperty().addListener(new ValueChanged());
         viewer.bind(formModeProperty().isEqualTo(EditorMode.VIEWER));
         notViewer.bind(formModeProperty().isNotEqualTo(EditorMode.VIEWER));
+        top.lookupButton(ButtonType.OK).disableProperty().bind(viewer);
     }
 
     /**

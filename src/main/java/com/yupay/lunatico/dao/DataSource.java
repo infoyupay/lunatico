@@ -1,12 +1,12 @@
 package com.yupay.lunatico.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import com.yupay.lunatico.toolbox.LocalFiles;
+import jakarta.persistence.*;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.IOException;
 
 /**
  * A static fancy class to hold a shared EntityManagerFactory.
@@ -31,7 +31,11 @@ public class DataSource {
     @NotNull
     private static EntityManagerFactory entityManagerFactory() {
         if (EMF == null) {
-            EMF = Persistence.createEntityManagerFactory("lunatico");
+            try {
+                EMF = Persistence.createEntityManagerFactory("lunatico", LocalFiles.scanCnx());
+            } catch (IOException e) {
+                throw new PersistenceException("Unable to load connection parameters from local file.");
+            }
         }
         return EMF;
     }

@@ -100,4 +100,24 @@ public final class DAOFactory {
     public static @NotNull DAOOvBalanceImpl balanceOverview() {
         return new DAOOvBalanceImpl();
     }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.KardexDetail}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOKardexDetailImpl kardexDetail() {
+        return new DAOKardexDetailImpl();
+    }
+
+    /**
+     * Creates a new instance from a given implementation.
+     *
+     * @return implementation for {@link com.yupay.lunatico.model.Movement}
+     */
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull DAOMovementImpl movement() {
+        return new DAOMovementImpl();
+    }
 }

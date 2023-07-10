@@ -1,5 +1,6 @@
 package com.yupay.lunatico.dao;
 
+import com.yupay.lunatico.model.Item;
 import com.yupay.lunatico.model.OvBalance;
 import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityManager;
@@ -41,5 +42,23 @@ public final class DAOOvBalanceImpl implements DAO<OvBalance> {
                         , entity())
                 .setParameter(1, warehouse.getId())
                 .getResultStream();
+    }
+
+    /**
+     * Fetches one balance overview.
+     *
+     * @param em        the entity manager.
+     * @param warehouse the warehouse.
+     * @param item      the item.
+     * @return the only historical balance overview.
+     */
+    public @NotNull OvBalance fetchOne(@NotNull EntityManager em,
+                                       @NotNull Warehouse warehouse,
+                                       @NotNull Item item) {
+        return em.createQuery("SELECT v FROM OvBalance v WHERE v.itemId = ?1 AND v.warehouse = ?2",
+                        entity())
+                .setParameter(1, item.getId())
+                .setParameter(2, warehouse.getId())
+                .getSingleResult();
     }
 }

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.yupay.lunatico.fxtools.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<Stage xmlns:fx="http://javafx.com/fxml/1" fx:id="top" title="Kardex de Mercadería"
+       xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxKardexView"
+       onShown="#onShown">
+    <scene>
+        <Scene>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" spacing="5.0">
+                <HBox>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Artículo:"/>
+                    <Hyperlink fx:id="lnkItem" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                               minHeight="-Infinity" prefHeight="32.0" HBox.hgrow="ALWAYS" onAction="#onItemAction"/>
+                </HBox>
+                <HBox spacing="5.0">
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Almacén:"/>
+                    <Hyperlink fx:id="lnkWarehouse" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                               minHeight="-Infinity" prefHeight="32.0" HBox.hgrow="ALWAYS"
+                               onAction="#onWarehouseAction"/>
+                </HBox>
+                <HBox spacing="5.0">
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Unidad de Medida:"
+                           HBox.hgrow="NEVER"/>
+                    <Hyperlink fx:id="lnkUnit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                               minWidth="-Infinity" prefHeight="32.0" prefWidth="250.0" HBox.hgrow="NEVER"
+                               onAction="#onUnitsAction"/>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Tipo:"
+                           HBox.hgrow="NEVER"/>
+                    <Label fx:id="lblItemType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                           minWidth="-Infinity" prefHeight="32.0" prefWidth="250.0" HBox.hgrow="NEVER"/>
+                </HBox>
+                <GridPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0">
+                    <rowConstraints>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="NEVER"/>
+                    </rowConstraints>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                           prefHeight="32.0" text="Saldo Local:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                           GridPane.rowSpan="2">
+                        <GridPane.margin>
+                            <Insets right="5.0"/>
+                        </GridPane.margin>
+                    </Label>
+                    <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0" text="Unidades" GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+                    <Label fx:id="lblBalanceQty" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0"
+                           style="-fx-border-style: SOLID;-fx-alignment: CENTER_RIGHT" GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+                    <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0" text="Costo Unitario" GridPane.columnIndex="2"
+                           GridPane.rowIndex="0"/>
+                    <Label fx:id="lblBalanceUnitPrice" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0"
+                           style="-fx-border-style: SOLID;-fx-alignment: CENTER_RIGHT" GridPane.columnIndex="2"
+                           GridPane.rowIndex="1"/>
+                    <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0" text="Valor Inventario" GridPane.columnIndex="3"
+                           GridPane.rowIndex="0"/>
+                    <Label fx:id="lblBalanceCost" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                           minHeight="-Infinity" prefHeight="32.0"
+                           style="-fx-border-style: SOLID;-fx-alignment: CENTER_RIGHT" GridPane.columnIndex="3"
+                           GridPane.rowIndex="1"/>
+                </GridPane>
+                <HBox spacing="5.0">
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Período desde:"
+                           HBox.hgrow="NEVER"/>
+                    <DatePicker fx:id="dtpFrom" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                minHeight="-Infinity" prefHeight="32.0" HBox.hgrow="NEVER">
+                        <converter>
+                            <SmartDateConverter/>
+                        </converter>
+                    </DatePicker>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="hasta:"
+                           HBox.hgrow="NEVER"/>
+                    <DatePicker fx:id="dtpUntil" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                minHeight="-Infinity" prefHeight="32.0" HBox.hgrow="NEVER">
+                        <converter>
+                            <SmartDateConverter/>
+                        </converter>
+                    </DatePicker>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" onAction="#onRefreshAction" prefHeight="32.0"
+                            prefWidth="32.0" disable="${controller.missingData}">
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Obtener kárdex de mercadería para el período señalado."
+                                     wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-synchronize-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-synchronize-24.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+                <TableView fx:id="tblKardex" VBox.vgrow="ALWAYS" onMouseClicked="#onTableClicked">
+                    <columns>
+                        <TableColumn fx:id="colMovID" prefWidth="75.0" text="#"/>
+                        <TableColumn fx:id="colDate" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Fecha">
+                            <cellFactory>
+                                <FxCellFactories fx:factory="forLocalDate"/>
+                            </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colMovType" prefWidth="150.0" style="-fx-alignment: CENTER;" text="Tipo"/>
+                        <TableColumn prefWidth="75.0" text="Sustento">
+                            <columns>
+                                <TableColumn fx:id="colFolioType" prefWidth="75.0" text="Tipo"/>
+                                <TableColumn fx:id="colFolioSerie" prefWidth="75.0" text="Serie"/>
+                                <TableColumn fx:id="colFolioNumber" prefWidth="100.0" text="Número"/>
+                            </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="483.0" text="Saldo Inicial">
+                            <columns>
+                                <TableColumn fx:id="colBeforeUnits" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Unidades">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colBeforeUnitCost" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Costo Unitario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colBeforeCost" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Costo Inventario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="75.0" text="Cantidad de Movimiento - Entrada">
+                            <columns>
+                                <TableColumn fx:id="colInputUnits" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Unidades">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colInputUnitCost" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Costo Unitario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colInputCost" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
+                                             text="Costo Inventario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="75.0" text="Cantida de Movimiento - Salida">
+                            <columns>
+                                <TableColumn fx:id="colOutUnits" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
+                                             text="Unidades">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colOutUnitCost" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Costo Unitario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colOutCost" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
+                                             text="Costo Inventario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="75.0" text="Saldo Final">
+                            <columns>
+                                <TableColumn fx:id="colEndUnits" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
+                                             text="Unidades">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colEndUnitCost" prefWidth="150.0"
+                                             style="-fx-alignment: CENTER_RIGHT;" text="Costo Unitario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colEndCost" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
+                                             text="Costo Inventario">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="decimalQuantity"/>
+                                    </cellFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Scene>
+    </scene>
+</Stage>

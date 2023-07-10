@@ -9,6 +9,7 @@ import com.yupay.lunatico.fxmview.FxUserMV;
 import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.ValueFactoryManager;
 import com.yupay.lunatico.model.ItemType;
+import com.yupay.lunatico.toolbox.LocalFiles;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -22,11 +23,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -189,6 +196,20 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
         this.primaryStage.setScene(top);
         this.primaryStage.setMaximized(true);
         this.primaryStage.show();
+        try {
+            var cnx = LocalFiles.getCnx();
+            for (var i=0; Files.notExists(cnx); i++) {
+                onLocalSetupAction();
+                if (i>2) {
+                    Platform.exit();
+                    return;
+                }
+            }
+        } catch (IOException e) {
+            new ErrorHandler()
+                    .withBriefing("No se pudo leer el archivo de configuración de conexión.")
+                    .accept(e);
+        }
     }
 
     /**
@@ -283,11 +304,20 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
 
     /**
      * FXML event handler.
+     *
+     * @param event the event object.
      */
     @FXML
-    void onTestAction() {
-        //TODO: remove this!
-
+    void onTableClicked(@NotNull MouseEvent event) {
+        if (event.isConsumed() || event.getClickCount() < 2) return;
+        event.consume();
+        var sel = tblData.getSelectionModel().getSelectedItem();
+        if (sel != null) {
+            var form = FxForms.kardexView();
+            form.fetchAndSet(sel.getItemId());
+            form.setWarehouse(cboStore.getValue());
+            form.show(primaryStage);
+        }
     }
 
     /**
@@ -295,7 +325,7 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
      */
     @FXML
     void onItemTrendAction() {
-        //TODO
+
     }
 
     /**
@@ -330,7 +360,35 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
             FxListAllFlow.balanceOverview(ware)
                     .withBefore(balanceData::clear)
                     .withForEach(balanceData::add)
+                    .withAfter(() -> tblData.getSortOrder().setAll(List.of(colID)))
                     .go();
+        }
+    }
+
+    @FXML
+    void onLocalSetupAction() {
+        //Create GUI component.
+        var ui = new FileChooser();
+        ui.setTitle("Importar conexión");
+        var filter = new ExtensionFilter(
+                "Archivo de Configuración (*.properties)",
+                "*.properties");
+        ui.getExtensionFilters().setAll(
+                filter,
+                new ExtensionFilter("Todos los archivos (*.*)", "*.*"));
+        ui.setSelectedExtensionFilter(filter);
+        //Show and get selected file.
+        var file = ui.showOpenDialog(primaryStage);
+        if (file != null) {
+            var in = file.toPath();
+            try {
+                var out = LocalFiles.getCnx();
+                Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+            } catch (IOException e) {
+                new ErrorHandler()
+                        .withBriefing("Ocurrió un error al instalar el archivo de configuración.")
+                        .accept(e);
+            }
         }
     }
 

@@ -5,6 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
+<?import javafx.collections.FXCollections?>
 <Scene xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/19"
        fx:controller="com.yupay.lunatico.fxforms.LunaticoScene">
     <VBox prefHeight="600.0" prefWidth="750.0">
@@ -16,7 +17,7 @@
                             <Image url="@png/icons8-businessman-24.png"/>
                         </ImageView>
                     </graphic>
-                    <MenuItem text="Configuración Local" visible="${controller.locked}">
+                    <MenuItem text="Configuración Local" visible="${controller.locked}" onAction="#onLocalSetupAction">
                         <graphic>
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <Image url="@png/icons8-gears-24.png"/>
@@ -101,7 +102,7 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Reportes" visible="${controller.unlocked}">
+            <Menu text="Reportes" visible="${controller.unlocked}" disable="true">
                 <MenuItem text="Productos Críticos" visible="${controller.roleViewer}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
@@ -118,7 +119,7 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Gestión" visible="${controller.unlocked}">
+            <Menu text="Gestión" visible="${controller.unlocked}" disable="true">
                 <MenuItem text="Instantánea de Almacén" visible="${controller.roleReport}">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
@@ -129,8 +130,6 @@
             </Menu>
         </MenuBar>
         <ToolBar visible="${controller.unlocked}">
-            <Button contentDisplay="TEXT_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" onAction="#onTestAction" prefHeight="32.0" prefWidth="32.0" text="T"/>
             <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                     minWidth="-Infinity" onAction="#onCreateMovAction" prefHeight="32.0" prefWidth="32.0"
                     visible="${controller.roleReport}">
@@ -193,7 +192,7 @@
                 </tooltip>
             </Button>
         </ToolBar>
-        <TableView fx:id="tblData" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tblData" VBox.vgrow="ALWAYS" onMouseClicked="#onTableClicked">
             <columns>
                 <TableColumn prefWidth="75.0" text="Producto">
                     <columns>

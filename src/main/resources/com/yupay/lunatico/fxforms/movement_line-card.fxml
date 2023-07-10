@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.yupay.lunatico.fxflows.FxSearchFlow?>
-<?import com.yupay.lunatico.fxtools.BigDecimalConverter?>
-<?import com.yupay.lunatico.fxtools.FxCardDialogs?>
-<?import com.yupay.lunatico.fxtools.FxEntityFormatters?>
-<?import com.yupay.lunatico.fxtools.SearchableTextField?>
+<?import com.yupay.lunatico.fxtools.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/20.0.1"
@@ -29,7 +26,7 @@
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Artículo:"
                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
             <SearchableTextField fx:id="txtItem" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
-                                 GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 GridPane.columnIndex="1" GridPane.rowIndex="1" disable="${controller.viewer}">
                 <searchExecutor>
                     <FxSearchFlow fx:factory="searchItemActive"/>
                 </searchExecutor>
@@ -43,7 +40,7 @@
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Cantidad:"
                    GridPane.columnIndex="0" GridPane.rowIndex="2"/>
             <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1"
-                       GridPane.rowIndex="2">
+                       GridPane.rowIndex="2" editable="${controller.notViewer}">
                 <textFormatter>
                     <TextFormatter fx:id="fmtQuantity">
                         <valueConverter>
@@ -55,7 +52,7 @@
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Precio Referencial:"
                    GridPane.columnIndex="0" GridPane.rowIndex="3"/>
             <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" GridPane.columnIndex="1"
-                       GridPane.rowIndex="3">
+                       GridPane.rowIndex="3" editable="${controller.notViewer}">
                 <textFormatter>
                     <TextFormatter fx:id="fmtPriceRef">
                         <valueConverter>

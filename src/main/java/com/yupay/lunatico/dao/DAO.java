@@ -14,7 +14,17 @@ import java.util.stream.Stream;
  * @author InfoYupay SACS
  * @version 1.0
  */
-public sealed interface DAO<T> permits DAOBalanceImpl, DAOItemImpl, DAOOvBalanceImpl, DAOPersonImpl, DAOTypeFolioImpl, DAOUnitImpl, DAOUserImpl, DAOWarehouseImpl {
+public sealed interface DAO<T>
+        permits DAOBalanceImpl,
+        DAOItemImpl,
+        DAOKardexDetailImpl,
+        DAOMovementImpl,
+        DAOOvBalanceImpl,
+        DAOPersonImpl,
+        DAOTypeFolioImpl,
+        DAOUnitImpl,
+        DAOUserImpl,
+        DAOWarehouseImpl {
     /**
      * The entity class representation.
      *
@@ -90,5 +100,17 @@ public sealed interface DAO<T> permits DAOBalanceImpl, DAOItemImpl, DAOOvBalance
     default @NotNull T updateOne(@NotNull EntityManager em,
                                  @NotNull T item) {
         return em.merge(item);
+    }
+
+    /**
+     * Fetches one given item by id.
+     *
+     * @param em  the entity manager object.
+     * @param id  the id (primary key) value (never null).
+     * @param <U> type erasure for the primary key.
+     * @return the requested entity.
+     */
+    default @NotNull <U> T fetchOne(@NotNull EntityManager em, @NotNull U id) {
+        return em.getReference(entity(), id);
     }
 }
