@@ -1,5 +1,6 @@
 package com.yupay.lunatico.dao;
 
+import com.yupay.lunatico.model.BalanceType;
 import com.yupay.lunatico.model.Item;
 import com.yupay.lunatico.model.OvBalance;
 import com.yupay.lunatico.model.Warehouse;

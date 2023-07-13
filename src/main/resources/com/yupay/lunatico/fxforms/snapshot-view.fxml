@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.yupay.lunatico.fxtools.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<Stage xmlns:fx="http://javafx.com/fxml/1" fx:id="top" onShown="#onStageShown" title="Estado Instantáneo de Almacén"
+       xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxSnapshotView">
+    <scene>
+        <Scene>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+                <ToolBar VBox.vgrow="NEVER">
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" onAction="#onRefreshAction" prefHeight="32.0"
+                            prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-synchronize-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Refrescar catálogo de almacén desde la base de datos."
+                                     wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-synchronize-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" onAction="#onSnapshotAction" prefHeight="32.0"
+                            prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-vintage-camera-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Capturar instantánea del sistema en la base de datos."
+                                     wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-vintage-camera-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                </ToolBar>
+                <TreeTableView fx:id="tblData" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                               VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TreeTableColumn text="Producto">
+                            <columns>
+                                <TreeTableColumn fx:id="colItemID" prefWidth="75.0" text="ID">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeLongID"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colItemName" prefWidth="250.0" text="Nombre"/>
+                                <TreeTableColumn fx:id="colItemType" prefWidth="150.0" text="Tipo"/>
+                            </columns>
+                        </TreeTableColumn>
+                        <TreeTableColumn text="Almacén">
+                            <columns>
+                                <TreeTableColumn fx:id="colWarehouseID" prefWidth="75.0" text="ID">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeLongID"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colWarehouseName" prefWidth="150.0" text="Nombre"/>
+                            </columns>
+                        </TreeTableColumn>
+                        <TreeTableColumn fx:id="colUnit" prefWidth="75.0" text="U. Medida"/>
+                        <TreeTableColumn text="Saldo Global">
+                            <columns>
+                                <TreeTableColumn fx:id="colGlobalQuantity" prefWidth="150.0" text="Cantidad"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeDecimalQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colGlobalUnitCost" prefWidth="150.0" text="Costo Unitario"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeCurrencyQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colGlobalCost" prefWidth="150.0" text="Costo Total"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeCurrencyQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                            </columns>
+                        </TreeTableColumn>
+                        <TreeTableColumn text="Saldo Local">
+                            <columns>
+                                <TreeTableColumn fx:id="colLocalQuantity" prefWidth="150.0" text="Cantidad"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeDecimalQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colLocalUnitCost" prefWidth="150.0" text="Costo Unitario"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeCurrencyQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                                <TreeTableColumn fx:id="colLocalCost" prefWidth="150.0" text="Costo Total"
+                                                 style="-fx-alignment: CENTER_RIGHT">
+                                    <cellFactory>
+                                        <FxCellFactories fx:factory="treeCurrencyQuantity"/>
+                                    </cellFactory>
+                                </TreeTableColumn>
+                            </columns>
+                        </TreeTableColumn>
+                    </columns>
+                </TreeTableView>
+            </VBox>
+        </Scene>
+    </scene>
+</Stage>

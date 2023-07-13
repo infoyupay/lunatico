@@ -5,7 +5,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
-<?import javafx.collections.FXCollections?>
 <Scene xmlns:fx="http://javafx.com/fxml/1" fx:id="top" xmlns="http://javafx.com/javafx/19"
        fx:controller="com.yupay.lunatico.fxforms.LunaticoScene">
     <VBox prefHeight="600.0" prefWidth="750.0">
@@ -119,8 +118,8 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Gestión" visible="${controller.unlocked}" disable="true">
-                <MenuItem text="Instantánea de Almacén" visible="${controller.roleReport}">
+            <Menu text="Gestión" visible="${controller.unlocked}">
+                <MenuItem text="Instantánea de Almacén" visible="${controller.roleReport}" onAction="#onSnapshotAction">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                             <Image url="@png/icons8-vintage-camera-24.png"/>

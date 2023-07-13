@@ -61,6 +61,11 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
      */
     private final LongProperty itemId =
             new SimpleLongProperty(this, "itemId");
+    /**
+     * The warehouse's name.
+     */
+    private final StringProperty warehouseName =
+            new SimpleStringProperty(this, "warehouseName");
 
     /**
      * Constructor to copy information from a model entity.
@@ -321,6 +326,33 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
         return itemId;
     }
 
+    /**
+     * FX Accessor - getter.
+     *
+     * @return value of {@link #warehouseName}.get();
+     */
+    public final String getWarehouseName() {
+        return warehouseName.get();
+    }
+
+    /**
+     * FX Accessor - setter.
+     *
+     * @param warehouseName value to assign into {@link #warehouseName}.
+     */
+    public final void setWarehouseName(String warehouseName) {
+        this.warehouseName.set(warehouseName);
+    }
+
+    /**
+     * FX Accessor - property.
+     *
+     * @return property {@link #warehouseName}.
+     */
+    public final StringProperty warehouseNameProperty() {
+        return warehouseName;
+    }
+
     @Override
     public boolean equals(Object o) {
         return this == o || o instanceof FxOvBalanceMV that &&
@@ -345,6 +377,7 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
         r.setSymbol(getSymbol());
         r.setType(getType());
         r.setWarehouse(getWarehouse());
+        r.setWarehouseName(getWarehouseName());
         r.setItemId(getItemId());
         return r;
     }
@@ -361,6 +394,7 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
         r.setSymbol(getSymbol());
         r.setType(getType());
         r.setWarehouse(getWarehouse());
+        r.setWarehouseName(getWarehouseName());
         r.setItemId(getItemId());
         return r;
     }
@@ -375,6 +409,7 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
         setSymbol(m.getSymbol());
         setType(m.getType());
         setWarehouse(m.getWarehouse());
+        setWarehouseName(m.getWarehouseName());
         setItemId(m.getItemId());
     }
 }

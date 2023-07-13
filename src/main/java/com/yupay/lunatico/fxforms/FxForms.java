@@ -215,6 +215,16 @@ public final class FxForms {
     }
 
     /**
+     * FxFactory for snapshot-view.fxml
+     *
+     * @return a new form controller.
+     */
+    @Contract("-> new")
+    public static @NotNull FxSnapshotView snapshotView() {
+        return loadFxml("snapshot-view.fxml");
+    }
+
+    /**
      * FxFactory for search-card.fxml
      *
      * @param <T> type erasure of searched element.

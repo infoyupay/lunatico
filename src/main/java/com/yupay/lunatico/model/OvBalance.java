@@ -52,6 +52,10 @@ public class OvBalance {
      * Local balance in cost.
      */
     private BigDecimal balanceCost;
+    /**
+     * Warehouse's name.
+     */
+    private String warehouseName;
 
     /**
      * Public accessor - getter.
@@ -233,6 +237,26 @@ public class OvBalance {
      */
     public void setBalanceCost(BigDecimal balanceCost) {
         this.balanceCost = balanceCost;
+    }
+
+    /**
+     * Public accessor - getter.
+     *
+     * @return value of {@link #warehouseName}
+     */
+    @Basic
+    @Column(name = "warehouse_name")
+    public String getWarehouseName() {
+        return warehouseName;
+    }
+
+    /**
+     * Public accessor - setter.
+     *
+     * @param warehouseName value to set into {@link #warehouseName}
+     */
+    public void setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
     }
 
     @Override

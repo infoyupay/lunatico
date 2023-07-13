@@ -198,9 +198,9 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
         this.primaryStage.show();
         try {
             var cnx = LocalFiles.getCnx();
-            for (var i=0; Files.notExists(cnx); i++) {
+            for (var i = 0; Files.notExists(cnx); i++) {
                 onLocalSetupAction();
-                if (i>2) {
+                if (i > 2) {
                     Platform.exit();
                     return;
                 }
@@ -248,6 +248,17 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
     void onMgmWarehouse(@NotNull ActionEvent evt) {
         if (evt.getSource() instanceof MenuItem mni)
             FxForms.warehouseView().showAndWait(mni.disableProperty());
+    }
+
+    /**
+     * FXML event handler.
+     *
+     * @param evt event object.
+     */
+    @FXML
+    void onSnapshotAction(@NotNull ActionEvent evt) {
+        if (evt.getSource() instanceof MenuItem mni)
+            FxForms.snapshotView().showAndWait(mni.disableProperty());
     }
 
     /**
@@ -365,6 +376,9 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
         }
     }
 
+    /**
+     * FXML event handler.
+     */
     @FXML
     void onLocalSetupAction() {
         //Create GUI component.

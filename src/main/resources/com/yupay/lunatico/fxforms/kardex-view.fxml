@@ -173,7 +173,7 @@
                                 </TableColumn>
                             </columns>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Cantida de Movimiento - Salida">
+                        <TableColumn prefWidth="75.0" text="Cantidad de Movimiento - Salida">
                             <columns>
                                 <TableColumn fx:id="colOutUnits" prefWidth="150.0" style="-fx-alignment: CENTER_RIGHT;"
                                              text="Unidades">

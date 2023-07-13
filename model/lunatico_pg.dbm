@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="859,220" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="864,0" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer,ov"
 	 active-layers="0"
@@ -604,9 +604,9 @@ Using pgModeler 1.0.2
 Copyleft 2023, Lima - Peru]]> </comment>
 </textbox>
 
-<view name="ov_balance" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
+<view name="ov_balance" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
 	<schema name="public"/>
-	<position x="1760" y="100"/>
+	<position x="1700" y="80"/>
 	<reference table="public.balance" column="id" alias="b" column-alias="id"/>
 	<reference table="public.item" column="id" alias="i" column-alias="item_id"/>
 	<reference table="public.item" column="name" alias="i"/>
@@ -616,17 +616,19 @@ Copyleft 2023, Lima - Peru]]> </comment>
 	<reference table="public.balance" column="balance_units" alias="b"/>
 	<reference table="public.balance" column="balance_unit_cost" alias="b"/>
 	<reference table="public.balance" column="balance_cost" alias="b"/>
+	<reference table="public.warehouse" column="name" alias="w" column-alias="warehouse_name"/>
 	<reference>
 		<expression> <![CDATA[item i INNER JOIN balance b
 		ON i.id = b.item
-	INNER JOIN unit u ON u.id = i.unit]]> </expression>
+	INNER JOIN unit u ON u.id = i.unit
+    INNER JOIN warehouse w on w.id = b.warehouse]]> </expression>
 	</reference>
 	<reference>
 		<expression> <![CDATA[b.type = 'HISTORY' AND i.active]]> </expression>
 	</reference>
-	<expression type="select-exp">0,1,2,3,4,5,6,7,8</expression>
-	<expression type="from-exp">9</expression>
-	<expression type="simple-exp">10</expression>
+	<expression type="select-exp">0,1,2,3,4,5,6,7,8,9</expression>
+	<expression type="from-exp">10</expression>
+	<expression type="simple-exp">11</expression>
 </view>
 
 <relationship name="rel_ov_balance_balance" type="reltv" layers="1"
@@ -642,6 +644,11 @@ Copyleft 2023, Lima - Peru]]> </comment>
 <relationship name="rel_ov_balance_unit" type="reltv" layers="1"
 	 src-table="public.ov_balance"
 	 dst-table="public.unit"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_ov_balance_warehouse" type="reltv" layers="1"
+	 src-table="public.ov_balance"
+	 dst-table="public.warehouse"
 	 src-required="false" dst-required="false"/>
 
 <view name="kardex_detail" layers="0" collapse-mode="2" max-obj-count="27" z-value="0">
@@ -679,11 +686,6 @@ Copyleft 2023, Lima - Peru]]> </comment>
 	<expression type="from-exp">22</expression>
 </view>
 
-<relationship name="rel_kardex_detail_type_folio" type="reltv" layers="1"
-	 src-table="public.kardex_detail"
-	 dst-table="public.type_folio"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="rel_kardex_detail_movement_detail" type="reltv" layers="1"
 	 src-table="public.kardex_detail"
 	 dst-table="public.movement_detail"
@@ -697,6 +699,11 @@ Copyleft 2023, Lima - Peru]]> </comment>
 <relationship name="rel_kardex_detail_item" type="reltv" layers="1"
 	 src-table="public.kardex_detail"
 	 dst-table="public.item"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_kardex_detail_type_folio" type="reltv" layers="1"
+	 src-table="public.kardex_detail"
+	 dst-table="public.type_folio"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
