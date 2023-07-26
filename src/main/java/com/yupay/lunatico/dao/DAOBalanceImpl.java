@@ -6,7 +6,11 @@ import com.yupay.lunatico.model.Item;
 import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.time.LocalDate;
+import java.util.stream.Stream;
 
 /**
  * DAO implementation for Balances.
@@ -55,5 +59,33 @@ public final class DAOBalanceImpl implements DAO<Balance> {
                         "BROKEN SYSTEM STATE, SINCE ALL ITEMS MUST HAVE " +
                                 "A VALID HISTORIC BALANCE FOR ANY GIVEN " +
                                 "WAREHOUSE OR ITEM AT ANY TIME."));
+    }
+
+    /**
+     * Queries for all balances within a date range for an item.
+     *
+     * @param em    entity manager object.
+     * @param item  the item which must be searched.
+     * @param since the since date of balance snapshot (inclusive).
+     * @param until the last date of balance snapshot (inclusive).
+     * @return a new stream of results.
+     */
+    @Contract("_,_,_,_->new")
+    public @NotNull Stream<Balance> queryBalances(
+            @NotNull EntityManager em,
+            @NotNull Item item,
+            @NotNull LocalDate since,
+            @NotNull LocalDate until) {
+        return em.createQuery(
+                        """
+                                SELECT B
+                                    FROM Balance B
+                                    WHERE   (B.shotStamp >= ?1 AND B.shotStamp < ?2)
+                                            AND B.item = ?4""",
+                        Balance.class)
+                .setParameter(1, since.atStartOfDay())
+                .setParameter(2, until.plusDays(1).atStartOfDay())
+                .setParameter(4, item)
+                .getResultStream();
     }
 }

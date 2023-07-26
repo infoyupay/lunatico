@@ -333,10 +333,13 @@ public class LunaticoScene implements EventHandler<WindowEvent> {
 
     /**
      * FXML event handler.
+     *
+     * @param event the event object.
      */
     @FXML
-    void onItemTrendAction() {
-
+    void onItemTrendAction(@NotNull ActionEvent event) {
+        if (event.getSource() instanceof MenuItem mni)
+            FxForms.itemTrend().showAndWait(mni.disableProperty());
     }
 
     /**

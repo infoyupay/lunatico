@@ -7,7 +7,8 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <Stage xmlns:fx="http://javafx.com/fxml/1" fx:id="top" onShown="#onStageShown" title="Estado Instantáneo de Almacén"
-       xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxSnapshotView">
+       xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxSnapshotView"
+       onHidden="#onStageClosed">
     <scene>
         <Scene>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">

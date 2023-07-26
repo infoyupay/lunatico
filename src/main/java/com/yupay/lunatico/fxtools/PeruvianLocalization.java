@@ -4,6 +4,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormatSymbols;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -70,4 +72,8 @@ public final class PeruvianLocalization {
             .appendLiteral('.')
             .appendValue(ChronoField.MILLI_OF_SECOND, 3)
             .toFormatter();
+    /**
+     * The System offset as a constant.
+     */
+    public static final ZoneOffset SYS_OFFSET = ZonedDateTime.now().getOffset();
 }

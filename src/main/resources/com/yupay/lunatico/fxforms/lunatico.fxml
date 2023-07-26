@@ -101,14 +101,7 @@
                     </graphic>
                 </MenuItem>
             </Menu>
-            <Menu text="Reportes" visible="${controller.unlocked}" disable="true">
-                <MenuItem text="Productos Críticos" visible="${controller.roleViewer}">
-                    <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                            <Image url="@png/icons8-siren-24.png"/>
-                        </ImageView>
-                    </graphic>
-                </MenuItem>
+            <Menu text="Reportes" visible="${controller.unlocked}">
                 <MenuItem text="Tendencia de Logística" onAction="#onItemTrendAction"
                           visible="${controller.roleViewer}">
                     <graphic>

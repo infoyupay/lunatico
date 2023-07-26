@@ -1,59 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonType?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Tooltip?>
+<?import com.yupay.lunatico.fxflows.FxSearchFlow?>
+<?import com.yupay.lunatico.fxtools.*?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-
-<DialogPane fx:id="top" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yupay.lunatico.fxforms.FxItemTrend">
-    <content>
-        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
-         <children>
-            <ToolBar VBox.vgrow="NEVER">
-              <items>
-                  <Button contentDisplay="GRAPHIC_ONLY" layoutX="82.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="32.0">
-                      <graphic>
-                          <ImageView fitHeight="24.0" fitWidth="24.0">
-                              <Image url="@png/icons8-synchronize-24.png" />
-                          </ImageView>
-                      </graphic>
-                      <tooltip>
-                          <Tooltip maxWidth="360.0" text="Cargar (o refrescar) gráfico desde la base de datos." wrapText="true">
-                              <graphic>
-                                  <ImageView fitHeight="48.0" fitWidth="48.0">
-                                      <Image url="@png/icons8-synchronize-48.png" />
-                                  </ImageView>
-                              </graphic>
-                          </Tooltip>
-                      </tooltip>
-                  </Button>
-                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Producto:" />
-                  <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" />
-                  <CheckBox maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="32.0" text="Almacén:" />
-                  <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="100.0" />
-                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Desde:" />
-                  <DatePicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="100.0" />
-                  <Label layoutX="479.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Hasta:" />
-                  <DatePicker layoutX="525.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="100.0" />
-              </items>
-            </ToolBar>
-            <ImageView fitHeight="471.0" fitWidth="778.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-               <image>
-                  <Image url="@png/graph-demo.png" />
-               </image>
-            </ImageView>
-         </children></VBox>
-    </content>
-    <buttonTypes>
-        <ButtonType fx:constant="CLOSE" />
-    </buttonTypes>
-</DialogPane>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<Stage xmlns:fx="http://javafx.com/fxml/1" fx:id="top" title="Tendencia de Artículos"
+       xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.yupay.lunatico.fxforms.FxItemTrend"
+       onShown="#onStageShown" onHidden="#onStageClosed" maximized="true">
+    <scene>
+        <Scene>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+                <ToolBar VBox.vgrow="NEVER">
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Producto:"/>
+                    <SearchableTextField fx:id="txtItem" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0">
+                        <searchExecutor>
+                            <FxSearchFlow fx:factory="searchItemActive"/>
+                        </searchExecutor>
+                        <cardSupplier>
+                            <FxCardDialogs fx:factory="forItem"/>
+                        </cardSupplier>
+                        <stringMaker>
+                            <FxEntityFormatters fx:factory="forItem"/>
+                        </stringMaker>
+                    </SearchableTextField>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" text="Desde:"/>
+                    <DatePicker fx:id="dtpSince" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0">
+                        <converter>
+                            <SmartDateConverter/>
+                        </converter>
+                    </DatePicker>
+                    <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0"
+                           text="Hasta:"/>
+                    <DatePicker fx:id="dtpUntil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                minWidth="-Infinity" prefHeight="32.0" prefWidth="150.0">
+                        <converter>
+                            <SmartDateConverter/>
+                        </converter>
+                    </DatePicker>
+                    <Button contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                            onAction="#onRefreshDBAction"
+                            prefHeight="32.0" prefWidth="32.0">
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0">
+                                <Image url="@png/icons8-synchronize-24.png"/>
+                            </ImageView>
+                        </graphic>
+                        <tooltip>
+                            <Tooltip maxWidth="360.0" text="Cargar (o refrescar) gráfico desde la base de datos."
+                                     wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                                        <Image url="@png/icons8-synchronize-48.png"/>
+                                    </ImageView>
+                                </graphic>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+                </ToolBar>
+                <StackedAreaChart fx:id="chart" legendSide="RIGHT" title="Tendencia de Artículo"
+                                  VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <FxTimestampAxis fx:id="axisDate" label="Fecha" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Stock" side="LEFT"/>
+                    </yAxis>
+                </StackedAreaChart>
+            </VBox>
+        </Scene>
+    </scene>
+</Stage>
