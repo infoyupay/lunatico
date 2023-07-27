@@ -36,6 +36,12 @@ public class BalanceDetail {
     private Balance balance;
 
     /**
+     * Default constructor for JPA.
+     */
+    public BalanceDetail() {
+    }
+
+    /**
      * Public accessor - getter.
      *
      * @return value of {@link #id}

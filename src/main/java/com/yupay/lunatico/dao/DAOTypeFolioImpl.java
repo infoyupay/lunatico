@@ -10,6 +10,13 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0
  */
 public final class DAOTypeFolioImpl implements DAO<TypeFolio> {
+    /**
+     * Package private constructor,
+     * use {@link DAOFactory#typeFolio()}
+     */
+    DAOTypeFolioImpl() {
+    }
+
     @Override
     public @NotNull Class<TypeFolio> entity() {
         return TypeFolio.class;

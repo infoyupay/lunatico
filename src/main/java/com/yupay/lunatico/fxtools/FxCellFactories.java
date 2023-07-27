@@ -15,7 +15,13 @@ import org.jetbrains.annotations.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-
+/**
+ * Static factory class to create
+ * Callbacks usable as JavaFX cell factories.
+ *
+ * @author InfoYupay SACS
+ * @version 1.0
+ */
 public class FxCellFactories {
     /**
      * Creates a cell factory to show the ID value of an Item model-view entity.

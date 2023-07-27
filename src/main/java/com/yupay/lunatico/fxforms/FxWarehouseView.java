@@ -74,6 +74,9 @@ public class FxWarehouseView extends MasterView {
     @FXML
     private TextField txtFilter;
 
+    /**
+     * FXML initializer.
+     */
     @FXML
     void initialize() {
         new CellFactoryManager<FxWarehouseMV>()

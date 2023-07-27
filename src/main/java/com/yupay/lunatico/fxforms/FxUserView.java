@@ -15,8 +15,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
@@ -147,18 +145,6 @@ public class FxUserView extends MasterView {
                 .withForEach(data::add)
                 .withAfter(this::sortTable)
                 .go();
-    }
-
-    /**
-     * FXML event handler.
-     *
-     * @param event the event object.
-     */
-    @FXML
-    void onTableDataClicked(@NotNull MouseEvent event) {
-        if (event.isConsumed()) return;
-        if (event.getButton() == MouseButton.PRIMARY
-                && event.getClickCount() > 1) onEditRowAction();
     }
 
     /**

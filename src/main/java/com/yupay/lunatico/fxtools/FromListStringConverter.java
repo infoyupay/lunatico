@@ -12,6 +12,7 @@ import java.util.Objects;
 /**
  * String converter implementation to use in combo boxes.
  *
+ * @param <T> Type erasure for combo box items.
  * @author InfoYupay SACS
  * @version 1.0
  */

@@ -120,7 +120,7 @@ public class LocalFiles {
      * @return the connection properties.
      * @throws IOException if unable to read the cnx.properties file.
      */
-    public static Properties scanCnx() throws IOException {
+    public static @NotNull Properties scanCnx() throws IOException {
         var r = new Properties();
         try (var is = Files.newInputStream(getCnx(), StandardOpenOption.READ)) {
             r.load(is);

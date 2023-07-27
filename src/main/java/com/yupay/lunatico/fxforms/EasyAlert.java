@@ -139,7 +139,10 @@ public class EasyAlert extends Alert
 
     /**
      * Sets the button types to Ok only.
-     * Shorthand for {@snippet : this.withButtonTypes(ButtonType.OK);}
+     * Shorthand for
+     * {@snippet :
+     *  this.withButtonTypes(ButtonType.OK);
+     *}
      *
      * @return this instance.
      */

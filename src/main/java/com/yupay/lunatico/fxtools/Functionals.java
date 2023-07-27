@@ -27,7 +27,10 @@ public final class Functionals {
     /**
      * Creates a consumer that sets the value of the
      * consumed property to the given value.
-     * Shorthand for {@snippet : property -> property.set(value)}
+     * Shorthand for
+     * {@snippet :
+     *  property -> property.set(value);
+     *}
      *
      * @param value the given value to set.
      * @return a new consumer, never null.

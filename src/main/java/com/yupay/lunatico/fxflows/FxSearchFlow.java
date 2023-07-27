@@ -5,7 +5,6 @@ import com.yupay.lunatico.dao.DataSource;
 import com.yupay.lunatico.fxforms.FxSearchCard;
 import com.yupay.lunatico.fxmview.FxItemMV;
 import com.yupay.lunatico.fxmview.FxPersonMV;
-import com.yupay.lunatico.fxmview.FxWarehouseMV;
 import com.yupay.lunatico.fxtools.FxSearchCards;
 import jakarta.persistence.EntityManager;
 import org.jetbrains.annotations.Contract;
@@ -18,6 +17,7 @@ import java.util.function.Function;
 /**
  * The JavaFX flow to search items.
  *
+ * @param <T> type erasure of the searched item.
  * @author InfoYupay SACS
  * @version 1.0
  */
@@ -52,30 +52,6 @@ public abstract class FxSearchFlow<T> implements Function<String, Optional<T>> {
             @Override
             protected @NotNull FxSearchCard<FxItemMV> searchCard(@NotNull List<FxItemMV> data) {
                 return FxSearchCards.forItem(data);
-            }
-        };
-    }
-
-    /**
-     * Creates an instance to search warehouse items.
-     *
-     * @return a new search flow.
-     */
-    @Contract(value = " -> new", pure = true)
-    public static @NotNull FxSearchFlow<FxWarehouseMV> searchAllActiveWarehouses() {
-        return new FxSearchFlow<>() {
-            @Override
-            protected @NotNull List<FxWarehouseMV> runQuery(@NotNull EntityManager em,
-                                                            @NotNull String text) {
-                return DAOFactory.warehouse()
-                        .listActive(em)
-                        .map(FxWarehouseMV::new)
-                        .toList();
-            }
-
-            @Override
-            protected @NotNull FxSearchCard<FxWarehouseMV> searchCard(@NotNull List<FxWarehouseMV> data) {
-                return FxSearchCards.forWarehouse(data);
             }
         };
     }

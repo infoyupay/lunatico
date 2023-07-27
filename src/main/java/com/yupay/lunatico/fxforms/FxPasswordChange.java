@@ -112,6 +112,7 @@ public class FxPasswordChange extends Dialog<PasswordChangeRequest>
      *
      * @return property {@link #requireOldPassword}.
      */
+    @SuppressWarnings("unused")
     public final BooleanProperty requireOldPasswordProperty() {
         return requireOldPassword;
     }

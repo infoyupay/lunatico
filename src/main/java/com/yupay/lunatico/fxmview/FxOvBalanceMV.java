@@ -349,6 +349,7 @@ public class FxOvBalanceMV extends ModelView<OvBalance, FxOvBalanceMV> {
      *
      * @return property {@link #warehouseName}.
      */
+    @SuppressWarnings("unused")
     public final StringProperty warehouseNameProperty() {
         return warehouseName;
     }

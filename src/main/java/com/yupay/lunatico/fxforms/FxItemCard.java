@@ -103,6 +103,9 @@ public class FxItemCard extends Dialog<FxItemMV>
     @FXML
     private DialogPane top;
 
+    /**
+     * Empty constructor. Internally will bind some properties.
+     */
     public FxItemCard() {
         viewer.bind(formModeProperty().isEqualTo(EditorMode.VIEWER));
         notViewer.bind(formModeProperty().isNotEqualTo(EditorMode.VIEWER));

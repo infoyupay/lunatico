@@ -22,7 +22,7 @@ public class DoiTypeStringConverter extends StringConverter<DoiType> {
     /**
      * Static factory for FXML usage.
      *
-     * @return just {@snippet : new DoiTypeStringConverter()}
+     * @return just a new instance.
      */
     @Contract(value = " -> new", pure = true)
     public static @NotNull DoiTypeStringConverter fxml() {

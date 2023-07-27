@@ -437,6 +437,7 @@ public class FxKardexDetailMV
      *
      * @return property {@link #folioType}.
      */
+    @SuppressWarnings("unused")
     public final LongProperty folioTypeProperty() {
         return folioType;
     }
@@ -572,6 +573,7 @@ public class FxKardexDetailMV
      *
      * @return property {@link #item}.
      */
+    @SuppressWarnings("unused")
     public final LongProperty itemProperty() {
         return item;
     }
@@ -599,6 +601,7 @@ public class FxKardexDetailMV
      *
      * @return property {@link #movement}.
      */
+    @SuppressWarnings("unused")
     public final LongProperty movementProperty() {
         return movement;
     }
@@ -734,6 +737,7 @@ public class FxKardexDetailMV
      *
      * @return property {@link #warehouse}.
      */
+    @SuppressWarnings("unused")
     public final LongProperty warehouseProperty() {
         return warehouse;
     }

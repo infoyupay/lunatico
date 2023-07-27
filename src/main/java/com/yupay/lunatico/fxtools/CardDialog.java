@@ -11,8 +11,8 @@ import java.util.Optional;
 
 /**
  * Abstraction of the dialog value operations.
- * @param <T> type erasure of model view item.
  *
+ * @param <T> type erasure of model view item.
  * @author InfoYupay SACS
  * @version 1.0
  */
@@ -78,6 +78,7 @@ public interface CardDialog<T> {
      * dialog a creator card form. An existing item will be modified.
      *
      * @param owner the owner of the card form.
+     * @param value the value to edit.
      * @return the result of {@link Dialog#showAndWait()}
      */
     default Optional<T> editor(@Nullable Stage owner,

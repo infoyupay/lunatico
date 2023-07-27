@@ -41,7 +41,10 @@ public class DataSource {
     }
 
     /**
-     * Short-hand for {@snippet : entityManagerFactory().createEntityManager();}
+     * Short-hand for
+     * {@snippet  :
+     *  entityManagerFactory().createEntityManager();
+     * }
      *
      * @return the new entity manager. Never null. If EMF is null, it'll be created.
      */

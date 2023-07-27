@@ -74,6 +74,9 @@ public class FxPersonCard
     @FXML
     private DialogPane top;
 
+    /**
+     * Blank constructor that wires some properties.
+     */
     public FxPersonCard() {
         viewer.bind(formModeProperty().isEqualTo(EditorMode.VIEWER));
         notViewer.bind(formModeProperty().isNotEqualTo(EditorMode.VIEWER));

@@ -245,7 +245,9 @@ public enum MovementType {
     /**
      * Creates a stream ponting to all values from this enumeration.
      * This is a shorthand for
-     * {@snippet : Arrays.stream(MovementType.values());}
+     * {@snippet :
+     *  Arrays.stream(MovementType.values());
+     *}
      *
      * @return an always new, never null stream.
      */

@@ -198,6 +198,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #movement}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<FxMovementMV> movementProperty() {
         return movement;
     }
@@ -279,6 +280,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #beforeQuantity}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> beforeQuantityProperty() {
         return beforeQuantity;
     }
@@ -306,6 +308,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #beforePrice}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> beforePriceProperty() {
         return beforePrice;
     }
@@ -333,6 +336,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #beforeCost}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> beforeCostProperty() {
         return beforeCost;
     }
@@ -360,6 +364,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #inQuantity}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> inQuantityProperty() {
         return inQuantity;
     }
@@ -387,6 +392,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #inPrice}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> inPriceProperty() {
         return inPrice;
     }
@@ -414,6 +420,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #inCost}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> inCostProperty() {
         return inCost;
     }
@@ -441,6 +448,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #outQuantity}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> outQuantityProperty() {
         return outQuantity;
     }
@@ -468,6 +476,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #outPrice}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> outPriceProperty() {
         return outPrice;
     }
@@ -495,6 +504,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #outCost}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> outCostProperty() {
         return outCost;
     }
@@ -522,6 +532,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #balanceQuantity}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> balanceQuantityProperty() {
         return balanceQuantity;
     }
@@ -549,6 +560,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #balancePrice}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> balancePriceProperty() {
         return balancePrice;
     }
@@ -576,6 +588,7 @@ public class FxMovementLineMV extends ModelView<MovementDetail, FxMovementLineMV
      *
      * @return property {@link #balanceCost}.
      */
+    @SuppressWarnings("unused")
     public final ObjectProperty<BigDecimal> balanceCostProperty() {
         return balanceCost;
     }

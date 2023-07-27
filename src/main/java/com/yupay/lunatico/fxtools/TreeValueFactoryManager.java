@@ -1,6 +1,5 @@
 package com.yupay.lunatico.fxtools;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableColumn;
@@ -76,33 +75,6 @@ public class TreeValueFactoryManager<S> {
     ) {
         pairs.add(new ValuePair<>(column,
                 d -> {
-            var t = d.getValue();
-            if (t==null) return null;
-                    var v = t.getValue();
-                    if (v == null) return null;
-                    else return accesor.apply(v).asObject();
-                }));
-        return this;
-    }
-
-    /**
-     * Adds a short column - factory where the factory
-     * will invoke an accessor function. It usually is
-     * {@code S::xxxProperty}
-     *
-     * @param column  the table column.
-     * @param accesor the accessor function.
-     * @return this instance.
-     */
-    @SuppressWarnings("DuplicatedCode")
-    @Contract("_,_->this")
-    public
-    @NotNull TreeValueFactoryManager<S> addInt(
-            TreeTableColumn<S, Integer> column,
-            Function<S, IntegerProperty> accesor
-    ) {
-        pairs.add(new ValuePair<>(column,
-                d -> {
                     var t = d.getValue();
                     if (t == null) return null;
                     var v = t.getValue();
@@ -133,6 +105,9 @@ public class TreeValueFactoryManager<S> {
             TreeTableColumn<S, T> column,
             Callback<TreeTableColumn.CellDataFeatures<S, T>, ObservableValue<T>> factory
     ) {
+        /**
+         * Sets the column's cell value factory to this inner factory.
+         */
         void provide() {
             column.setCellValueFactory(factory);
         }

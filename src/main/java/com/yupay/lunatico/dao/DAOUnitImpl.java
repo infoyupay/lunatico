@@ -2,6 +2,7 @@ package com.yupay.lunatico.dao;
 
 import com.yupay.lunatico.model.Unit;
 import org.jetbrains.annotations.NotNull;
+
 /**
  * DAO implementation for measurement units.
  *
@@ -11,7 +12,8 @@ import org.jetbrains.annotations.NotNull;
 public final class DAOUnitImpl implements DAO<Unit> {
 
     /**
-     * Package-private constructor. Use {@link DAOFactory}
+     * Package-private constructor.
+     * Use {@link DAOFactory#unit()}
      */
     DAOUnitImpl() {
     }

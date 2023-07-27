@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 /**
  * The data access object abstraction.
  *
+ * @param <T> type erasure of the persisted model entity.
  * @author InfoYupay SACS
  * @version 1.0
  */

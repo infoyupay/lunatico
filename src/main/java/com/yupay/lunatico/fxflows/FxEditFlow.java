@@ -20,6 +20,8 @@ import java.util.function.Consumer;
  * afterwards the user may choose to perform an action after
  * successful completion of the flow.
  *
+ * @param <T> type erasure of the persisted entity.
+ * @param <U> type erasure of the model view implementation.
  * @author InfoYupay SACS
  * @version 1.0
  */
@@ -36,6 +38,11 @@ public abstract class FxEditFlow<T, U extends ModelView<T, U>>
      */
     private Consumer<U> afterSuccess = x -> {
     };
+
+    /**
+     * Default no-op constructor.
+     */
+    public FxEditFlow(){}
 
     /**
      * Static factory to create a new instance to edit users.

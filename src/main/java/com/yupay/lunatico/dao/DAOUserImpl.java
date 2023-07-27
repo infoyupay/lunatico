@@ -15,7 +15,8 @@ import java.util.Optional;
  */
 public final class DAOUserImpl implements DAO<User> {
     /**
-     * Package-private constructor. Use {@link DAOFactory}
+     * Package-private constructor.
+     * Use {@link DAOFactory#user()}
      */
     DAOUserImpl() {
     }
@@ -32,7 +33,8 @@ public final class DAOUserImpl implements DAO<User> {
      * @param user     the user ID to check.
      * @param password the user password to check.
      * @return Optional containing the authenticated user.
-     * {@snippet : Optional.empty()} if authentication fail
+     * {@link  Optional#empty()}
+     * if authentication fail
      * due non existing user, or password didn't match.
      */
     @Contract("_,_,_->new")

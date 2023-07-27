@@ -1,62 +1,40 @@
 package com.yupay.lunatico.fxtools;
 
-import javafx.util.StringConverter;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-
 import static java.math.RoundingMode.HALF_UP;
 
-public class BigDecimalConverter extends StringConverter<BigDecimal> {
-    private final DecimalFormat format;
-    private final int scale;
+/**
+ * A special big decimal converter to use the formatter #,##0.00000000
+ *
+ * @author InfoYupay SACS
+ * @version 1.0
+ */
+public class BigDecimalConverter extends BaseDecimalConverter {
 
-    private final boolean abs;
-
+    /**
+     * Constructor that creates the mask #,##0.00000000.
+     *
+     * @param scale the required scale for converted values.
+     * @param abs   the absolute value flag.
+     */
     public BigDecimalConverter(int scale, boolean abs) {
-        format = new DecimalFormat(
-                "#,##0.00000000;#,##0",
-                PeruvianLocalization.SYM_PERU);
+        super("#,##0.00000000;#,##0", scale, abs);
         format.setParseBigDecimal(true);
         format.setRoundingMode(HALF_UP);
-        this.scale = scale;
-        this.abs = abs;
     }
 
+    /**
+     * Convenient converter to use for kardex units.
+     * The converter will have a flag of absolute value
+     * true, and scale 8.
+     *
+     * @return a new converter, never null.
+     */
     @Contract(" -> new")
     public static @NotNull BigDecimalConverter forKardex() {
         return new BigDecimalConverter(8, true);
     }
 
-    @Override
-    public String toString(BigDecimal object) {
-        return object == null ? "" : format.format(object);
-    }
-
-    @Override
-    public BigDecimal fromString(String string) {
-        if (string == null || string.isBlank()) {
-            return null;
-        } else {
-            try {
-                var parsed = format.parse(string.strip());
-                BigDecimal r;
-                if (parsed instanceof BigDecimal bd) {
-                    r = bd;
-                } else if (parsed == null) {
-                    return null;
-                } else {
-                    r = BigDecimal.valueOf(parsed.doubleValue())
-                            .setScale(scale, HALF_UP);
-                }
-                if (abs) r = r.abs();
-                return r;
-            } catch (ParseException e) {
-                return null;
-            }
-        }
-    }
 }

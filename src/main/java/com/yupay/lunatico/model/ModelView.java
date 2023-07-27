@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
  * This abstraction will help to make the ModelView
  * pattern work.
  *
+ * @param <T> type erasure for model class.
+ * @param <U> type erasure for model view implementation.
  * @author InfoYupay SACS
  * @version 1.0
  */

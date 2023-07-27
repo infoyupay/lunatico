@@ -18,6 +18,7 @@ import java.util.Arrays;
 /**
  * Binding to
  *
+ * @param <T> Type erasure for the converted value.
  * @author InfoYupay SACS
  * @version 1.0
  */
@@ -77,7 +78,9 @@ public class NumberStringBinding<T extends Number> extends StringBinding {
                 PeruvianLocalization.SYM_PERU,
                 master,
                 dependencies);
-    } /**
+    }
+
+    /**
      * Static factory to create a new instance for monetized values in Lunatico app.
      *
      * @param master       the observable stuff.

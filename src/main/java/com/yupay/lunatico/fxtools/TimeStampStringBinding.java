@@ -13,6 +13,7 @@ import java.time.temporal.Temporal;
  *
  * @author InfoYupay SACS
  * @version 1.0
+ * @param <T> type erasure for the converted value.
  */
 public class TimeStampStringBinding<T extends Temporal> extends StringBinding {
     /**

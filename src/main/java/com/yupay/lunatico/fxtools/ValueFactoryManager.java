@@ -125,6 +125,9 @@ public class ValueFactoryManager<S> {
             TableColumn<S, T> column,
             Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>> factory
     ) {
+        /**
+         * Sets the column's cell value factory to this inner factory.
+         */
         void provide() {
             column.setCellValueFactory(factory);
         }

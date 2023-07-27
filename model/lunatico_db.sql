@@ -424,20 +424,58 @@ CREATE VIEW public.ov_balance
 AS 
 
 SELECT
-   i.id,
+   b.id AS id,
+   i.id AS item_id,
    i.name,
    i.type,
    u.symbol,
    b.warehouse,
    b.balance_units,
    b.balance_unit_cost,
-   b.balance_cost
+   b.balance_cost,
+   w.name AS warehouse_name
 FROM
    item i INNER JOIN balance b
 		ON i.id = b.item
 	INNER JOIN unit u ON u.id = i.unit
+    INNER JOIN warehouse w on w.id = b.warehouse
 WHERE
    b.type = 'HISTORY' AND i.active;
+-- ddl-end --
+
+-- object: public.kardex_detail | type: VIEW --
+-- DROP VIEW IF EXISTS public.kardex_detail CASCADE;
+CREATE VIEW public.kardex_detail
+AS 
+
+SELECT
+   md.id AS id,
+   m.id AS movement,
+   i.id AS item,
+   m.doc_date,
+   m.type,
+   m.warehouse,
+   m.folio_type,
+   f.name AS folio_type_name,
+   m.folio_serie,
+   m.folio_number,
+   md.before_quantity,
+   md.before_price,
+   md.before_cost,
+   md.in_quantity,
+   md.in_price,
+   md.in_cost,
+   md.out_quantity,
+   md.out_price,
+   md.out_cost,
+   md.balance_quantity,
+   md.balance_price,
+   md.balance_cost
+FROM
+   movement m
+        INNER JOIN movement_detail md ON m.id = md.movement
+        INNER JOIN item i ON md.item = i.id
+        LEFT JOIN type_folio f ON f.id = m.folio_type;
 -- ddl-end --
 
 

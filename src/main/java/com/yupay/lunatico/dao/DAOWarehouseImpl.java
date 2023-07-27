@@ -11,7 +11,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class DAOWarehouseImpl implements DAO<Warehouse> {
     /**
-     * Package-private constructor. Use {@link DAOFactory}
+     * Package-private constructor.
+     * Use {@link DAOFactory#warehouse()}
      */
     DAOWarehouseImpl() {
     }

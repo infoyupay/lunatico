@@ -58,6 +58,12 @@ public class Balance {
     private Collection<BalanceDetail> detail;
 
     /**
+     * Default constructor for JPA.
+     */
+    public Balance() {
+    }
+
+    /**
      * Public accessor - getter.
      *
      * @return value of {@link #id}

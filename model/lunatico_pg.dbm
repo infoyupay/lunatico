@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="864,0" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Infoyupay SACS" last-position="0,580" last-zoom="1" max-obj-count="14"
 	 default-schema="public"
 	 layers="Default layer,ov"
 	 active-layers="0"
@@ -599,7 +599,7 @@ Documentation licensed under Creative Commons CC BY-SA v4.0
 Designed and created by David Vidal Escudero
 At labs of Infoyupay SACS
 By requirement of: Pachamama Gifts SAC
-Using pgModeler 1.0.2
+Using pgModeler 1.0.4
 
 Copyleft 2023, Lima - Peru]]> </comment>
 </textbox>
@@ -653,7 +653,7 @@ Copyleft 2023, Lima - Peru]]> </comment>
 
 <view name="kardex_detail" layers="0" collapse-mode="2" max-obj-count="27" z-value="0">
 	<schema name="public"/>
-	<position x="1760" y="400"/>
+	<position x="2000" y="80"/>
 	<reference table="public.movement_detail" column="id" alias="md" column-alias="id"/>
 	<reference table="public.movement" column="id" alias="m" column-alias="movement"/>
 	<reference table="public.item" column="id" alias="i" column-alias="item"/>
@@ -705,5 +705,22 @@ Copyleft 2023, Lima - Peru]]> </comment>
 	 src-table="public.kardex_detail"
 	 dst-table="public.type_folio"
 	 src-required="false" dst-required="false"/>
+
+<textbox name="Lunatico v1.0_views" layers="0" color="#ff0000" z-value="0" font-size="9">
+	<position x="1660" y="880"/>
+	<comment> <![CDATA[Lunatico v1.0
+
+Software product Licensed under GPLv3.0 or later.
+Documentation licensed under Creative Commons CC BY-SA v4.0
+
+Designed and created by David Vidal Escudero
+At labs of Infoyupay SACS
+By requirement of: Pachamama Gifts SAC
+Using pgModeler 1.0.4
+
+Copyleft 2023, Lima - Peru
+
+These are the views created to make special reports.]]> </comment>
+</textbox>
 
 </dbmodel>

@@ -416,6 +416,7 @@ public class FxMovementMV extends ModelView<Movement, FxMovementMV> {
      *
      * @return property {@link #detail}.
      */
+    @SuppressWarnings("unused")
     public final ListProperty<FxMovementLineMV> detailProperty() {
         return detail;
     }

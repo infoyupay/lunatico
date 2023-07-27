@@ -17,6 +17,12 @@ import java.util.function.UnaryOperator;
  * @version 1.0
  */
 public class BalanceSnapshooter implements UnaryOperator<Balance> {
+    /**
+     * Default constructor.
+     */
+    public BalanceSnapshooter() {
+    }
+
     @Override
     @Contract("_->new")
     public @NotNull Balance apply(@NotNull Balance balance) {
