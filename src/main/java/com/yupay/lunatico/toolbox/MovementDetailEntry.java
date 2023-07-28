@@ -16,7 +16,6 @@ import com.yupay.lunatico.model.Item;
 import com.yupay.lunatico.model.MovementDetail;
 import com.yupay.lunatico.model.Warehouse;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.LockModeType;
 import org.jetbrains.annotations.NotNull;
 
 /**
